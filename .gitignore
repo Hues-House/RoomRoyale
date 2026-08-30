@@ -1,0 +1,24 @@
+# Roblox Studio lock and backup files
+*.rbxl.lock
+*.rbxlx.lock
+*.rbxm.lock
+*.rbxl.bak
+*.rbxlx.bak
+*.rbxm.bak
+
+# Local Rojo build output
+/build/
+/.scratch/generated/
+
+# Extracted Studio snapshots. These are local reference material, not source.
+/_gdd_extract/
+/rbxlx_extract/
+/rbxlx_extract_updated/
+
+# Local tooling and editor files
+/fix-mcp.ps1
+.vscode/
+.idea/
+*.log
+Thumbs.db
+.DS_Store
