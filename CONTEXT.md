@@ -31,8 +31,8 @@ _Avoid_: End screen, payout screen
 ## Rooms and pieces
 
 **Style room**:
-The room assigned to one player for a round. It is the space other players tour during judging.
-_Avoid_: Plot, house, base
+The room assigned to one player for a round. It is the space other players tour during judging, and it is discarded when the round ends.
+_Avoid_: Plot, base, house (a House is the persistent thing)
 
 **Store item**:
 A furniture, decor, or accent piece that a player can collect during Shop.
@@ -42,9 +42,9 @@ _Avoid_: Loot, pickup, prop
 The player-owned shopping vehicle used to move through Shop and carry collected items.
 _Avoid_: Vehicle, inventory carrier
 
-**Owned collection**:
-The set of pieces the player can use during Style after Shop transfers the round's cart contents.
-_Avoid_: Permanent inventory, stash, loadout
+**Round collection**:
+The set of pieces the player can use during Style after Shop transfers the round's cart contents. It lasts one round.
+_Avoid_: Owned items, permanent inventory, stash, loadout
 
 **Placement**:
 Putting a collected piece into a style room at a chosen position, rotation, surface, or appearance.
@@ -67,6 +67,24 @@ _Avoid_: Objective score, compliance score
 **Aesthetic score**:
 The part of a room's result based on appreciation votes from other players.
 _Avoid_: Style points, popularity score
+
+## Persistence and progression
+
+**House**:
+The room a player owns permanently and decorates between rounds. Unlike a Style room it survives rejoining, and it is the reason to keep playing past one round.
+_Avoid_: Style room, plot, base, apartment
+
+**Style Bucks**:
+The currency a player earns by finishing rounds and spends on Owned items.
+_Avoid_: Coins, cash, points
+
+**Owned item**:
+A piece the player has bought with Style Bucks and can place in their House forever. Distinct from the Round collection, which is temporary.
+_Avoid_: Owned collection, unlock, inventory item
+
+**House placement**:
+An Owned item positioned in a House. It persists across sessions, unlike a Placement in a Style room.
+_Avoid_: Save slot, decoration
 
 ## Project and release terms
 
