@@ -68,6 +68,24 @@ _Avoid_: Objective score, compliance score
 The part of a room's result based on appreciation votes from other players.
 _Avoid_: Style points, popularity score
 
+## Shop conflict
+
+**Ram**:
+Driving a Cart into another player's Cart hard enough to knock the rider out. It is the main way a Shop player expresses skill and the reason boost and drift matter.
+_Avoid_: Attack, hit, grief
+
+**Knockout**:
+The state a rammed rider enters on a hard impact. The rider is thrown, briefly loses control, and can drop a carried Store item.
+_Avoid_: Stun, death, downed
+
+**Shield**:
+The protection a Shop player can use to survive a Ram without being knocked out.
+_Avoid_: Armor, powerup, buff
+
+**Checkout zone**:
+A place in the Shop where a loaded player is safe from Rams and can end their Shop phase early.
+_Avoid_: Extraction point, safe room, exit
+
 ## Persistence and progression
 
 **House**:
@@ -81,6 +99,10 @@ _Avoid_: Coins, cash, points
 **Owned item**:
 A piece the player has bought with Style Bucks and can place in their House forever. Distinct from the Round collection, which is temporary.
 _Avoid_: Owned collection, unlock, inventory item
+
+**Neighborhood**:
+The persistent shared space players occupy between rounds. Every player's House sits here, and it is where a player spends Style Bucks and decorates.
+_Avoid_: Lobby, hub, plots, town
 
 **House placement**:
 An Owned item positioned in a House. It persists across sessions, unlike a Placement in a Style room.
