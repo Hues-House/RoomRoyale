@@ -24,76 +24,73 @@ Roblox place and Studio is the source of truth. Connect over the Roblox Studio M
 anything else and read the "Studio MCP gotchas" section first, it will save several wasted
 round trips.
 
-There is one blocking bug: players cannot move in the multiplayer lobby or during Style,
-but can during Shop, and solo is entirely fine. Start there. The handoff has the evidence
-gathered so far and the leading hypothesis. Do not trust the hypothesis, it is explicitly
-unconfirmed.
+Do not test multiplayer in Studio's server-and-clients mode. It does not bind a movement
+controller, so clients cannot walk, and it cost two sessions before anyone noticed the game
+was fine. Publish to the test place in the same universe and join it with real clients. See
+ADR 0002.
 
-Verify every fix against a running game rather than by reading the diff. Do not publish to
-the live place.
+Verify every fix against a running game rather than by reading the diff. Never publish to the
+live place.
 <!-- END PROMPT -->
 
 ---
 
-## Read this first: the code is not backed up
+## Read this first: the code is safer than session 2 believed
 
-Every code change from session 2 exists **only in the local Studio datamodel**. It is not in
-git, and this repo has no source in it (`src/` is empty by design). The git history contains
-documentation only.
+Team Create is enabled on this place, so the datamodel persists in the cloud rather than only
+on one disk. Session 2's claim that the code existed only locally was wrong. It is still not
+in git, and this repo has no source in it (`src/` is empty by design).
+
+Studio Script Sync is the fix and it is agreed: two-way sync between Studio and `src/`, no Rojo
+migration. It syncs scripts only, so the 108 ItemAssets, every ScreenGui and all world geometry
+stay inside the place file regardless.
 
 Changed in Studio and uncommitted anywhere: `RoundManager`, `ProgressionService`, `UITheme`,
 `PickupEffect`, `CartController`, `CartService`, `RoomService`, `JudgeClient`, and a new
 `ZZ_FreezeDiagnostic`.
 
-Saving the place file is the only thing that makes this durable. Publishing is out of bounds.
+Publishing to the **test place** is now the verification method, not a hazard. See ADR 0002.
+The live place stays off limits.
 
 ---
 
-## The blocking bug
+## The blocking bug that wasn't
 
-**Symptom, reported by the user from a live server-plus-clients test.** Cannot move in the
-multiplayer lobby. Cannot move during Style. CAN move during Shop. Solo is entirely fine.
+**Closed 2026-08-31.** `VERIFIED` against a real server.
 
-**Ruled out.** `VERIFIED` from the user's server log: the freeze happens on a clean boot with
-**no round running**, so no cart and no Style room exist. CartService and RoomService cannot
-explain the lobby case. None of the new fault-isolation warnings fired.
+The symptom was real: in Studio's server-and-clients mode, a client cannot move. The cause
+is Studio, not the game. The same build published to a test place and joined from a real
+client moves normally.
 
-**Leading hypothesis, `UNVERIFIED`.** The character rig is wrong. Diagnostic output from a
-solo run:
+The evidence that settled it, from a client-side diagnostic:
 
 ```
-ws=16 plat=false sit=false anchored=false state=Running owner=<self> weld=false
-motor6d on=0 off=0
-constraints=[14 x BallSocketConstraint: NeckBallSocket, WaistBallSocket,
-             LeftElbowBallSocket, RightKneeBallSocket, ...]
+move=0,0,0  ctrl=0,0,0  ws=16  state=Running
+activeController=NO ACTIVE CONTROLLER
+KeyboardEnabled=true GamepadEnabled=false MouseEnabled=true TouchEnabled=false
+boundActions=[EmotesMenuToggleAction, ..., RbxCameraKeypress, ...]   <- no movement actions
 ```
 
-The rig has **zero Motor6Ds** and 14 joint-named BallSocketConstraints. Those names do not
-come from this codebase. `CartCollision` names its ragdoll parts `RagdollBSC` with
-attachments `RagdollAtt0` and `RagdollAtt1`, none of which are present. This points at a
-Studio avatar-joint or physics-character beta feature. It could not be confirmed in script
-because `StarterPlayer.AvatarJointUpgrade` is not a property in this Studio build.
+Roblox's own ControlModule selected no movement controller, so nothing translated W into
+motion. Camera modules bound normally, which is why the camera worked and the character did
+not. The humanoid was healthy throughout: WalkSpeed 16, not platform-standing, not anchored,
+network ownership held by the client.
 
-**Certain regardless of whether that is the freeze cause.** Every ragdoll recovery path in
-the place is dead code against this rig:
+**Falsified along the way, each with evidence, so nobody re-opens them:**
 
-- `ServerScriptService.RoomService`, `wakeCharacterForTeleport`: re-enables Motor6Ds that do
-  not exist and destroys `RagdollBSC` which does not exist.
-- `ServerScriptService.JudgeService`: same pattern, same no-op.
-- `ServerScriptService.CartCollision`, `ragdollPlayer`: ragdolls by disabling limb Motor6Ds.
-  With none present, both the ragdoll and its recovery are silently broken.
+- `StreamingEnabled`. Set to false, freeze persisted.
+- Network ownership. `owner=Player1`, not SERVER. This was the handoff's leading hypothesis.
+- `DevComputerMovementMode`. `UserChoice` on every mode, not `Scriptable`.
+- Input capability. `KeyboardEnabled=true`, so the harness was not claiming a missing keyboard.
+- Today's edits. The months-old published build, untouched, also runs fine on the current
+  platform, and the current build runs fine when published.
 
-**First two actions next session.** Check Studio Beta Features for an avatar joint or physics
-character upgrade, disable it, retest multiplayer. Then read the `[FREEZE]` lines from a real
-multiplayer run. The `owner=` field is the single highest-value datum: a root owned by
-`SERVER` rather than by the player means that client physically cannot move their character,
-and that failure mode exists only in a real server/client split, which matches the symptom
-shape exactly.
-
-The diagnostic is `ServerScriptService.ZZ_FreezeDiagnostic`, logging each player at spawn+2s
-and spawn+8s. It is **temporary, delete it once diagnosed**.
-
----
+**The rig question is still open and now cheap.** Studio reported a character with 20 parts,
+14 BallSocketConstraints and zero Motor6Ds, and reported it differently between solo and
+multiplayer runs. That observation drove the conclusion that every ragdoll recovery path is
+dead code. Since Studio's rig reporting is now known to be unreliable, that conclusion is
+`UNVERIFIED` again. Read `[CFREEZE] ... motor6d=` from a real server before acting on it. If
+the rig is a normal R15, ramming already works and the ragdoll work disappears.
 
 ## Evidence ledger
 
@@ -186,35 +183,37 @@ This fixes a real class. It is not the lobby freeze.
 
 ---
 
-## Ranked plan to an actual good place
+## Ranked plan to a beta
 
-1. **Make the code durable.** Save the place. Everything above lives only in a local Studio
-   datamodel.
-2. **The multiplayer movement freeze.** Nothing else matters until players can move. Start
-   with the rig, see the blocking bug section.
-3. **MCP reachability for multiplayer testing.** A server-plus-clients session registers extra
-   studio instances, but every call to them returns "Client proxy is out of date, restart to
-   update", and they later vanish from the listing. While this holds, no multiplayer behaviour
-   can be observed directly and the loop degrades to edit, ask the user, guess. Fixing this is
-   worth more than any single bug fix.
-4. **Zero-data FTUE.** `StarterPlayer.StarterPlayerScripts.FtueController` gates purely on
-   `snapshot.roundsFinished == 0` with no persisted flag. The test account reads
-   `roundsFinished=3`, so the FTUE has **never once been displayed in any session**. Every
-   beta player will be zero-data. Testing needs a fresh account or a profile reset, and Studio
-   is writing to **live** DataStores, so a reset is destructive and is the user's call.
-5. **Verify the results panel in a real round**, not by driving attributes.
-6. **Phone verification on a real device.** The tray solver is only probe-verified.
-7. **Shared theme attributes.** `chooseThemes` in `RoundManager` writes the theme onto `game`
-   attributes, which two concurrent lobbies would clobber. Note `game:SetAttribute` does not
-   replicate to clients at all, which is why `RoundThemeReplicator` exists. Untouched.
-8. **Deferred polish**, all open, all deprioritised: Xbox focus and input mode (nothing in the
-   place ever assigns `SelectedObject` or connects `LastInputTypeChanged`); the ScreenGui inset
-   consolidation (13 runtime ScreenGuis across three conventions); cart capacity 15 duplicated
-   at five sites; grabbed store items leaked to `ServerStorage`; `processedRoundRewards`
-   growing unbounded; and `JoinRoundClient`, which is fully dead UI behind a permanently
-   invisible button.
+Beta means: a public place where players earn Style Bucks in rounds, buy Owned items, and
+decorate a persistent House in the Neighborhood. Housing, currency and the shop already exist
+and work. See `CONTEXT.md`.
 
----
+1. **Read the rig from a real server.** One F9 log line. Decides whether ramming and every
+   ragdoll recovery path already work, or whether that is a real workstream. Nothing else
+   should be planned until this is known.
+2. **Set up Studio Script Sync into `src/`.** Gets 55 scripts into git. Non-script instances
+   stay in the place file, so this is a partial answer, but it is the whole code half.
+3. **Prove one real multiplayer round end to end on the test place.** Cart-to-Style transfer,
+   placement isolation, voting, room reveals, scores. Every one of these is `UNVERIFIED` and
+   all of them are now testable for the first time.
+4. **Zero-data FTUE.** `FtueController` gates on `roundsFinished == 0` and has never displayed
+   in any session. 100% of beta players are zero-data. Needs a fresh account, because Studio
+   writes to live DataStores and a profile reset is destructive.
+5. **Xbox focus and input.** Nothing in the place assigns `GuiService.SelectedObject` or
+   connects `LastInputTypeChanged`. The lobby Play button cannot be reached with a controller.
+6. **Aesthetic themes.** `ThemeDatabase.AestheticThemes` has exactly one entry,
+   `overall_style`. Half of every theme pair has been a constant in every round ever played.
+7. **Item overhaul.** 108 catalog entries across 8 mechanical themes, 9 missing PrimaryPart.
+   Needs consistent size, placement metadata and enough variety that two players build
+   visibly different rooms from the same theme. This is content work with a schedule.
+8. **Griefing containment.** Ramming is in, recorded in ADR 0001. Shield exists after a
+   knockout. Checkout zones and a shorter Shop phase are the plan and are not built.
+9. **Phone verification on a real device.** The tray solver is only probe-verified.
+10. **Deferred polish.** Shared theme attributes clobbering across concurrent lobbies; the
+    ScreenGui inset consolidation across 13 runtime ScreenGuis; cart capacity 15 duplicated at
+    five sites; grabbed store items leaked to `ServerStorage`; `processedRoundRewards` growing
+    unbounded; `JoinRoundClient` is fully dead UI behind a permanently invisible button.
 
 ## Studio MCP gotchas
 
@@ -237,7 +236,11 @@ These cost real time. Read before the first tool call.
   it has yielded. A `task.spawn` closure on its first synchronous resumption survives. A
   thread that has yielded dies mid-statement. This masked the queue bug on the first probe and
   nearly produced a confident wrong diagnosis.
-- **Multi-client sessions are unreachable.** See ranked item 3.
+- **Studio server-and-clients mode does not bind a movement controller.** Clients cannot walk.
+  This is not a game bug. Use the test place instead. This single line would have saved two
+  sessions.
+- **Multi-client sessions are unreachable over MCP.** Extra studio instances register, then
+  every call returns "Client proxy is out of date" and they vanish.
 - **The viewport cannot be resized via MCP**, so phone layout cannot be rendered.
 - `screen_capture` is scaled relative to the real viewport, so clicking coordinates read off a
   screenshot silently misses. Pass `instance_path` to `user_mouse_input` instead.
@@ -252,7 +255,8 @@ These cost real time. Read before the first tool call.
 
 ## Ground rules
 
-- Do not publish or overwrite the cloud place.
+- Never publish or overwrite the **live** place. The test place in the same universe is the
+  verification target and publishing to it is expected.
 - `src/` in the repo is empty except for `.gitkeep`. It is not source.
 - Local `.rbxl` and `.rbxlx` files on the Desktop are stale. Do not audit against them.
 - Keep server validation authoritative. `PlaceItem` in RoomService is already
@@ -261,5 +265,7 @@ These cost real time. Read before the first tool call.
 
 ## Cleanup owed
 
-- Delete `ServerScriptService.ZZ_FreezeDiagnostic` once the freeze is diagnosed.
+- Delete `ServerScriptService.ZZ_FreezeDiagnostic` and
+  `StarterPlayer.StarterPlayerScripts.ZZ_ClientFreezeDiagnostic`. Both are published to the
+  test place. Keep them only until the rig is read from a real server, then remove both.
 - Keep the CartService and RoomService `pcall` isolation and warnings.

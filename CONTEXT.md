@@ -114,6 +114,10 @@ _Avoid_: Save slot, decoration
 The published Roblox place identified by PlaceId `82272152451005` and Universe/GameId `10383493285`.
 _Avoid_: Production build, cloud file
 
+**Test place**:
+A separate published place in the same universe as the Live place, used to verify behaviour with real clients. It shares the universe's data, so writes from it are real.
+_Avoid_: Staging, dev build, sandbox
+
 **Reference snapshot**:
 A local extraction or document that records a past Studio state. It can explain history but cannot override the live place or current project direction.
 _Avoid_: Source of truth, backup build
