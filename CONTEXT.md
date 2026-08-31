@@ -79,8 +79,8 @@ The state a rammed rider enters on a hard impact. The rider is thrown, briefly l
 _Avoid_: Stun, death, downed
 
 **Shield**:
-The protection a Shop player can use to survive a Ram without being knocked out.
-_Avoid_: Armor, powerup, buff
+The brief protection a player is granted after a Knockout, so the same player cannot be rammed again while recovering.
+_Avoid_: Armor, powerup, buff, invulnerability
 
 **Checkout zone**:
 A place in the Shop where a loaded player is safe from Rams and can end their Shop phase early.
