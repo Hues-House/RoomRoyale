@@ -1,0 +1,32 @@
+{
+  "rr_crescent_sofa_v2": {
+    "parts": 5,
+    "triangles": 19145,
+    "dimensionsStuds": [
+      11.5611,
+      4.55,
+      5.143
+    ],
+    "glbBytes": 338400
+  },
+  "rr_loop_bentwood_chair_v2": {
+    "parts": 2,
+    "triangles": 13168,
+    "dimensionsStuds": [
+      3.2614,
+      4.9638,
+      2.82
+    ],
+    "glbBytes": 236272
+  },
+  "rr_tide_lamp_v2": {
+    "parts": 3,
+    "triangles": 5643,
+    "dimensionsStuds": [
+      2.198,
+      3.14,
+      2.198
+    ],
+    "glbBytes": 110068
+  }
+}

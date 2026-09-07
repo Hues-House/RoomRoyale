@@ -1,0 +1,14 @@
+{
+  "composedPrompt": "A single sculptural table lamp, asymmetrical sea-green glazed ceramic pebble base with a shallow thumb-pressed hollow, short offset dark bronze neck, broad warm ivory linen tapered lampshade. Full object in frame, straight-on front elevation, isolated on pure white background, even neutral studio illumination, product reference photograph, realistic ceramic and linen surfaces.",
+  "quality": "fast",
+  "color": "#438F85",
+  "prompt": "A sculptural table lamp with an asymmetrical sea-green glazed ceramic pebble base, a short offset bronze neck and a broad ivory linen tapered shade. The base has a deliberate thumb-pressed hollow and a heavy rounded foot. Contemporary collectible design, tactile satin glaze, warm linen, clear coherent silhouette.",
+  "mesher": "hunyuan",
+  "metallic": 0,
+  "roughness": 0.4,
+  "heightMeters": 0.88,
+  "kind": "OTHER",
+  "asymmetric": true,
+  "name": "Room Royale - Tide ceramic lamp",
+  "imageSeed": 170907
+}

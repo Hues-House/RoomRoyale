@@ -1,0 +1,82 @@
+[
+  {
+    "asset": "rr_crescent_sofa_v2",
+    "name": "rr_crescent_sofa_v2_1",
+    "file": "rr_crescent_sofa_v2_1.mesh.json",
+    "material": "RR Smoked walnut",
+    "vertices": 3069,
+    "triangles": 6013
+  },
+  {
+    "asset": "rr_crescent_sofa_v2",
+    "name": "rr_crescent_sofa_v2_2",
+    "file": "rr_crescent_sofa_v2_2.mesh.json",
+    "material": "RR Dark bronze",
+    "vertices": 96,
+    "triangles": 176
+  },
+  {
+    "asset": "rr_crescent_sofa_v2",
+    "name": "rr_crescent_sofa_v2_3",
+    "file": "rr_crescent_sofa_v2_3.mesh.json",
+    "material": "RR Burnt sienna wool",
+    "vertices": 4952,
+    "triangles": 9892
+  },
+  {
+    "asset": "rr_crescent_sofa_v2",
+    "name": "rr_crescent_sofa_v2_4",
+    "file": "rr_crescent_sofa_v2_4.mesh.json",
+    "material": "RR Dark piping",
+    "vertices": 774,
+    "triangles": 1544
+  },
+  {
+    "asset": "rr_crescent_sofa_v2",
+    "name": "rr_crescent_sofa_v2_5",
+    "file": "rr_crescent_sofa_v2_5.mesh.json",
+    "material": "RR Ochre woven cushion",
+    "vertices": 762,
+    "triangles": 1520
+  },
+  {
+    "asset": "rr_loop_bentwood_chair_v2",
+    "name": "rr_loop_bentwood_chair_v2_1",
+    "file": "rr_loop_bentwood_chair_v2_1.mesh.json",
+    "material": "RR Smoked walnut",
+    "vertices": 4546,
+    "triangles": 9056
+  },
+  {
+    "asset": "rr_loop_bentwood_chair_v2",
+    "name": "rr_loop_bentwood_chair_v2_2",
+    "file": "rr_loop_bentwood_chair_v2_2.mesh.json",
+    "material": "RR Honey cord",
+    "vertices": 2100,
+    "triangles": 4112
+  },
+  {
+    "asset": "rr_tide_lamp_v2",
+    "name": "rr_tide_lamp_v2_1",
+    "file": "rr_tide_lamp_v2_1.mesh.json",
+    "material": "RR Sea green ceramic",
+    "vertices": 785,
+    "triangles": 1547
+  },
+  {
+    "asset": "rr_tide_lamp_v2",
+    "name": "rr_tide_lamp_v2_2",
+    "file": "rr_tide_lamp_v2_2.mesh.json",
+    "material": "RR Lamp bronze",
+    "vertices": 322,
+    "triangles": 640
+  },
+  {
+    "asset": "rr_tide_lamp_v2",
+    "name": "rr_tide_lamp_v2_3",
+    "file": "rr_tide_lamp_v2_3.mesh.json",
+    "material": "RR Warm linen shade",
+    "vertices": 1728,
+    "triangles": 3456
+  }
+]

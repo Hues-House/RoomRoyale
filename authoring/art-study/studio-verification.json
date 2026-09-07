@@ -1,0 +1,60 @@
+{
+  "assets": [
+    {
+      "name": "rr_crescent_sofa_v2",
+      "bottom": 0,
+      "triangles": 19145,
+      "parts": 5,
+      "dimensions": [
+        11.561136245727539,
+        4.550000190734863,
+        5.143014907836914
+      ]
+    },
+    {
+      "name": "rr_loop_bentwood_chair_v2",
+      "bottom": 0,
+      "triangles": 13168,
+      "parts": 2,
+      "dimensions": [
+        3.261363983154297,
+        4.96380615234375,
+        2.820000171661377
+      ]
+    },
+    {
+      "name": "AvatarScaleReference",
+      "bottom": -2.384185791015625e-7,
+      "triangles": 0,
+      "parts": 0,
+      "dimensions": [
+        3.6121270656585693,
+        5.73997688293457,
+        1.891374111175537
+      ]
+    },
+    {
+      "name": "rr_tide_lamp_v2",
+      "bottom": 3.000000238418579,
+      "triangles": 5643,
+      "parts": 3,
+      "dimensions": [
+        2.197999954223633,
+        3.1399998664855957,
+        2.197999954223633
+      ]
+    }
+  ],
+  "catalogCount": 96,
+  "gameId": 10764620924,
+  "previewScriptAbsent": true,
+  "placeId": 86511797738570,
+  "sourceMeshRecords": 10,
+  "lighting": {
+    "ClockTime": 14.5,
+    "Ambient": "0.27451, 0.27451, 0.27451",
+    "OutdoorAmbient": "0.27451, 0.27451, 0.27451",
+    "Brightness": 1.5,
+    "Exposure": 0
+  }
+}
