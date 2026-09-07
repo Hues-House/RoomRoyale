@@ -1,6 +1,6 @@
 -- ServerScriptService > HousingService
 -- Manages persistent player houses in the lobby world.
--- Reuses RoomService's RoomTemplate and PlaceItemEvent infrastructure.
+-- Houses have a dedicated template and session lots; competition rooms remain separate.
 -- Houses live in Workspace.HousingDistrict and persist across rounds.
 -- Only the owning player can place/move items; all players can walk through.
 
@@ -38,16 +38,12 @@ local PickupPlacedItem    = getOrCreate("RemoteEvent",    "PickupPlacedItem")
 
 local PhaseChangedServer = Events:WaitForChild("PhaseChangedServer", 15)
 
-local CFG = {
-	PlotSpacingZ     = -90,
-	PlotStartZ       = 130,
-	PlotCountPerSide = 4,
-	LeftX            = -90,
-	RightX           = 90,
-	FloorY           = 0,
-	MaxPlacements    = 30,
-	MaxPlaceDistance = 35,
-}
+local Layout = require(ReplicatedStorage.NeighborhoodLayout)
+local HouseBuilder = require(script.Parent.HouseTemplateBuilder)
+local Lots = require(script.Parent.HouseLotService)
+local Geometry = require(script.Parent.HousePlacementGeometry)
+local loading = {}
+local initialized = false
 
 local houseRooms: {[number]: Model} = {}
 local HousingService = {}
@@ -60,23 +56,6 @@ local HousingService = {}
 local function playerCanDecorate(player: Player): boolean
 	local rp = player:GetAttribute("RoundPhase")
 	return rp == nil or rp == "" or rp == "Lobby"
-end
-
-local function getDistrict(): Folder
-	local d = workspace:FindFirstChild("HousingDistrict")
-	if not d then
-		d = Instance.new("Folder")
-		d.Name = "HousingDistrict"
-		d.Parent = workspace
-	end
-	return d :: Folder
-end
-
-local function getPlotPosition(index: number): Vector3
-	local side = index <= CFG.PlotCountPerSide and CFG.LeftX or CFG.RightX
-	local row  = (index - 1) % CFG.PlotCountPerSide
-	local z    = CFG.PlotStartZ + row * CFG.PlotSpacingZ
-	return Vector3.new(side, CFG.FloorY, z)
 end
 
 local function getPromptBasePart(instance: Instance): BasePart?
@@ -132,188 +111,18 @@ local function applyHouseSurface(room: Model, surface: string, color: Color3, ma
 	return true
 end
 
--- Build a thin paintable liner just inside a wall's interior face. The player paints
--- the liner; the structural wall keeps its fixed cottage-exterior colour, so interior
--- colours never bleed to the outside of the house.
-local function addInteriorLiner(room: Model, wall: BasePart, centerPos: Vector3)
-	local cf, sz = wall.CFrame, wall.Size
-	local thinX = sz.X <= sz.Z
-	local halfThin = thinX and sz.X / 2 or sz.Z / 2
-	local normalDir = thinX and cf.RightVector or cf.LookVector
-	if normalDir:Dot(centerPos - cf.Position) < 0 then normalDir = -normalDir end
-	local liner = Instance.new("Part")
-	liner.Name = wall.Name .. "Liner"
-	-- Full-bleed across the wall face (no side trim reveal); tiny top/bottom inset only,
-	-- to avoid z-fighting the floor/ceiling.
-	liner.Size = thinX and Vector3.new(0.12, sz.Y - 0.3, sz.Z)
-		or Vector3.new(sz.X, sz.Y - 0.3, 0.12)
-	liner.CFrame = (cf - cf.Position) + (cf.Position + normalDir * (halfThin + 0.08))
-	liner.Anchored = true
-	liner.CanCollide = false
-	liner.CastShadow = false
-	liner.Color = Color3.fromRGB(252, 250, 247)
-	liner.Material = Enum.Material.SmoothPlastic
-	liner:SetAttribute("SurfaceType", "Wall")
-	liner.Parent = room
-	return liner
-end
-
-local function buildHouseRoom(player: Player, index: number): Model?
-	local template = ServerStorage:FindFirstChild("RoomTemplate")
-	if not template then
-		warn("[HousingService] RoomTemplate not found in ServerStorage")
-		return nil
+local function buildHouseRoom(player: Player, index: number): Model
+	local room=HouseBuilder.Build(index,player)
+	for _,name in {"Floor","WallBackLiner","WallLeftLiner","WallRightLiner"} do
+		local p=room:FindFirstChild(name,true)
+		local prompt=Instance.new("ProximityPrompt")
+		prompt.Name="PaintPrompt" prompt.ActionText="Paint" prompt.ObjectText=name=="Floor" and "Floor" or "Wall"
+		prompt.MaxActivationDistance=8 prompt.HoldDuration=.2 prompt.Parent=p
+		local key=name=="Floor" and "floor" or p:GetAttribute("SurfaceKey")
+		prompt.Triggered:Connect(function(actor)
+			if actor==player and playerCanDecorate(actor) then OpenSurfacePicker:FireClient(actor,key) end
+		end)
 	end
-
-	local room = template:Clone()
-	room.Name = "HouseRoom_" .. player.UserId
-
-	local pos = getPlotPosition(index)
-	local facingCF
-	if pos.X < 0 then
-		facingCF = CFrame.new(pos) * CFrame.Angles(0, math.rad(90), 0)
-	else
-		facingCF = CFrame.new(pos) * CFrame.Angles(0, math.rad(-90), 0)
-	end
-	room:PivotTo(facingCF)
-	-- Houses get a walkable front + cottage exterior (round rooms keep the diorama)
-	-- Strip the RoomTemplate's built-in exterior so HouseShellBuilder's cottage is the only one (no double roof).
-	local STRIP_EXTERIOR = {"RoofBack","RoofFront","Chimney","ChimneyCap","PorchStep","PorchAwning","PorchPostL","PorchPostR","FenceL","FenceR","MailPost","MailBox","MailFlag","FrontDoorOpen","FlowerBoxLeft","FlowerBoxRight","FlowersLeft","FlowersRight","FacadeLeft","FacadeRight","FacadeHeader","WindowTrim","SkyBackdrop"}
-	for _, sn in ipairs(STRIP_EXTERIOR) do
-		for _, sp in ipairs(room:GetDescendants()) do
-			if sp.Name == sn then sp:Destroy() end
-		end
-	end
-	local sfw = room:FindFirstChild("SafetyFrontWall", true)
-	if sfw then sfw:Destroy() end
-	local okShell, shellErr = pcall(function()
-		local builder = require(script.Parent:WaitForChild("HouseShellBuilder"))
-		local shell = builder.GetShell():Clone()
-		shell:PivotTo(room:GetPivot())
-		shell.Parent = room
-	end)
-	if not okShell then warn("[HousingService] shell graft failed: " .. tostring(shellErr)) end
-
-	-- Strip the style-room template's showroom dressing (back-window glass wall, neon
-	-- glow panel, neon ceiling track strips) so the house reads as a cozy cottage. Scoped
-	-- to the template's VisualShell so the cottage shell's own windows (HouseShellDecor)
-	-- and the paint-prompt anchors/trim are preserved.
-	local visualShell = room:FindFirstChild("VisualShell")
-	if visualShell then
-		local stripPrefixes = {"WinGlass","WinFrame","WinDiv","WinPost","WinGlow","CeilLight"}
-		local toStrip = {}
-		for _, sp in ipairs(visualShell:GetDescendants()) do
-			if sp:IsA("BasePart") then
-				for _, pre in ipairs(stripPrefixes) do
-					if sp.Name:sub(1, #pre) == pre then table.insert(toStrip, sp); break end
-				end
-			end
-		end
-		for _, sp in ipairs(toStrip) do sp:Destroy() end
-	end
-
-	-- Warm cottage ceiling light (replaces the removed showroom track lights). Kept
-	-- modest: a near-opaque Neon panel + a strong PointLight blew out the interior
-	-- (Bloom amplifies emissive surfaces). A small dim fixture reads as a light without
-	-- washing the room. NOTE: the room is still flooded by sky ambient
-	-- (Lighting.EnvironmentDiffuseScale=1), so placed lamps/mood barely register yet --
-	-- see the "enclosed rooms + interior lighting" plan in the handoff doc.
-	local ceilingLight = Instance.new("Part")
-	ceilingLight.Name = "CottageCeilingLight"
-	ceilingLight.Size = Vector3.new(2.6, 0.3, 2.6)
-	ceilingLight.Anchored = true
-	ceilingLight.CanCollide = false
-	ceilingLight.CastShadow = false
-	ceilingLight.Color = Color3.fromRGB(255, 244, 222)
-	ceilingLight.Material = Enum.Material.Neon
-	ceilingLight.Transparency = 0.5
-	ceilingLight.CFrame = room:GetPivot() * CFrame.new(0, 17.4, 0)
-	ceilingLight.Parent = room
-	local warmLight = Instance.new("PointLight")
-	warmLight.Brightness = 0.8
-	warmLight.Range = 22
-	warmLight.Color = Color3.fromRGB(255, 236, 205)
-	warmLight.Parent = ceilingLight
-
-	-- Interior wall liners (paintable). Keep the cottage exterior independent of the
-	-- interior wall colours the player picks in the Decorate panel.
-	local centerPos = room:GetPivot().Position
-	for _, wn in ipairs({ "WallBack", "WallLeft", "WallRight" }) do
-		local wall = room:FindFirstChild(wn, true)
-		if wall and wall:IsA("BasePart") then
-			wall.Color = Color3.fromRGB(252, 250, 247)  -- exterior stays the fixed cottage colour
-			addInteriorLiner(room, wall, centerPos)
-		end
-	end
-
-	room:SetAttribute("OwnerUserId", player.UserId)
-	room:SetAttribute("HouseIndex",  index)
-	room:SetAttribute("IsHouseRoom", true)
-
-	for _, part in ipairs(room:GetDescendants()) do
-		if part:IsA("BasePart") then
-			part:SetAttribute("OwnerUserId", player.UserId)
-			part:SetAttribute("IsHouseRoom", true)
-		end
-	end
-
-	local plot = room:FindFirstChild("PlotBoundary", true)
-	if plot then
-		plot.Name = "HouseRoom_" .. player.UserId .. "_Plot"
-	end
-
-	-- Owner nameplate
-	local namePart = Instance.new("Part")
-	namePart.Name = "OwnerSign"
-	namePart.Size = Vector3.new(10, 2.5, 0.3)
-	namePart.Anchored = true
-	namePart.CanCollide = false
-	namePart.CastShadow = false
-	namePart.Transparency = 1
-	namePart.Parent = room
-
-	local bb = Instance.new("BillboardGui")
-	bb.Size = UDim2.fromOffset(200, 40)
-	bb.StudsOffset = Vector3.new(0, 4, 0)
-	bb.AlwaysOnTop = true  -- render over the roof so the nameplate is never occluded
-	bb.MaxDistance = 80
-	bb.Adornee = namePart
-	bb.Parent = namePart
-
-	local nameLabel = Instance.new("TextLabel")
-	nameLabel.Size = UDim2.fromScale(1, 1)
-	nameLabel.BackgroundColor3 = Color3.fromRGB(255, 253, 248)
-	nameLabel.BackgroundTransparency = 0.1
-	nameLabel.Text = player.DisplayName .. "'s Place"
-	nameLabel.TextColor3 = Color3.fromRGB(58, 48, 36)
-	nameLabel.Font = Enum.Font.FredokaOne
-	nameLabel.TextSize = 18
-	nameLabel.Parent = bb
-	local corner = Instance.new("UICorner")
-	corner.CornerRadius = UDim.new(0, 12)
-	corner.Parent = bb
-
-	-- Float the nameplate above the cottage centre (ridge ≈ y35) so it clears the roof.
-	local frontWorld = room:GetPivot() * CFrame.new(0, 28, 0)
-	namePart.CFrame = frontWorld
-
-	-- Wire the surface paint prompts ([E] Paint on each wall/floor). RoomService wires
-	-- these for style rooms; the house must wire its own, with a hub-only owner guard.
-	for _, desc in ipairs(room:GetDescendants()) do
-		if desc:IsA("ProximityPrompt") and desc.Name == "PaintPrompt" then
-			local key = desc:GetAttribute("SurfaceKey")
-			if key then
-				desc.Triggered:Connect(function(trigPlayer: Player)
-					if not playerCanDecorate(trigPlayer) then return end
-					if trigPlayer.UserId ~= player.UserId then return end
-					OpenSurfacePicker:FireClient(player, key)
-				end)
-			end
-		end
-	end
-
-	room.Parent = getDistrict()
-	CollectionService:AddTag(room, "HouseRoom")
 	return room
 end
 
@@ -384,12 +193,14 @@ local function populateHouseFromSaved(player: Player, room: Model)
 
 	for id, entry in pairs(placements) do
 		local source = ItemAssets and ItemAssets:FindFirstChild(entry.itemId)
-		if not source then continue end
+		if not source then
+			room:SetAttribute("MissingAssetCount",(room:GetAttribute("MissingAssetCount") or 0)+1)
+			room:SetAttribute("RecoveredPlacementCount",(room:GetAttribute("RecoveredPlacementCount") or 0)+1)
+			continue
+		end
 
-		local cf = CFrame.new(entry.cx, entry.cy, entry.cz)
-			* CFrame.fromEulerAnglesXYZ(
-				math.rad(entry.rx), math.rad(entry.ry), math.rad(entry.rz)
-			)
+		local cf=Geometry.Read(entry,room:GetPivot())
+		if not cf then room:SetAttribute("RecoveredPlacementCount",(room:GetAttribute("RecoveredPlacementCount") or 0)+1) continue end
 
 		local placed = source:Clone()
 		placed.Name = entry.itemId .. "_house_" .. id
@@ -412,6 +223,11 @@ local function populateHouseFromSaved(player: Player, room: Model)
 		end
 
 		placed:PivotTo(cf)
+		if not Geometry.Fits(room,placed) or not Geometry.HasSupport(room,placed,surface) then
+			room:SetAttribute("RecoveredPlacementCount",(room:GetAttribute("RecoveredPlacementCount") or 0)+1)
+			placed:Destroy()
+			continue
+		end
 		placed.Parent = folder
 		attachMovePrompt(placed, entry.itemId, id, player)
 	end
@@ -425,20 +241,42 @@ HousePlaceSave.OnServerEvent:Connect(function(player: Player, itemId: string, pl
 	if typeof(placementId) ~= "string" or placementId == "" then return end
 	if not ProgressionService then return end
 
-	local ok, msg = ProgressionService.SaveHousePlacement(player, placementId, itemId, placeCFrame)
-	if not ok then
-		warn("[HousingService] SavePlacement rejected:", msg)
+	if typeof(placeCFrame)~="CFrame" then return end
+	for _,n in {placeCFrame:GetComponents()} do if n~=n or math.abs(n)==math.huge then return end end
+	local source=ItemAssets and ItemAssets:FindFirstChild(itemId)
+	if not source then return end
+	local characterRoot=player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+	if not characterRoot or (characterRoot.Position-placeCFrame.Position).Magnitude>40 then return end
+	local candidate=source:Clone()
+	candidate:PivotTo(placeCFrame)
+	local itemData=ItemDatabase.Get(itemId)
+	local surface=itemData and itemData.PlacementSurface or "Floor"
+	local fits=Geometry.Fits(room,candidate) and Geometry.HasSupport(room,candidate,surface)
+	candidate:Destroy()
+	if not fits then
+		local toast=Events:FindFirstChild("ProgressionToast")
+		if toast then toast:FireClient(player,{kind="placementRejected",message="Place the piece on its surface, inside your home and clear of the door."}) end
 		return
 	end
-
-	local source = ItemAssets and ItemAssets:FindFirstChild(itemId)
-	if not source then return end
-
-	local roomPos = room:GetPivot().Position
-	if (placeCFrame.Position - roomPos).Magnitude > CFG.MaxPlaceDistance + 25 then return end
-
-	local folder = room:FindFirstChild("PlacedItems")
+	local folder=room:FindFirstChild("PlacedItems")
 	if not folder then return end
+	-- Reuse an unmaterialized saved record only after the player chooses a valid location.
+	-- Until then the original placement and ownership remain untouched.
+	for savedId,entry in ProgressionService.GetHousePlacements(player) do
+		if entry.itemId==itemId then
+			local visible=false
+			for _,model in folder:GetChildren() do
+				if model:GetAttribute("HousePlacementId")==savedId then visible=true break end
+			end
+			if not visible then placementId=savedId break end
+		end
+	end
+	local ok,msg=ProgressionService.SaveHousePlacement(player,placementId,itemId,room:GetPivot():ToObjectSpace(placeCFrame),"house-local-v2")
+	if not ok then
+		local toast=Events:FindFirstChild("ProgressionToast")
+		if toast then toast:FireClient(player,{kind="placementRejected",message=msg}) end
+		return
+	end
 
 	for _, existing in ipairs(folder:GetChildren()) do
 		if existing:GetAttribute("HousePlacementId") == placementId then
@@ -469,6 +307,8 @@ HousePlaceSave.OnServerEvent:Connect(function(player: Player, itemId: string, pl
 	placed:PivotTo(placeCFrame)
 	placed.Parent = folder
 	attachMovePrompt(placed, itemId, placementId, player)
+	local event=Events:FindFirstChild("ItemPlaced")
+	if event then event:FireClient(player,itemId,placed.Name) end
 end)
 
 HousePlaceRemove.OnServerEvent:Connect(function(player: Player, placementId: string)
@@ -554,54 +394,47 @@ GetHouseInfo.OnServerInvoke = function(player: Player)
 	local room = houseRooms[player.UserId]
 	if not room then return nil end
 	local pivot = room:GetPivot()
-	return { position = pivot.Position, roomWidth = 40, roomDepth = 30, roomHeight = 18 }
+	return { position=pivot.Position, cframe=pivot, roomWidth=Layout.House.Width, roomDepth=Layout.House.Depth, roomHeight=Layout.House.WallHeight, recoveredPlacements=room:GetAttribute("RecoveredPlacementCount") or 0 }
 end
-
-local function lockHousePrompts(enabled: boolean)
-	for _, room in ipairs(CollectionService:GetTagged("HouseRoom")) do
-		for _, desc in ipairs(room:GetDescendants()) do
-			if desc:IsA("ProximityPrompt") and desc.Name == "HouseMovePrompt" then
-				desc.Enabled = enabled
-			end
-		end
-	end
-end
-
--- (Removed) onPhaseChanged: housing no longer keys off a global phase signal.
--- House prompts stay enabled; per-player decorate guards (playerCanDecorate)
--- handle who may act. lockHousePrompts retained for potential manual use.
 
 local function onPlayerAdded(player: Player)
+	if loading[player.UserId] or houseRooms[player.UserId] then return end
+	local token={}
+	loading[player.UserId]=token
 	task.spawn(function()
-		for _ = 1, 40 do
+		while player.Parent==Players and loading[player.UserId]==token do
 			if ProgressionService and ProgressionService.GetSnapshot(player) then break end
-			task.wait(0.5)
+			task.wait(.25)
 		end
-		local index = 1
-		local used: {[number]: boolean} = {}
-		for _, room in ipairs(CollectionService:GetTagged("HouseRoom")) do
-			local idx = room:GetAttribute("HouseIndex")
-			if typeof(idx) == "number" then used[idx] = true end
-		end
-		while used[index] and index <= 8 do index += 1 end
-		if index > 8 then
-			warn("[HousingService] No plot available for", player.Name)
+		if player.Parent~=Players or loading[player.UserId]~=token then return end
+		local index=Lots.Reserve(player.UserId)
+		if not index then loading[player.UserId]=nil warn("[HousingService] No vacant lot for",player.Name) return end
+		local room
+		local ok,err=pcall(function()
+			room=buildHouseRoom(player,index)
+			populateHouseFromSaved(player,room)
+		end)
+		if not ok or player.Parent~=Players or loading[player.UserId]~=token then
+			if room then room:Destroy() end
+			Lots.Release(player.UserId) loading[player.UserId]=nil
+			if not ok then warn("[HousingService] House load failed:",err) end
 			return
 		end
-		local room = buildHouseRoom(player, index)
-		if not room then return end
-		houseRooms[player.UserId] = room
-		populateHouseFromSaved(player, room)
-		print(string.format("[HousingService] House built for %s (plot %d)", player.Name, index))
+		if Lots.Occupy(index,player.UserId,room) then
+			houseRooms[player.UserId]=room
+			CollectionService:AddTag(room,"HouseRoom")
+			player:SetAttribute("HouseLotIndex",index)
+		end
+		loading[player.UserId]=nil
 	end)
 end
 
 local function onPlayerRemoving(player: Player)
-	local room = houseRooms[player.UserId]
-	if room then
-		room:Destroy()
-		houseRooms[player.UserId] = nil
-	end
+	loading[player.UserId]=nil
+	houseRooms[player.UserId]=nil
+	Lots.Release(player.UserId)
+	-- A full server may have had a player waiting for a free lot.
+	for _,waiting in Players:GetPlayers() do if waiting~=player then onPlayerAdded(waiting) end end
 end
 
 function HousingService.GetHouseRoom(player: Player): Model?
@@ -615,6 +448,10 @@ function HousingService.IsHousingPhase(player: Player?): boolean
 end
 
 function HousingService.Init(progressionServiceRef)
+	if initialized then return end
+	initialized=true
+	require(script.Parent.NeighborhoodBootstrap).EnsureAll()
+	Lots.Ensure()
 	ProgressionService = progressionServiceRef
 	Players.PlayerAdded:Connect(onPlayerAdded)
 	Players.PlayerRemoving:Connect(onPlayerRemoving)

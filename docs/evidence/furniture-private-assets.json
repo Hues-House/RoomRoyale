@@ -1,0 +1,92 @@
+{
+  "1": {
+    "part": "rr_crescent_sofa_v2_1",
+    "mesh": 138963790047652,
+    "maps": {
+      "ColorMap": 114954558907476,
+      "RoughnessMap": 96808306253314,
+      "MetalnessMap": 127428713464791
+    }
+  },
+  "2": {
+    "part": "rr_crescent_sofa_v2_3",
+    "mesh": 93991755305479,
+    "maps": {
+      "ColorMap": 89220441344640,
+      "RoughnessMap": 128665906530970,
+      "MetalnessMap": 132657485648581
+    }
+  },
+  "3": {
+    "part": "rr_crescent_sofa_v2_4",
+    "mesh": 87449809348008,
+    "maps": {
+      "ColorMap": 120802314872351,
+      "RoughnessMap": 119671267496017,
+      "MetalnessMap": 108135081283468
+    }
+  },
+  "4": {
+    "part": "rr_crescent_sofa_v2_5",
+    "mesh": 133686329366036,
+    "maps": {
+      "ColorMap": 74551763067366,
+      "RoughnessMap": 128999714084576,
+      "MetalnessMap": 105456953619340
+    }
+  },
+  "5": {
+    "part": "rr_crescent_sofa_v2_2",
+    "mesh": 131996809823415,
+    "maps": {
+      "ColorMap": 109238959053815,
+      "RoughnessMap": 71375667560831,
+      "MetalnessMap": 84255920099428
+    }
+  },
+  "6": {
+    "part": "rr_loop_bentwood_chair_v2_1",
+    "mesh": 87655443501417,
+    "maps": {
+      "ColorMap": 114954558907476,
+      "RoughnessMap": 96808306253314,
+      "MetalnessMap": 127428713464791
+    }
+  },
+  "7": {
+    "part": "rr_loop_bentwood_chair_v2_2",
+    "mesh": 123836096235187,
+    "maps": {
+      "ColorMap": 73238003374767,
+      "RoughnessMap": 77274517658966,
+      "MetalnessMap": 122483308257354
+    }
+  },
+  "8": {
+    "part": "rr_tide_lamp_v2_1",
+    "mesh": 101631620287389,
+    "maps": {
+      "ColorMap": 100469004572222,
+      "RoughnessMap": 99585455743267,
+      "MetalnessMap": 82270421331303
+    }
+  },
+  "9": {
+    "part": "rr_tide_lamp_v2_2",
+    "mesh": 122663677468753,
+    "maps": {
+      "ColorMap": 82101013329645,
+      "RoughnessMap": 137713808246780,
+      "MetalnessMap": 93405739969928
+    }
+  },
+  "10": {
+    "part": "rr_tide_lamp_v2_3",
+    "mesh": 118872873459437,
+    "maps": {
+      "ColorMap": 115656019341064,
+      "RoughnessMap": 91065889102450,
+      "MetalnessMap": 139589838282897
+    }
+  }
+}

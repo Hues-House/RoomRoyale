@@ -1,0 +1,37 @@
+{
+  "supports": [
+    {
+      "x": -3.8,
+      "z": -1.15,
+      "baseContactHeight": 0.2593,
+      "ground": 0,
+      "supportTop": 0.72,
+      "attached": true
+    },
+    {
+      "x": -3.8,
+      "z": 1.15,
+      "baseContactHeight": 0.2689,
+      "ground": 0,
+      "supportTop": 0.72,
+      "attached": true
+    },
+    {
+      "x": 3.8,
+      "z": -1.15,
+      "baseContactHeight": 0.2593,
+      "ground": 0,
+      "supportTop": 0.72,
+      "attached": true
+    },
+    {
+      "x": 3.8,
+      "z": 1.15,
+      "baseContactHeight": 0.269,
+      "ground": 0,
+      "supportTop": 0.72,
+      "attached": true
+    }
+  ],
+  "allAttached": true
+}

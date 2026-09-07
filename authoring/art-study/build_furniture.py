@@ -59,7 +59,7 @@ seam = material("RR Dark piping", (116, 53, 37), .85)
 ochre = material("RR Ochre woven cushion", (192, 146, 62), .88, True)
 walnut = material("RR Smoked walnut", (85, 55, 37), .4)
 cane = material("RR Honey cord", (191, 158, 101), .76)
-bronze = material("RR Dark bronze", (77, 65, 43), .32, metallic=.7)
+bronze = material("RR Dark bronze", (53, 54, 49), .55, metallic=.3)
 assets = {}
 current = None
 
@@ -142,9 +142,9 @@ def group(key):
 group("rr_crescent_sofa_v2")
 puff("Recessed walnut plinth", (5.1,2.1,.32), (0,0,.56), walnut, e1=.35, e2=.65, bend=.22)
 puff("Concealed seat support", (4.5,1.8,.17), (0,0,.97), walnut, e1=.35,e2=.65)
-for x in [-4.3,4.3]:
-    for y in [-1.45,1.35]:
-        tube("Bronze foot", [Vector((x,y,0)), Vector((x,y,.3))], .18, bronze, sides=12)
+for x in [-3.8,3.8]:
+    for y in [-1.15,1.15]:
+        puff("Attached rectangular support", (.24,.28,.36), (x,y,.36), bronze, e1=.18,e2=.18,nu=24,nv=12)
 puff("Single deep bench cushion", (4.8,2.05,.55), (0,-.27,1.58), clay, e1=.5, e2=.7, bend=.25)
 outline = []
 for i in range(129):

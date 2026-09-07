@@ -1,0 +1,54 @@
+{
+  "placeId": 86511797738570,
+  "normalization": "CRLF to LF; trailing whitespace removed",
+  "files": [
+    {
+      "matches": true,
+      "file": "src/ReplicatedStorage/NeighborhoodLayout.lua"
+    },
+    {
+      "matches": true,
+      "file": "src/ServerScriptService/HouseTemplateBuilder.lua"
+    },
+    {
+      "matches": true,
+      "file": "src/ServerScriptService/HouseDoorController.lua"
+    },
+    {
+      "matches": true,
+      "file": "src/ServerScriptService/HouseLotService.lua"
+    },
+    {
+      "matches": true,
+      "file": "src/ServerScriptService/HousePlacementGeometry.lua"
+    },
+    {
+      "matches": true,
+      "file": "src/ServerScriptService/NeighborhoodBootstrap.lua"
+    },
+    {
+      "matches": true,
+      "file": "src/ServerScriptService/HousingService.lua"
+    },
+    {
+      "matches": true,
+      "file": "src/ServerScriptService/ProgressionService.lua"
+    },
+    {
+      "matches": true,
+      "file": "src/ServerScriptService/LobbyBootstrap.server.lua"
+    },
+    {
+      "matches": true,
+      "file": "src/StarterPlayer/StarterPlayerScripts/HousingClient.client.lua"
+    },
+    {
+      "matches": true,
+      "file": "src/StarterPlayer/StarterPlayerScripts/PlacementController.client.lua"
+    },
+    {
+      "matches": true,
+      "file": "src/StarterPlayer/StarterPlayerScripts/ProgressionClient.client.lua"
+    }
+  ]
+}

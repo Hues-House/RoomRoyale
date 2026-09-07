@@ -125,7 +125,7 @@ end
 -- Get the player's active plot boundary (style room OR house)
 local function GetHomePlot()
 	return workspace:FindFirstChild("StyleRoom_" .. player.UserId .. "_Plot")
-		or workspace:FindFirstChild("HouseRoom_" .. player.UserId .. "_Plot")
+		or workspace:FindFirstChild("HouseRoom_" .. player.UserId .. "_Plot", true)
 		or workspace:FindFirstChild("HomePlotDefault")
 end
 
@@ -167,7 +167,7 @@ local function HasBlockingOverlap(placementSurface)
 	local room = workspace:FindFirstChild("StyleRoom_" .. player.UserId)
 	local houseFolder = (room and room:FindFirstChild("PlacedItems"))
 		or (function()
-			local hr = workspace:FindFirstChild("HouseRoom_" .. player.UserId)
+			local hr = workspace:FindFirstChild("HouseRoom_" .. player.UserId, true)
 			return hr and hr:FindFirstChild("PlacedItems")
 		end)()
 	if not houseFolder then return false end
@@ -324,7 +324,7 @@ end
 local function IsInsidePlayerHome(instance)
 	if not instance then return false end
 	local styleRoom = workspace:FindFirstChild("StyleRoom_" .. player.UserId)
-	local houseRoom = workspace:FindFirstChild("HouseRoom_"  .. player.UserId)
+	local houseRoom = workspace:FindFirstChild("HouseRoom_"  .. player.UserId, true)
 	return (styleRoom ~= nil and instance:IsDescendantOf(styleRoom))
 		or (houseRoom  ~= nil and instance:IsDescendantOf(houseRoom))
 end

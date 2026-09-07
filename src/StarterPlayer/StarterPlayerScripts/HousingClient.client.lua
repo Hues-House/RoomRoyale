@@ -18,7 +18,7 @@ local HouseExitBuild  = Events:WaitForChild("HouseExitBuild",  15)
 local currentPhase = player:GetAttribute("RoundPhase") or "Lobby"
 local isInOwnHouse = false
 
-local HOUSE_BOUNDS_HALF = Vector3.new(22, 20, 18)  -- half-extents, generous
+local Layout=require(ReplicatedStorage:WaitForChild("NeighborhoodLayout"))
 local function isPlayerInsideOwnHouse(): boolean
 	if currentPhase ~= "Lobby" then return false end
 	local char = player.Character
@@ -29,9 +29,9 @@ local function isPlayerInsideOwnHouse(): boolean
 	local houseRoom = district:FindFirstChild("HouseRoom_" .. player.UserId)
 	if not houseRoom then return false end
 	local localPos = houseRoom:GetPivot():PointToObjectSpace(root.Position)
-	return math.abs(localPos.X) <= HOUSE_BOUNDS_HALF.X
-		and math.abs(localPos.Y) <= HOUSE_BOUNDS_HALF.Y
-		and math.abs(localPos.Z) <= HOUSE_BOUNDS_HALF.Z
+	return math.abs(localPos.X) <= Layout.House.Width/2-.4
+		and localPos.Y >= Layout.House.FloorTop and localPos.Y <= Layout.House.FloorTop+Layout.House.WallHeight
+		and math.abs(localPos.Z) <= Layout.House.Depth/2-.4
 end
 
 -- Poll every 0.5s (no need for per-frame).

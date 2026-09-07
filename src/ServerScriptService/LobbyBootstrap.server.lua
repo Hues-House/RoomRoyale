@@ -241,45 +241,7 @@ end
 -- =========================================================
 
 local function buildLobbyFloor(parent: Folder)
-	local floorY = LOBBY_FLOOR_Y - 0.1
-	local floor = makePart(parent, "LobbyFloor",
-		Vector3.new(FLOOR_SIZE_X, 0.2, FLOOR_SIZE_Z),
-		CFrame.new(LOBBY_X_CENTER, floorY, LOBBY_Z_CENTER),
-		Color3.fromRGB(238, 216, 190), Enum.Material.Brick)
-	floor.CanCollide = true
-
-	for _, xSide in ipairs({-FLOOR_SIZE_X * 0.5 + 0.4, FLOOR_SIZE_X * 0.5 - 0.4}) do
-		local border = makePart(parent, "FloorBorder",
-			Vector3.new(0.6, 0.22, FLOOR_SIZE_Z),
-			CFrame.new(LOBBY_X_CENTER + xSide, floorY + 0.01, LOBBY_Z_CENTER),
-			Color3.fromRGB(212, 167, 82), Enum.Material.SmoothPlastic)
-		border.CanCollide = false
-	end
-	for _, zSide in ipairs({-FLOOR_SIZE_Z * 0.5 + 0.4, FLOOR_SIZE_Z * 0.5 - 0.4}) do
-		local border = makePart(parent, "FloorBorder",
-			Vector3.new(FLOOR_SIZE_X, 0.22, 0.6),
-			CFrame.new(LOBBY_X_CENTER, floorY + 0.01, LOBBY_Z_CENTER + zSide),
-			Color3.fromRGB(212, 167, 82), Enum.Material.SmoothPlastic)
-		border.CanCollide = false
-	end
-
-	local signPart = makePart(parent, "BoutiqueSign",
-		Vector3.new(26, 4, 0.4),
-		CFrame.new(LOBBY_X_CENTER, LOBBY_FLOOR_Y + 15, LOBBY_Z_CENTER + FLOOR_SIZE_Z * 0.5 - 6)
-			* CFrame.Angles(0, math.rad(180), 0),
-		Color3.fromRGB(255, 253, 248), Enum.Material.SmoothPlastic)
-	signPart.CanCollide = false
-
-	local signGui = Instance.new("SurfaceGui")
-	signGui.Face = Enum.NormalId.Front; signGui.SizingMode = Enum.SurfaceGuiSizingMode.FixedSize
-	signGui.CanvasSize = Vector2.new(880, 140); signGui.AlwaysOnTop = false; signGui.Parent = signPart
-
-	local signLabel = Instance.new("TextLabel")
-	signLabel.Size = UDim2.fromScale(1, 1); signLabel.BackgroundTransparency = 1
-	signLabel.Text = "Today's Boutique"
-	signLabel.TextColor3 = Color3.fromRGB(58, 48, 36); signLabel.Font = Enum.Font.FredokaOne
-	signLabel.TextSize = 72; signLabel.TextXAlignment = Enum.TextXAlignment.Center
-	signLabel.Parent = signGui
+	require(script.Parent.NeighborhoodBootstrap).EnsureAll()
 end
 
 -- =========================================================
@@ -290,7 +252,7 @@ end
 --  of the fountain and boutique pedestals.
 -- =========================================================
 
-local QUEUE_RING_CENTER = Vector3.new(LOBBY_X_CENTER, LOBBY_FLOOR_Y, 208)
+local QUEUE_RING_CENTER = require(ReplicatedStorage.NeighborhoodLayout).Queue
 local QUEUE_RING_RADIUS = 5.2
 
 local function buildQueueRing(parent: Folder)

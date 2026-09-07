@@ -1,0 +1,176 @@
+[
+  {
+    "passed": true,
+    "name": "player receives home"
+  },
+  {
+    "passed": true,
+    "name": "eight populated lots",
+    "detail": {
+      "vacant": 7,
+      "homes": 8
+    }
+  },
+  {
+    "passed": true,
+    "name": "no live profile in acceptance"
+  },
+  {
+    "passed": true,
+    "name": "mock profile confirmed"
+  },
+  {
+    "passed": true,
+    "name": "closed door blocks passage"
+  },
+  {
+    "passed": true,
+    "name": "open request accepted"
+  },
+  {
+    "passed": true,
+    "name": "open door clears passage"
+  },
+  {
+    "passed": true,
+    "name": "door will not close through avatar"
+  },
+  {
+    "passed": true,
+    "name": "close request accepted"
+  },
+  {
+    "passed": true,
+    "name": "closed state restored"
+  },
+  {
+    "passed": true,
+    "name": "avatar walks through doorway",
+    "detail": "0.0018916127737611532, 4.34772253036499, 10.914962768554688"
+  },
+  {
+    "passed": true,
+    "name": "unique vacancy reservation 1"
+  },
+  {
+    "passed": true,
+    "name": "unique vacancy reservation 2"
+  },
+  {
+    "passed": true,
+    "name": "unique vacancy reservation 3"
+  },
+  {
+    "passed": true,
+    "name": "unique vacancy reservation 4"
+  },
+  {
+    "passed": true,
+    "name": "unique vacancy reservation 5"
+  },
+  {
+    "passed": true,
+    "name": "unique vacancy reservation 6"
+  },
+  {
+    "passed": true,
+    "name": "unique vacancy reservation 7"
+  },
+  {
+    "passed": true,
+    "name": "full neighborhood rejects ninth home"
+  },
+  {
+    "passed": true,
+    "name": "replace vacancy"
+  },
+  {
+    "passed": true,
+    "name": "restore vacancy on release"
+  },
+  {
+    "passed": true,
+    "name": "interior placement fits"
+  },
+  {
+    "passed": true,
+    "name": "grounded furniture has support"
+  },
+  {
+    "passed": true,
+    "name": "floating furniture rejected"
+  },
+  {
+    "passed": true,
+    "name": "wall decor has support"
+  },
+  {
+    "passed": true,
+    "name": "ceiling fixture has support"
+  },
+  {
+    "passed": true,
+    "name": "saved items supported before home becomes visible"
+  },
+  {
+    "passed": true,
+    "name": "door clearance rejects furniture"
+  },
+  {
+    "passed": true,
+    "name": "legacy floor height migrates"
+  },
+  {
+    "passed": true,
+    "name": "house local save accepted",
+    "detail": "Saved"
+  },
+  {
+    "passed": true,
+    "name": "save follows house to opposite lot"
+  },
+  {
+    "passed": true,
+    "name": "recovery fixture found"
+  },
+  {
+    "passed": true,
+    "name": "recovered record fixture saved",
+    "detail": "Saved"
+  },
+  {
+    "passed": true,
+    "name": "real placement remote recovers retained record"
+  },
+  {
+    "passed": true,
+    "name": "recovery uses original record id"
+  },
+  {
+    "passed": true,
+    "name": "all fixtures restored"
+  },
+  {
+    "name": "actual inside ProximityPrompt closes and opens",
+    "passed": true
+  },
+  {
+    "name": "actual PlayerRemoving restores all vacancies",
+    "passed": true,
+    "detail": {
+      "ownerModelAbsent": true,
+      "vacant": 8,
+      "homes": 8
+    }
+  },
+  {
+    "name": "persistent furniture loads in Play",
+    "passed": true,
+    "detail": {
+      "meshParts": 10,
+      "uriMeshes": 10,
+      "uriMaps": 30,
+      "failed": []
+    }
+  }
+]

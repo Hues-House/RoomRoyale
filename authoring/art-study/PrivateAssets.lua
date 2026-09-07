@@ -1,0 +1,222 @@
+return game:GetService("HttpService"):JSONDecode([=[[
+  {
+    "asset": "rr_crescent_sofa_v2",
+    "name": "rr_crescent_sofa_v2_1",
+    "mesh": 138963790047652,
+    "maps": {
+      "ColorMap": 114954558907476,
+      "RoughnessMap": 96808306253314,
+      "MetalnessMap": 127428713464791
+    },
+    "material": "RR Smoked walnut",
+    "triangles": 6013,
+    "center": [
+      0.0,
+      0.69,
+      -0.0020819999999999173
+    ],
+    "size": [
+      10.2,
+      0.8999999999999999,
+      4.2041640000000005
+    ]
+  },
+  {
+    "asset": "rr_crescent_sofa_v2",
+    "name": "rr_crescent_sofa_v2_2",
+    "mesh": 131996809823415,
+    "maps": {
+      "ColorMap": 109238959053815,
+      "RoughnessMap": 71375667560831,
+      "MetalnessMap": 84255920099428
+    },
+    "material": "RR Dark bronze",
+    "triangles": 2304,
+    "center": [
+      0.0,
+      0.36,
+      0.0
+    ],
+    "size": [
+      8.08,
+      0.72,
+      2.86
+    ]
+  },
+  {
+    "asset": "rr_crescent_sofa_v2",
+    "name": "rr_crescent_sofa_v2_3",
+    "mesh": 93991755305479,
+    "maps": {
+      "ColorMap": 89220441344640,
+      "RoughnessMap": 128665906530970,
+      "MetalnessMap": 132657485648581
+    },
+    "material": "RR Burnt sienna wool",
+    "triangles": 9892,
+    "center": [
+      0.0,
+      2.6999999999999997,
+      -0.22999999999999998
+    ],
+    "size": [
+      11.561136,
+      3.6999999999999997,
+      5.1
+    ]
+  },
+  {
+    "asset": "rr_crescent_sofa_v2",
+    "name": "rr_crescent_sofa_v2_4",
+    "mesh": 87449809348008,
+    "maps": {
+      "ColorMap": 120802314872351,
+      "RoughnessMap": 119671267496017,
+      "MetalnessMap": 108135081283468
+    },
+    "material": "RR Dark piping",
+    "triangles": 1544,
+    "center": [
+      -1.4999999997655777e-06,
+      1.71,
+      0.26861199999999996
+    ],
+    "size": [
+      9.685997,
+      0.03983800000000004,
+      4.188776
+    ]
+  },
+  {
+    "asset": "rr_crescent_sofa_v2",
+    "name": "rr_crescent_sofa_v2_5",
+    "mesh": 133686329366036,
+    "maps": {
+      "ColorMap": 74551763067366,
+      "RoughnessMap": 128999714084576,
+      "MetalnessMap": 105456953619340
+    },
+    "material": "RR Ochre woven cushion",
+    "triangles": 1520,
+    "center": [
+      -3.2,
+      2.9,
+      -1.0
+    ],
+    "size": [
+      2.128544,
+      1.9581559999999998,
+      0.86831
+    ]
+  },
+  {
+    "asset": "rr_loop_bentwood_chair_v2",
+    "name": "rr_loop_bentwood_chair_v2_1",
+    "mesh": 87655443501417,
+    "maps": {
+      "ColorMap": 114954558907476,
+      "RoughnessMap": 96808306253314,
+      "MetalnessMap": 127428713464791
+    },
+    "material": "RR Smoked walnut",
+    "triangles": 9056,
+    "center": [
+      0.0,
+      2.481903,
+      0.04999999999999993
+    ],
+    "size": [
+      3.261364,
+      4.963806,
+      2.8200000000000003
+    ]
+  },
+  {
+    "asset": "rr_loop_bentwood_chair_v2",
+    "name": "rr_loop_bentwood_chair_v2_2",
+    "mesh": 123836096235187,
+    "maps": {
+      "ColorMap": 73238003374767,
+      "RoughnessMap": 77274517658966,
+      "MetalnessMap": 122483308257354
+    },
+    "material": "RR Honey cord",
+    "triangles": 4112,
+    "center": [
+      0.0,
+      3.214806,
+      -0.005798999999999999
+    ],
+    "size": [
+      2.32,
+      2.251506,
+      2.431598
+    ]
+  },
+  {
+    "asset": "rr_tide_lamp_v2",
+    "name": "rr_tide_lamp_v2_1",
+    "mesh": 101631620287389,
+    "maps": {
+      "ColorMap": 100469004572222,
+      "RoughnessMap": 99585455743267,
+      "MetalnessMap": 82270421331303
+    },
+    "material": "RR Sea green ceramic",
+    "triangles": 1547,
+    "center": [
+      0.002220999999999973,
+      0.634868,
+      -0.029741499999999976
+    ],
+    "size": [
+      1.4298199999999999,
+      1.269736,
+      1.372735
+    ]
+  },
+  {
+    "asset": "rr_tide_lamp_v2",
+    "name": "rr_tide_lamp_v2_2",
+    "mesh": 122663677468753,
+    "maps": {
+      "ColorMap": 82101013329645,
+      "RoughnessMap": 137713808246780,
+      "MetalnessMap": 93405739969928
+    },
+    "material": "RR Lamp bronze",
+    "triangles": 640,
+    "center": [
+      0.0,
+      1.545,
+      0.0
+    ],
+    "size": [
+      0.4,
+      0.69,
+      0.4
+    ]
+  },
+  {
+    "asset": "rr_tide_lamp_v2",
+    "name": "rr_tide_lamp_v2_3",
+    "mesh": 118872873459437,
+    "maps": {
+      "ColorMap": 115656019341064,
+      "RoughnessMap": 91065889102450,
+      "MetalnessMap": 139589838282897
+    },
+    "material": "RR Warm linen shade",
+    "triangles": 3456,
+    "center": [
+      0.0,
+      2.46,
+      0.0
+    ],
+    "size": [
+      2.198,
+      1.36,
+      2.198
+    ]
+  }
+]]=])

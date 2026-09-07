@@ -118,7 +118,7 @@ do
 		return ProfileService.GetProfileStore(PROFILE_STORE_NAME, makeDefaultProfile())
 	end)
 	if ok then
-		ProfileStore = store
+		ProfileStore = RunService:IsStudio() and game.ServerStorage:GetAttribute("NeighborhoodPreviewProfiles")==true and store.Mock or store
 	else
 		warn("[ProgressionService] ProfileService init failed; using in-session profiles only: " .. tostring(store))
 	end
@@ -161,6 +161,7 @@ local function sanitizeProfile(raw)
 					rx = tonumber(entry.rx) or 0,
 					ry = tonumber(entry.ry) or 0,
 					rz = tonumber(entry.rz) or 0,
+					space = entry.space=="house-local-v2" and "house-local-v2" or nil,
 				}
 			end
 		end
@@ -630,7 +631,7 @@ function ProgressionService.GetHousePlacements(player: Player)
 	return tableCloneDeep(profile.housePlacements)
 end
 
-function ProgressionService.SaveHousePlacement(player: Player, id: string, itemId: string, cf: CFrame)
+function ProgressionService.SaveHousePlacement(player: Player, id: string, itemId: string, cf: CFrame, space: string?)
 	local profile = getProfile(player)
 	if not profile then return false, "Profile not loaded" end
 	if not profile.ownedItems[itemId] then return false, "Item not owned" end
@@ -655,6 +656,7 @@ function ProgressionService.SaveHousePlacement(player: Player, id: string, itemI
 		itemId = itemId,
 		cx = cf.Position.X, cy = cf.Position.Y, cz = cf.Position.Z,
 		rx = math.deg(rx), ry = math.deg(ry), rz = math.deg(rz),
+		space = space,
 	}
 	pushSnapshot(player)
 	return true, "Saved"

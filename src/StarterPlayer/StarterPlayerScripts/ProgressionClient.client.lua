@@ -581,6 +581,8 @@ ProgressionToast.OnClientEvent:Connect(function(payload)
 		makeToast(string.format("Round rewards: +%d Bucks, +%d XP", payload.currency or 0, payload.xp or 0), UITheme.Color.WarmPrimary)
 	elseif payload.kind == "purchase" then
 		makeToast(payload.message or "Added to collection", UITheme.Color.CoolSecondary)
+	elseif payload.kind == "placementRejected" then
+		makeToast(payload.message or "That piece cannot be placed there.", UITheme.Color.Danger)
 	elseif payload.kind == "purchaseSpent" then
 		makeToast(string.format("Spent %d Bucks", payload.currency or 0), UITheme.Color.WarmPrimary)
 	end

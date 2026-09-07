@@ -1,0 +1,54 @@
+{
+  "place": 86511797738570,
+  "game": 10764620924,
+  "objects": {
+    "Neighborhood": {
+      "version": 4,
+      "class": "Folder",
+      "children": 61,
+      "desc": 506
+    },
+    "HouseSamples": {
+      "class": "Folder",
+      "children": 0,
+      "desc": 0
+    },
+    "SpawnLocation": {
+      "pos": "0, 0.5248000621795654, 258",
+      "class": "SpawnLocation",
+      "children": 0,
+      "desc": 0
+    },
+    "Plots": {
+      "class": "Folder",
+      "children": 0,
+      "desc": 0
+    }
+  },
+  "scripts": {
+    "HouseShellBuilder": {
+      "bytes": 11155,
+      "class": "ModuleScript"
+    },
+    "LobbyBootstrap": {
+      "bytes": 19624,
+      "class": "Script"
+    },
+    "HousingBootstrap": {
+      "bytes": 665,
+      "class": "Script"
+    },
+    "ProgressionService": {
+      "bytes": 25000,
+      "class": "ModuleScript"
+    },
+    "NeighborhoodBootstrap": {
+      "bytes": 13446,
+      "class": "ModuleScript"
+    },
+    "HousingService": {
+      "bytes": 24135,
+      "class": "ModuleScript"
+    }
+  }
+}

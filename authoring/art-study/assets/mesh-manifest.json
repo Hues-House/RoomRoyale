@@ -12,8 +12,8 @@
     "name": "rr_crescent_sofa_v2_2",
     "file": "rr_crescent_sofa_v2_2.mesh.json",
     "material": "RR Dark bronze",
-    "vertices": 96,
-    "triangles": 176
+    "vertices": 1248,
+    "triangles": 2304
   },
   {
     "asset": "rr_crescent_sofa_v2",
