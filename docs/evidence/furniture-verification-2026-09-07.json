@@ -1,0 +1,533 @@
+{
+  "bakedCount": 47,
+  "revision": "b76f66355ded30a5bde600a3fdde835902cf4129d2d5d4578a115e73a6cf1b0f",
+  "tableColorAndWidth": true,
+  "deterministicRestore": true,
+  "sofaSeatCountAndArms": true,
+  "items": [
+    {
+      "floorContactError": 5.960464477539063e-8,
+      "id": "rr_pill_coffee_oak_v1",
+      "measuredSize": [
+        4.799951076507568,
+        1.7000001668930054,
+        2.5999999046325684
+      ],
+      "family": "Table",
+      "visualParts": 7
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_round_side_clay_v1",
+      "measuredSize": [
+        2.200000047683716,
+        2.0999999046325684,
+        2.200000047683716
+      ],
+      "family": "Table",
+      "visualParts": 3
+    },
+    {
+      "floorContactError": 1.1920928955078125e-7,
+      "id": "rr_pill_dining_oak_v1",
+      "measuredSize": [
+        6.400000095367432,
+        2.8000001907348633,
+        3.4000000953674316
+      ],
+      "family": "Table",
+      "visualParts": 7
+    },
+    {
+      "floorContactError": 1.1920928955078125e-7,
+      "id": "rr_round_dining_cream_v1",
+      "measuredSize": [
+        4.400000095367432,
+        2.8000001907348633,
+        4.400000095367432
+      ],
+      "family": "Table",
+      "visualParts": 3
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_console_sage_v1",
+      "measuredSize": [
+        5.199999809265137,
+        2.700000286102295,
+        1.600000023841858
+      ],
+      "family": "Table",
+      "visualParts": 5
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_desk_oak_v1",
+      "measuredSize": [
+        5,
+        2.8000001907348633,
+        2.5
+      ],
+      "family": "Table",
+      "visualParts": 5
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_track_armchair_sage_v1",
+      "measuredSize": [
+        3.7999463081359863,
+        3.5,
+        3.4700000286102295
+      ],
+      "family": "Sofa",
+      "visualParts": 10
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_track_loveseat_cream_v1",
+      "measuredSize": [
+        6.199970722198486,
+        3.5,
+        3.4700000286102295
+      ],
+      "family": "Sofa",
+      "visualParts": 12
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_track_sofa_clay_v1",
+      "measuredSize": [
+        8.199971199035645,
+        3.5,
+        3.4700000286102295
+      ],
+      "family": "Sofa",
+      "visualParts": 14
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_roll_sofa_blue_v1",
+      "measuredSize": [
+        8.20004940032959,
+        3.5999999046325684,
+        3.5699877738952637
+      ],
+      "family": "Sofa",
+      "visualParts": 16
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_low_shelf_oak_v1",
+      "measuredSize": [
+        5.200038909912109,
+        3,
+        1.500002384185791
+      ],
+      "family": "Storage",
+      "visualParts": 10
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_bookcase_sage_v1",
+      "measuredSize": [
+        3.4000000953674316,
+        6.5,
+        1.500002384185791
+      ],
+      "family": "Storage",
+      "visualParts": 12
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_sideboard_clay_v1",
+      "measuredSize": [
+        6.200038909912109,
+        3.0999999046325684,
+        1.7999999523162842
+      ],
+      "family": "Storage",
+      "visualParts": 15
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_nightstand_cream_v1",
+      "measuredSize": [
+        2,
+        2.200000286102295,
+        1.5000146627426147
+      ],
+      "family": "Storage",
+      "visualParts": 13
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_dresser_lake_v1",
+      "measuredSize": [
+        4.599999904632568,
+        3.8000001907348633,
+        1.8000061511993408
+      ],
+      "family": "Storage",
+      "visualParts": 15
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_wardrobe_sage_v1",
+      "measuredSize": [
+        4.200038909912109,
+        7,
+        2.200016975402832
+      ],
+      "family": "Storage",
+      "visualParts": 13
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_border_rug_sage_v1",
+      "measuredSize": [
+        8,
+        0.11999999731779099,
+        6
+      ],
+      "family": "Rug",
+      "visualParts": 5
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_stripe_runner_clay_v1",
+      "measuredSize": [
+        3,
+        0.11999999731779099,
+        8
+      ],
+      "family": "Rug",
+      "visualParts": 9
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_check_rug_lake_v1",
+      "measuredSize": [
+        6,
+        0.11999999731779099,
+        6
+      ],
+      "family": "Rug",
+      "visualParts": 19
+    },
+    {
+      "floorContactError": 1.0803341865539551e-7,
+      "id": "rr_round_rug_ochre_v1",
+      "measuredSize": [
+        5,
+        0.1200001910328865,
+        5
+      ],
+      "family": "Rug",
+      "visualParts": 2
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_stripe_rug_rose_v1",
+      "measuredSize": [
+        8,
+        0.11999999731779099,
+        6
+      ],
+      "family": "Rug",
+      "visualParts": 6
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_border_mat_charcoal_v1",
+      "measuredSize": [
+        3,
+        0.11999999731779099,
+        2
+      ],
+      "family": "Rug",
+      "visualParts": 5
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_drum_floor_lamp_v1",
+      "measuredSize": [
+        2.200000047683716,
+        5.800000190734863,
+        2.200000047683716
+      ],
+      "family": "Lamp",
+      "visualParts": 4
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_drum_table_lamp_v1",
+      "measuredSize": [
+        1.2999999523162842,
+        2.299999952316284,
+        1.2999999523162842
+      ],
+      "family": "Lamp",
+      "visualParts": 4
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_mushroom_lamp_clay_v1",
+      "measuredSize": [
+        1.7999999523162842,
+        2,
+        1.7999999523162842
+      ],
+      "family": "Lamp",
+      "visualParts": 4
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_mushroom_floor_sage_v1",
+      "measuredSize": [
+        2.5999999046325684,
+        5.400000095367432,
+        2.5999999046325684
+      ],
+      "family": "Lamp",
+      "visualParts": 4
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_bud_vase_clay_v1",
+      "measuredSize": [
+        0.800000011920929,
+        1.2000000476837158,
+        0.800000011920929
+      ],
+      "family": "Decor",
+      "visualParts": 5
+    },
+    {
+      "floorContactError": 5.960464477539063e-8,
+      "id": "rr_vase_cream_v1",
+      "measuredSize": [
+        1.2000000476837158,
+        1.8000000715255737,
+        1.2000000476837158
+      ],
+      "family": "Decor",
+      "visualParts": 5
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_vase_lake_v1",
+      "measuredSize": [
+        1,
+        2.200000286102295,
+        1
+      ],
+      "family": "Decor",
+      "visualParts": 5
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_books_sage_v1",
+      "measuredSize": [
+        1.2999999523162842,
+        0.6499999761581421,
+        0.8999999761581421
+      ],
+      "family": "Decor",
+      "visualParts": 12
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_books_clay_v1",
+      "measuredSize": [
+        1.7999999523162842,
+        0.47999998927116394,
+        1.2000000476837158
+      ],
+      "family": "Decor",
+      "visualParts": 8
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_tray_oak_v1",
+      "measuredSize": [
+        1.7999999523162842,
+        0.2199999988079071,
+        1.2000049352645874
+      ],
+      "family": "Decor",
+      "visualParts": 5
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_candle_rose_v1",
+      "measuredSize": [
+        0.6000000238418579,
+        0.800000011920929,
+        0.6000000238418579
+      ],
+      "family": "Decor",
+      "visualParts": 3
+    },
+    {
+      "floorContactError": 5.960464477539063e-8,
+      "id": "rr_candle_ochre_v1",
+      "measuredSize": [
+        0.699999988079071,
+        1.2000000476837158,
+        0.699999988079071
+      ],
+      "family": "Decor",
+      "visualParts": 3
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_desk_plant_v1",
+      "measuredSize": [
+        1.140930414199829,
+        1.5,
+        1.1168094873428345
+      ],
+      "family": "Plant",
+      "visualParts": 10
+    },
+    {
+      "floorContactError": 1.1920928955078125e-7,
+      "id": "rr_leaf_plant_v1",
+      "measuredSize": [
+        2.0917465686798096,
+        3.8000001907348633,
+        2.1620588302612305
+      ],
+      "family": "Plant",
+      "visualParts": 12
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_tall_plant_v1",
+      "measuredSize": [
+        3.1350488662719727,
+        5.800000190734863,
+        3.1447906494140625
+      ],
+      "family": "Plant",
+      "visualParts": 15
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_sunset_print_v1",
+      "measuredSize": [
+        2.4000585079193115,
+        3.200000047683716,
+        0.20000000298023224
+      ],
+      "family": "Wall",
+      "visualParts": 8
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_wide_sunset_print_v1",
+      "measuredSize": [
+        4.000034332275391,
+        2.5,
+        0.20000000298023224
+      ],
+      "family": "Wall",
+      "visualParts": 8
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_colorblock_print_v1",
+      "measuredSize": [
+        2.5000340938568115,
+        3.4000000953674316,
+        0.20000000298023224
+      ],
+      "family": "Wall",
+      "visualParts": 9
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_oak_mirror_v1",
+      "measuredSize": [
+        2.4000585079193115,
+        4,
+        0.20000000298023224
+      ],
+      "family": "Wall",
+      "visualParts": 6
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_slat_chair_sage_v1",
+      "measuredSize": [
+        2,
+        3.5,
+        2.1000123023986816
+      ],
+      "family": "Chair",
+      "visualParts": 10
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_panel_chair_clay_v1",
+      "measuredSize": [
+        2.0999999046325684,
+        3.4000000953674316,
+        2.1000123023986816
+      ],
+      "family": "Chair",
+      "visualParts": 6
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_stool_ochre_v1",
+      "measuredSize": [
+        1.7999999523162842,
+        1.899999976158142,
+        1.7999999523162842
+      ],
+      "family": "Chair",
+      "visualParts": 5
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_bench_cream_v1",
+      "measuredSize": [
+        4.599999904632568,
+        1.899999976158142,
+        1.899999976158142
+      ],
+      "family": "Chair",
+      "visualParts": 5
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_double_bed_sage_v1",
+      "measuredSize": [
+        6.199999809265137,
+        3.5999999046325684,
+        8.20001220703125
+      ],
+      "family": "Bed",
+      "visualParts": 11
+    },
+    {
+      "floorContactError": 0,
+      "id": "rr_single_bed_lake_v1",
+      "measuredSize": [
+        4,
+        3.4000000953674316,
+        7.800000190734863
+      ],
+      "family": "Bed",
+      "visualParts": 10
+    }
+  ],
+  "checkpoint": "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005",
+  "reused": false,
+  "recipeCount": 47,
+  "installerReuseVerified": true,
+  "placeId": 86511797738570,
+  "existingItemAssets": 96,
+  "totalVisualParts": 383
+}

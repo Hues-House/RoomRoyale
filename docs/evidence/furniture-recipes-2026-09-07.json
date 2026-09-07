@@ -1,0 +1,1537 @@
+{
+  "modules": [
+    "BakeCatalog",
+    "BedGenerator",
+    "BuildParts",
+    "CatalogRecipes",
+    "ChairGenerator",
+    "CreateGallery",
+    "CreateShowcase",
+    "DecorGenerator",
+    "Finishes",
+    "LampGenerator",
+    "PlantGenerator",
+    "RoundedBox",
+    "RugGenerator",
+    "SofaGenerator",
+    "SofaRecipes",
+    "StorageGenerator",
+    "TableGenerator",
+    "TableRecipes",
+    "VerifyGallery",
+    "WallGenerator"
+  ],
+  "gameId": 10764620924,
+  "itemAssets": 96,
+  "recipes": [
+    {
+      "attributes": {
+        "BaseStyle": "TwinPedestal",
+        "TopColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "TopShape": "Pill",
+        "BaseColor": {
+          "rgb": [
+            161,
+            119,
+            77
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Pill coffee table",
+      "category": "Tables",
+      "id": "rr_pill_coffee_oak_v1",
+      "family": "Table",
+      "placementSurface": "Floor",
+      "size": [
+        4.800000190734863,
+        1.7000000476837158,
+        2.5999999046325684
+      ]
+    },
+    {
+      "attributes": {
+        "BaseStyle": "Pedestal",
+        "TopColor": {
+          "rgb": [
+            189,
+            124,
+            104
+          ],
+          "type": "Color3"
+        },
+        "TopShape": "Round",
+        "BaseColor": {
+          "rgb": [
+            165,
+            107,
+            87
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Round side table",
+      "category": "Tables",
+      "id": "rr_round_side_clay_v1",
+      "family": "Table",
+      "placementSurface": "Floor",
+      "size": [
+        2.200000047683716,
+        2.0999999046325684,
+        2.200000047683716
+      ]
+    },
+    {
+      "attributes": {
+        "BaseStyle": "TwinPedestal",
+        "TopColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "TopShape": "Pill",
+        "BaseColor": {
+          "rgb": [
+            161,
+            119,
+            77
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Pill dining table",
+      "category": "Tables",
+      "id": "rr_pill_dining_oak_v1",
+      "family": "Table",
+      "placementSurface": "Floor",
+      "size": [
+        6.400000095367432,
+        2.799999952316284,
+        3.4000000953674316
+      ]
+    },
+    {
+      "attributes": {
+        "BaseStyle": "Pedestal",
+        "TopColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        },
+        "TopShape": "Round",
+        "BaseColor": {
+          "rgb": [
+            186,
+            151,
+            108
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Round dining table",
+      "category": "Tables",
+      "id": "rr_round_dining_cream_v1",
+      "family": "Table",
+      "placementSurface": "Floor",
+      "size": [
+        4.400000095367432,
+        2.799999952316284,
+        4.400000095367432
+      ]
+    },
+    {
+      "attributes": {
+        "BaseStyle": "FourLeg",
+        "TopColor": {
+          "rgb": [
+            150,
+            167,
+            131
+          ],
+          "type": "Color3"
+        },
+        "TopShape": "Rectangle",
+        "BaseColor": {
+          "rgb": [
+            153,
+            122,
+            87
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Sage console",
+      "category": "Tables",
+      "id": "rr_console_sage_v1",
+      "family": "Table",
+      "placementSurface": "Floor",
+      "size": [
+        5.199999809265137,
+        2.700000047683716,
+        1.600000023841858
+      ]
+    },
+    {
+      "attributes": {
+        "BaseStyle": "FourLeg",
+        "TopColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "TopShape": "Rectangle",
+        "BaseColor": {
+          "rgb": [
+            161,
+            119,
+            77
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Oak writing desk",
+      "category": "Tables",
+      "id": "rr_desk_oak_v1",
+      "family": "Table",
+      "placementSurface": "Floor",
+      "size": [
+        5,
+        2.799999952316284,
+        2.5
+      ]
+    },
+    {
+      "attributes": {
+        "ArmStyle": "Track",
+        "SeatCount": 1,
+        "UpholsteryColor": {
+          "rgb": [
+            161,
+            176,
+            145
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Sage track armchair",
+      "category": "Seating",
+      "id": "rr_track_armchair_sage_v1",
+      "family": "Sofa",
+      "placementSurface": "Floor",
+      "size": [
+        3.799999952316284,
+        3.5,
+        3.5
+      ]
+    },
+    {
+      "attributes": {
+        "ArmStyle": "Track",
+        "SeatCount": 2,
+        "UpholsteryColor": {
+          "rgb": [
+            224,
+            211,
+            189
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Cream loveseat",
+      "category": "Seating",
+      "id": "rr_track_loveseat_cream_v1",
+      "family": "Sofa",
+      "placementSurface": "Floor",
+      "size": [
+        6.199999809265137,
+        3.5,
+        3.5
+      ]
+    },
+    {
+      "attributes": {
+        "ArmStyle": "Track",
+        "SeatCount": 3,
+        "UpholsteryColor": {
+          "rgb": [
+            191,
+            132,
+            110
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Clay three-seat sofa",
+      "category": "Seating",
+      "id": "rr_track_sofa_clay_v1",
+      "family": "Sofa",
+      "placementSurface": "Floor",
+      "size": [
+        8.199999809265137,
+        3.5,
+        3.5
+      ]
+    },
+    {
+      "attributes": {
+        "ArmStyle": "Roll",
+        "SeatCount": 3,
+        "UpholsteryColor": {
+          "rgb": [
+            132,
+            158,
+            176
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Lake rolled-arm sofa",
+      "category": "Seating",
+      "id": "rr_roll_sofa_blue_v1",
+      "family": "Sofa",
+      "placementSurface": "Floor",
+      "size": [
+        8.199999809265137,
+        3.5999999046325684,
+        3.5999999046325684
+      ]
+    },
+    {
+      "attributes": {
+        "BodyColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "Layout": "Open",
+        "AccentColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        },
+        "Divisions": 2
+      },
+      "name": "Open low shelf",
+      "category": "Storage",
+      "id": "rr_low_shelf_oak_v1",
+      "family": "Storage",
+      "placementSurface": "Floor",
+      "size": [
+        5.199999809265137,
+        3,
+        1.5
+      ]
+    },
+    {
+      "attributes": {
+        "BodyColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "Layout": "Open",
+        "AccentColor": {
+          "rgb": [
+            150,
+            167,
+            131
+          ],
+          "type": "Color3"
+        },
+        "Divisions": 4
+      },
+      "name": "Sage back bookcase",
+      "category": "Storage",
+      "id": "rr_bookcase_sage_v1",
+      "family": "Storage",
+      "placementSurface": "Floor",
+      "size": [
+        3.4000000953674316,
+        6.5,
+        1.5
+      ]
+    },
+    {
+      "attributes": {
+        "BodyColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "Layout": "Doors",
+        "AccentColor": {
+          "rgb": [
+            189,
+            124,
+            104
+          ],
+          "type": "Color3"
+        },
+        "Divisions": 3
+      },
+      "name": "Clay door sideboard",
+      "category": "Storage",
+      "id": "rr_sideboard_clay_v1",
+      "family": "Storage",
+      "placementSurface": "Floor",
+      "size": [
+        6.199999809265137,
+        3.0999999046325684,
+        1.7999999523162842
+      ]
+    },
+    {
+      "attributes": {
+        "BodyColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "Layout": "Drawers",
+        "AccentColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        },
+        "Divisions": 2
+      },
+      "name": "Cream bedside cabinet",
+      "category": "Storage",
+      "id": "rr_nightstand_cream_v1",
+      "family": "Storage",
+      "placementSurface": "Floor",
+      "size": [
+        2,
+        2.200000047683716,
+        1.5
+      ]
+    },
+    {
+      "attributes": {
+        "BodyColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "Layout": "Drawers",
+        "AccentColor": {
+          "rgb": [
+            132,
+            158,
+            176
+          ],
+          "type": "Color3"
+        },
+        "Divisions": 3
+      },
+      "name": "Lake blue dresser",
+      "category": "Storage",
+      "id": "rr_dresser_lake_v1",
+      "family": "Storage",
+      "placementSurface": "Floor",
+      "size": [
+        4.599999904632568,
+        3.799999952316284,
+        1.7999999523162842
+      ]
+    },
+    {
+      "attributes": {
+        "BodyColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "Layout": "Doors",
+        "AccentColor": {
+          "rgb": [
+            150,
+            167,
+            131
+          ],
+          "type": "Color3"
+        },
+        "Divisions": 2
+      },
+      "name": "Sage wardrobe",
+      "category": "Storage",
+      "id": "rr_wardrobe_sage_v1",
+      "family": "Storage",
+      "placementSurface": "Floor",
+      "size": [
+        4.199999809265137,
+        7,
+        2.200000047683716
+      ]
+    },
+    {
+      "attributes": {
+        "Repeats": 6,
+        "Pattern": "Border",
+        "PatternColor": {
+          "rgb": [
+            150,
+            167,
+            131
+          ],
+          "type": "Color3"
+        },
+        "GroundColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Sage border rug",
+      "category": "Rugs",
+      "id": "rr_border_rug_sage_v1",
+      "family": "Rug",
+      "placementSurface": "Rug",
+      "size": [
+        8,
+        0.11999999731779099,
+        6
+      ]
+    },
+    {
+      "attributes": {
+        "Repeats": 8,
+        "Pattern": "Stripe",
+        "PatternColor": {
+          "rgb": [
+            189,
+            124,
+            104
+          ],
+          "type": "Color3"
+        },
+        "GroundColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Clay stripe runner",
+      "category": "Rugs",
+      "id": "rr_stripe_runner_clay_v1",
+      "family": "Rug",
+      "placementSurface": "Rug",
+      "size": [
+        3,
+        0.11999999731779099,
+        8
+      ]
+    },
+    {
+      "attributes": {
+        "Repeats": 6,
+        "Pattern": "Check",
+        "PatternColor": {
+          "rgb": [
+            132,
+            158,
+            176
+          ],
+          "type": "Color3"
+        },
+        "GroundColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Lake checker rug",
+      "category": "Rugs",
+      "id": "rr_check_rug_lake_v1",
+      "family": "Rug",
+      "placementSurface": "Rug",
+      "size": [
+        6,
+        0.11999999731779099,
+        6
+      ]
+    },
+    {
+      "attributes": {
+        "Repeats": 6,
+        "Pattern": "Round",
+        "PatternColor": {
+          "rgb": [
+            194,
+            153,
+            76
+          ],
+          "type": "Color3"
+        },
+        "GroundColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Ochre round rug",
+      "category": "Rugs",
+      "id": "rr_round_rug_ochre_v1",
+      "family": "Rug",
+      "placementSurface": "Rug",
+      "size": [
+        5,
+        0.11999999731779099,
+        5
+      ]
+    },
+    {
+      "attributes": {
+        "Repeats": 5,
+        "Pattern": "Stripe",
+        "PatternColor": {
+          "rgb": [
+            198,
+            152,
+            150
+          ],
+          "type": "Color3"
+        },
+        "GroundColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Rose stripe rug",
+      "category": "Rugs",
+      "id": "rr_stripe_rug_rose_v1",
+      "family": "Rug",
+      "placementSurface": "Rug",
+      "size": [
+        8,
+        0.11999999731779099,
+        6
+      ]
+    },
+    {
+      "attributes": {
+        "Repeats": 6,
+        "Pattern": "Border",
+        "PatternColor": {
+          "rgb": [
+            71,
+            78,
+            73
+          ],
+          "type": "Color3"
+        },
+        "GroundColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Charcoal border mat",
+      "category": "Rugs",
+      "id": "rr_border_mat_charcoal_v1",
+      "family": "Rug",
+      "placementSurface": "Rug",
+      "size": [
+        3,
+        0.11999999731779099,
+        2
+      ]
+    },
+    {
+      "attributes": {
+        "ShadeStyle": "Drum",
+        "ShadeColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        },
+        "StemColor": {
+          "rgb": [
+            172,
+            137,
+            71
+          ],
+          "type": "Color3"
+        },
+        "Lit": true
+      },
+      "name": "Linen drum floor lamp",
+      "category": "Lighting",
+      "id": "rr_drum_floor_lamp_v1",
+      "family": "Lamp",
+      "placementSurface": "Floor",
+      "size": [
+        2.200000047683716,
+        5.800000190734863,
+        2.200000047683716
+      ]
+    },
+    {
+      "attributes": {
+        "ShadeStyle": "Drum",
+        "ShadeColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        },
+        "StemColor": {
+          "rgb": [
+            172,
+            137,
+            71
+          ],
+          "type": "Color3"
+        },
+        "Lit": true
+      },
+      "name": "Linen bedside lamp",
+      "category": "Lighting",
+      "id": "rr_drum_table_lamp_v1",
+      "family": "Lamp",
+      "placementSurface": "Surface",
+      "size": [
+        1.2999999523162842,
+        2.299999952316284,
+        1.2999999523162842
+      ]
+    },
+    {
+      "attributes": {
+        "ShadeStyle": "Mushroom",
+        "ShadeColor": {
+          "rgb": [
+            189,
+            124,
+            104
+          ],
+          "type": "Color3"
+        },
+        "StemColor": {
+          "rgb": [
+            172,
+            137,
+            71
+          ],
+          "type": "Color3"
+        },
+        "Lit": true
+      },
+      "name": "Clay mushroom lamp",
+      "category": "Lighting",
+      "id": "rr_mushroom_lamp_clay_v1",
+      "family": "Lamp",
+      "placementSurface": "Surface",
+      "size": [
+        1.7999999523162842,
+        2,
+        1.7999999523162842
+      ]
+    },
+    {
+      "attributes": {
+        "ShadeStyle": "Mushroom",
+        "ShadeColor": {
+          "rgb": [
+            150,
+            167,
+            131
+          ],
+          "type": "Color3"
+        },
+        "StemColor": {
+          "rgb": [
+            172,
+            137,
+            71
+          ],
+          "type": "Color3"
+        },
+        "Lit": true
+      },
+      "name": "Sage mushroom floor lamp",
+      "category": "Lighting",
+      "id": "rr_mushroom_floor_sage_v1",
+      "family": "Lamp",
+      "placementSurface": "Floor",
+      "size": [
+        2.5999999046325684,
+        5.400000095367432,
+        2.5999999046325684
+      ]
+    },
+    {
+      "attributes": {
+        "Count": 3,
+        "Object": "Vase",
+        "BodyColor": {
+          "rgb": [
+            189,
+            124,
+            104
+          ],
+          "type": "Color3"
+        },
+        "AccentColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Clay bud vase",
+      "category": "Objects",
+      "id": "rr_bud_vase_clay_v1",
+      "family": "Decor",
+      "placementSurface": "Surface",
+      "size": [
+        0.800000011920929,
+        1.2000000476837158,
+        0.800000011920929
+      ]
+    },
+    {
+      "attributes": {
+        "Count": 3,
+        "Object": "Vase",
+        "BodyColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        },
+        "AccentColor": {
+          "rgb": [
+            194,
+            153,
+            76
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Cream round vase",
+      "category": "Objects",
+      "id": "rr_vase_cream_v1",
+      "family": "Decor",
+      "placementSurface": "Surface",
+      "size": [
+        1.2000000476837158,
+        1.7999999523162842,
+        1.2000000476837158
+      ]
+    },
+    {
+      "attributes": {
+        "Count": 3,
+        "Object": "Vase",
+        "BodyColor": {
+          "rgb": [
+            132,
+            158,
+            176
+          ],
+          "type": "Color3"
+        },
+        "AccentColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Lake tall vase",
+      "category": "Objects",
+      "id": "rr_vase_lake_v1",
+      "family": "Decor",
+      "placementSurface": "Surface",
+      "size": [
+        1,
+        2.200000047683716,
+        1
+      ]
+    },
+    {
+      "attributes": {
+        "Count": 3,
+        "Object": "Books",
+        "BodyColor": {
+          "rgb": [
+            150,
+            167,
+            131
+          ],
+          "type": "Color3"
+        },
+        "AccentColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Sage book stack",
+      "category": "Objects",
+      "id": "rr_books_sage_v1",
+      "family": "Decor",
+      "placementSurface": "Surface",
+      "size": [
+        1.2999999523162842,
+        0.6499999761581421,
+        0.8999999761581421
+      ]
+    },
+    {
+      "attributes": {
+        "Count": 2,
+        "Object": "Books",
+        "BodyColor": {
+          "rgb": [
+            189,
+            124,
+            104
+          ],
+          "type": "Color3"
+        },
+        "AccentColor": {
+          "rgb": [
+            132,
+            158,
+            176
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Clay coffee table books",
+      "category": "Objects",
+      "id": "rr_books_clay_v1",
+      "family": "Decor",
+      "placementSurface": "Surface",
+      "size": [
+        1.7999999523162842,
+        0.47999998927116394,
+        1.2000000476837158
+      ]
+    },
+    {
+      "attributes": {
+        "Count": 3,
+        "Object": "Tray",
+        "BodyColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "AccentColor": {
+          "rgb": [
+            115,
+            82,
+            60
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Oak catchall tray",
+      "category": "Objects",
+      "id": "rr_tray_oak_v1",
+      "family": "Decor",
+      "placementSurface": "Surface",
+      "size": [
+        1.7999999523162842,
+        0.2199999988079071,
+        1.2000000476837158
+      ]
+    },
+    {
+      "attributes": {
+        "Count": 3,
+        "Object": "Candle",
+        "BodyColor": {
+          "rgb": [
+            198,
+            152,
+            150
+          ],
+          "type": "Color3"
+        },
+        "AccentColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Rose saucer candle",
+      "category": "Objects",
+      "id": "rr_candle_rose_v1",
+      "family": "Decor",
+      "placementSurface": "Surface",
+      "size": [
+        0.6000000238418579,
+        0.800000011920929,
+        0.6000000238418579
+      ]
+    },
+    {
+      "attributes": {
+        "Count": 3,
+        "Object": "Candle",
+        "BodyColor": {
+          "rgb": [
+            194,
+            153,
+            76
+          ],
+          "type": "Color3"
+        },
+        "AccentColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Ochre pillar candle",
+      "category": "Objects",
+      "id": "rr_candle_ochre_v1",
+      "family": "Decor",
+      "placementSurface": "Surface",
+      "size": [
+        0.699999988079071,
+        1.2000000476837158,
+        0.699999988079071
+      ]
+    },
+    {
+      "attributes": {
+        "LeafCount": 5,
+        "LeafColor": {
+          "rgb": [
+            97,
+            139,
+            90
+          ],
+          "type": "Color3"
+        },
+        "PotColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Little desk plant",
+      "category": "Plants",
+      "id": "rr_desk_plant_v1",
+      "family": "Plant",
+      "placementSurface": "Surface",
+      "size": [
+        1.2000000476837158,
+        1.5,
+        1.2000000476837158
+      ]
+    },
+    {
+      "attributes": {
+        "LeafCount": 7,
+        "LeafColor": {
+          "rgb": [
+            97,
+            139,
+            90
+          ],
+          "type": "Color3"
+        },
+        "PotColor": {
+          "rgb": [
+            189,
+            124,
+            104
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Leafy clay planter",
+      "category": "Plants",
+      "id": "rr_leaf_plant_v1",
+      "family": "Plant",
+      "placementSurface": "Floor",
+      "size": [
+        2.200000047683716,
+        3.799999952316284,
+        2.200000047683716
+      ]
+    },
+    {
+      "attributes": {
+        "LeafCount": 10,
+        "LeafColor": {
+          "rgb": [
+            97,
+            139,
+            90
+          ],
+          "type": "Color3"
+        },
+        "PotColor": {
+          "rgb": [
+            150,
+            167,
+            131
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Tall sage planter",
+      "category": "Plants",
+      "id": "rr_tall_plant_v1",
+      "family": "Plant",
+      "placementSurface": "Floor",
+      "size": [
+        3.200000047683716,
+        5.800000190734863,
+        3.200000047683716
+      ]
+    },
+    {
+      "attributes": {
+        "FrameColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "Design": "Sunset",
+        "AccentColor": {
+          "rgb": [
+            189,
+            124,
+            104
+          ],
+          "type": "Color3"
+        },
+        "GroundColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Clay sunset print",
+      "category": "Wall decor",
+      "id": "rr_sunset_print_v1",
+      "family": "Wall",
+      "placementSurface": "Wall",
+      "size": [
+        2.4000000953674316,
+        3.200000047683716,
+        0.20000000298023224
+      ]
+    },
+    {
+      "attributes": {
+        "FrameColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "Design": "Sunset",
+        "AccentColor": {
+          "rgb": [
+            194,
+            153,
+            76
+          ],
+          "type": "Color3"
+        },
+        "GroundColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Ochre horizon print",
+      "category": "Wall decor",
+      "id": "rr_wide_sunset_print_v1",
+      "family": "Wall",
+      "placementSurface": "Wall",
+      "size": [
+        4,
+        2.5,
+        0.20000000298023224
+      ]
+    },
+    {
+      "attributes": {
+        "FrameColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "Design": "Colorblock",
+        "AccentColor": {
+          "rgb": [
+            132,
+            158,
+            176
+          ],
+          "type": "Color3"
+        },
+        "GroundColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Lake colorblock print",
+      "category": "Wall decor",
+      "id": "rr_colorblock_print_v1",
+      "family": "Wall",
+      "placementSurface": "Wall",
+      "size": [
+        2.5,
+        3.4000000953674316,
+        0.20000000298023224
+      ]
+    },
+    {
+      "attributes": {
+        "FrameColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "Design": "Mirror",
+        "AccentColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        },
+        "GroundColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Oak framed mirror",
+      "category": "Wall decor",
+      "id": "rr_oak_mirror_v1",
+      "family": "Wall",
+      "placementSurface": "Wall",
+      "size": [
+        2.4000000953674316,
+        4,
+        0.20000000298023224
+      ]
+    },
+    {
+      "attributes": {
+        "FrameColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "SeatColor": {
+          "rgb": [
+            150,
+            167,
+            131
+          ],
+          "type": "Color3"
+        },
+        "Back": "Slats"
+      },
+      "name": "Sage slat dining chair",
+      "category": "Seating",
+      "id": "rr_slat_chair_sage_v1",
+      "family": "Chair",
+      "placementSurface": "Floor",
+      "size": [
+        2,
+        3.5,
+        2.0999999046325684
+      ]
+    },
+    {
+      "attributes": {
+        "FrameColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "SeatColor": {
+          "rgb": [
+            189,
+            124,
+            104
+          ],
+          "type": "Color3"
+        },
+        "Back": "Panel"
+      },
+      "name": "Clay panel dining chair",
+      "category": "Seating",
+      "id": "rr_panel_chair_clay_v1",
+      "family": "Chair",
+      "placementSurface": "Floor",
+      "size": [
+        2.0999999046325684,
+        3.4000000953674316,
+        2.0999999046325684
+      ]
+    },
+    {
+      "attributes": {
+        "FrameColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "SeatColor": {
+          "rgb": [
+            194,
+            153,
+            76
+          ],
+          "type": "Color3"
+        },
+        "Back": "None"
+      },
+      "name": "Ochre padded stool",
+      "category": "Seating",
+      "id": "rr_stool_ochre_v1",
+      "family": "Chair",
+      "placementSurface": "Floor",
+      "size": [
+        1.7999999523162842,
+        1.899999976158142,
+        1.7999999523162842
+      ]
+    },
+    {
+      "attributes": {
+        "FrameColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "SeatColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        },
+        "Back": "None"
+      },
+      "name": "Cream entry bench",
+      "category": "Seating",
+      "id": "rr_bench_cream_v1",
+      "family": "Chair",
+      "placementSurface": "Floor",
+      "size": [
+        4.599999904632568,
+        1.899999976158142,
+        1.899999976158142
+      ]
+    },
+    {
+      "attributes": {
+        "LinenColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        },
+        "FrameColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "PillowCount": 2,
+        "ThrowColor": {
+          "rgb": [
+            150,
+            167,
+            131
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Sage throw double bed",
+      "category": "Beds",
+      "id": "rr_double_bed_sage_v1",
+      "family": "Bed",
+      "placementSurface": "Floor",
+      "size": [
+        6.199999809265137,
+        3.5999999046325684,
+        8.199999809265137
+      ]
+    },
+    {
+      "attributes": {
+        "LinenColor": {
+          "rgb": [
+            232,
+            222,
+            200
+          ],
+          "type": "Color3"
+        },
+        "FrameColor": {
+          "rgb": [
+            192,
+            155,
+            109
+          ],
+          "type": "Color3"
+        },
+        "PillowCount": 1,
+        "ThrowColor": {
+          "rgb": [
+            132,
+            158,
+            176
+          ],
+          "type": "Color3"
+        }
+      },
+      "name": "Lake throw single bed",
+      "category": "Beds",
+      "id": "rr_single_bed_lake_v1",
+      "family": "Bed",
+      "placementSurface": "Floor",
+      "size": [
+        4,
+        3.4000000953674316,
+        7.800000190734863
+      ]
+    }
+  ],
+  "sourceRevision": "b76f66355ded30a5bde600a3fdde835902cf4129d2d5d4578a115e73a6cf1b0f",
+  "placeId": 86511797738570
+}

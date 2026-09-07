@@ -1,0 +1,27 @@
+[
+  {
+    "path": "Generator.lua",
+    "sha256": "dfd2eff2bf247b89d3897148663fcb9883bfd02807da1bd626126faa4ce22329",
+    "bytes": 6967
+  },
+  {
+    "path": "Dependencies/ConstructiveSolidGeometry.lua",
+    "sha256": "0affa8389a69457460598f326dfa80f6e12561eb4d7b44e3ae9a6bc94fc4bf5c",
+    "bytes": 8831
+  },
+  {
+    "path": "Dependencies/GeometryPrimitives.lua",
+    "sha256": "618c55e69d57973641f8278ddc813ed53fcd05b01cb28625e5c3dec060aba8fb",
+    "bytes": 106308
+  },
+  {
+    "path": "Dependencies/MathUtils.lua",
+    "sha256": "1ca7289fb4b87594165381862500c9065ca730b38acac5ec0a12a888b2d52001",
+    "bytes": 6746
+  },
+  {
+    "path": "Dependencies/SmartObject.lua",
+    "sha256": "52e5af0ff8b656ed1dbb812a969f38dfaedec0607974bfc56a2ca06baf09ac30",
+    "bytes": 1861
+  }
+]
