@@ -19,7 +19,8 @@ For non-UI gameplay system ownership, use [docs/game_systems.md](/C:/Users/jaked
 Do not use older handoff notes or extracted snapshots as the source of truth for UI architecture. The live Studio place and this doc should win.
 
 ## Source Of Truth
-- The live Roblox Studio place is the source of truth for current UI scripts.
+- `src/` is the source of truth for UI scripts imported from the test place on September 6, 2026.
+- The Studio test place still owns UI instances that runtime scripts do not create and that have not been imported into Rojo.
 - Local extracted Lua files in `rbxlx_extract/` and `rbxlx_extract_updated/` are reference-only and may be stale.
 - Shared UI palette, typography, radii, and helper factories live in `ReplicatedStorage.UITheme`.
 

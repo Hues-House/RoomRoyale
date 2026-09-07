@@ -3,6 +3,10 @@ param(
     [switch]$SkipRojo
 )
 
+if ($PSVersionTable.PSVersion.Major -lt 7) {
+    throw 'PowerShell 7 or newer is required. Run this script with pwsh.'
+}
+
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 

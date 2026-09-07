@@ -8,4 +8,4 @@ Use these documents in this order:
 4. [ui_system.md](ui_system.md) for screen ownership and interaction rules.
 5. [public-beta-readiness-audit-2026-08-30.md](public-beta-readiness-audit-2026-08-30.md) for the dated release gates.
 
-The system maps describe the live place and may point to scripts that have not yet been imported into `src/`. Treat the live place as the runtime source of truth until a deliberate Studio-to-Rojo sync replaces that boundary.
+The system maps describe the test place at the September 6, 2026 source import. Managed script changes belong in `src/`; `studio-source-manifest.json` records the imported baseline. Map geometry, terrain, models, and other non-script instances remain Studio-owned for now.

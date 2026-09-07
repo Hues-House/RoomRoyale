@@ -1,5 +1,6 @@
 {
   "name": "RoomRoyale",
+  "servePlaceIds": [86511797738570],
   "tree": {
     "$className": "DataModel",
     "ReplicatedStorage": {

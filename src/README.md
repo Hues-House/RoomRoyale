@@ -9,4 +9,6 @@ Rojo maps the folders below into Roblox services:
 - `StarterGui/` for authored UI.
 - `StarterPlayer/StarterPlayerScripts/` for client controllers.
 
-Import live Studio scripts here only after checking the owning system in `docs/game_systems.md` or `docs/ui_system.md`. Keep the live place as the runtime source of truth until the imported tree has passed the acceptance checks.
+The active test-place scripts were imported on September 6, 2026. This tree is now the source of truth for script changes. Check the owning system in `docs/game_systems.md` or `docs/ui_system.md` before editing it.
+
+Map geometry, terrain, furniture models, and other non-script instances remain Studio-owned until they receive an explicit Rojo representation. Do not assume a successful script build reproduces the full place.

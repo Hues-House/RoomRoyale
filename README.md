@@ -2,26 +2,37 @@
 
 Room Royale is a Roblox decorating competition built around a fast `Shop -> Style -> Judge` loop.
 
-The game is currently documentation-first in this repository. The live Roblox place remains the source of truth for runtime behavior until Studio scripts are imported into the Rojo tree on purpose.
+The active Luau source from the `Room Royale - Test` place is managed in this repository through Rojo. The Studio place still owns map geometry, terrain, models, and other instances that have not been imported yet.
+
+`docs/studio-source-manifest.json` records the Studio baseline used for the import, and `docs/studio-source-capture-2026-09-06.json` preserves the matching 57-script Studio inventory. Run both source verifiers before syncing repository changes back into Studio.
 
 ## Project layout
 
 - `AGENTS.md` defines the product direction and player-facing tone.
 - `CONTEXT.md` defines the project vocabulary.
 - `default.project.json` maps the repository into Roblox services through Rojo.
-- `src/` is the future source tree for Luau scripts and shared assets.
+- `src/` contains the managed Luau scripts and is the source of truth for script changes.
 - `docs/` contains system maps and release-readiness records.
 - `.scratch/issues/` contains the local Markdown backlog from the public-beta audit.
 - `tools/validate-repo.ps1` checks the repository structure and builds the Rojo project.
+- `tools/Verify-StudioSourceManifest.ps1` checks the imported files against the captured Studio baseline.
+- `tools/Verify-RojoBuild.ps1` proves that a fresh Rojo build preserves script paths, classes, disabled states, and source.
 
-The `rbxlx_extract/`, `rbxlx_extract_updated/`, and `_gdd_extract/` folders are local legacy references. Git ignores them because the audit marks the extracted scripts as stale.
+The `rbxlx_extract/`, `rbxlx_extract_updated/`, and `_gdd_extract/` folders are local legacy references. Git ignores them because the verified `src/` tree has replaced those stale extracts.
 
 ## Roblox workflow
 
-Install or make Rojo available on your `PATH`, then run the repository check:
+Install or make Rojo available on your `PATH`. The repository tools require PowerShell 7 or newer (`pwsh`). Run the repository check:
 
 ```powershell
-.\tools\validate-repo.ps1
+pwsh -NoProfile -File .\tools\validate-repo.ps1
+```
+
+Verify the imported source boundary:
+
+```powershell
+pwsh -NoProfile -File .\tools\Verify-StudioSourceManifest.ps1
+pwsh -NoProfile -File .\tools\Verify-RojoBuild.ps1
 ```
 
 To build a local place file from the current source tree, run:
@@ -31,7 +42,7 @@ New-Item -ItemType Directory -Force build | Out-Null
 rojo build default.project.json --output build\RoomRoyale.rbxlx
 ```
 
-Open the generated place in Roblox Studio for local inspection. Do not publish or overwrite the live place until the device, multiplayer, and persistence gates in [the public-beta audit](docs/public-beta-readiness-audit-2026-08-30.md) pass.
+Open the generated place in Roblox Studio for local inspection. Rojo live sync is restricted to test PlaceId `86511797738570`. Do not publish or overwrite the live place until the device, multiplayer, and persistence gates in [the public-beta audit](docs/public-beta-readiness-audit-2026-08-30.md) pass.
 
 ## Read before changing game code
 

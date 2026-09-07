@@ -17,10 +17,11 @@ This document complements the UI map:
 For project direction and tone, use:
 - [AGENTS.md](/C:/Users/jaked/Documents/New%20project/AGENTS.md)
 
-## Source Of Truth
-- The live Roblox Studio place is the source of truth for current systems.
-- Local extracted snapshots under `rbxlx_extract/` and `rbxlx_extract_updated/` are reference-only and may be stale.
-- Older handoff notes and extracted snapshots are legacy reference only and should not be used as the primary architecture source.
+## Source of truth
+- `src/` is the source of truth for Luau scripts imported from the test place on September 6, 2026.
+- `docs/studio-source-manifest.json` records the verified import baseline.
+- The Studio test place still owns map geometry, terrain, models, and other non-script instances.
+- Local extracted snapshots under `rbxlx_extract/` and `rbxlx_extract_updated/` are stale references.
 
 ## Core Loop
 The live game loop is:
