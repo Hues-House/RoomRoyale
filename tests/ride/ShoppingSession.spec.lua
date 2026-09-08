@@ -1,0 +1,40 @@
+--!strict
+local Session = require("../../prototype/cart-lab/ShoppingSession")
+local function item(id, space) return {id = id, itemId = id, name = id, space = space} end
+local a, b = Session.new(10, 13, 15.5), Session.new(20, 23, 25.5)
+assert(a:add(item("sofa",40), 1) == "Added")
+assert(a:add(item("table",35), 2) == "Added")
+assert(a:add(item("chair",22), 3) == "Added")
+assert(a:add(item("lamp",8), 4) == "Full")
+assert(#a:deposit(5) == 3 and a.space == 0)
+assert(a:deposit(5) == nil)
+assert(a:add(item("lamp",8), 9.99) == "Added")
+assert(a:add(item("books",8), 10) == "Closed")
+assert(a:phase(10) == "Closing" and #a:deposit(12.999) == 1)
+assert(a:deposit(13) == nil and a:phase(13) == "Resolving")
+assert(#a:settle(13) == 0 and a:settle(13) == nil)
+assert(a:phase(15.499) == "Resolving" and a:phase(15.5) == "Style")
+assert(#a:export() == 4 and a:export()[1].itemName == "sofa")
+assert(b:add(item("unbanked",40), 12) == "Added")
+assert(b:deposit(23) == nil and #b:settle(23) == 1 and #b:export() == 0)
+assert(#a:export() == 4)
+local exported = a:export()
+exported[1].itemId = "changed"
+assert(a:export()[1].itemId == "sofa")
+local free = Session.new()
+for i = 1, 12 do assert(free:add(item(tostring(i),1), 100000) == "Added") end
+assert(free:add(item("overflow",1),100000) == "Full")
+assert(#free:deposit(100000) == 12 and free:settle(100000) == nil)
+local variants = Session.new()
+local coral = {id = "coral-guid", itemId = "Chair", name = "Coral chair", space = 22, templateId = "living-coral-chair", variantId = "living-coral-chair", rarity = "Limited", color = "coral"}
+local mint = {id = "mint-guid", itemId = "Chair", name = "Mint chair", space = 22, templateId = "garden-mint-chair", variantId = "garden-mint-chair", rarity = "Common", color = "mint"}
+assert(variants:add(coral, 1) == "Added" and variants:add(mint, 1) == "Added")
+local receipt = variants:deposit(2)
+assert(receipt[1] == coral and receipt[2] == mint and variants:deposit(2) == nil)
+local collection = variants:export()
+assert(collection[1].id == "coral-guid" and collection[2].id == "mint-guid")
+assert(collection[1].templateId == coral.templateId and collection[2].templateId == mint.templateId)
+assert(collection[1].variantId == coral.variantId and collection[1].rarity == "Limited" and collection[1].color == "coral")
+collection[1].templateId = "wrong-template"
+assert(variants:export()[1].templateId == coral.templateId)
+print("ShoppingSession: capacity, repeated atomic deposits, exact deadlines, discarded cargo, isolated sessions, and copied Style export passed")

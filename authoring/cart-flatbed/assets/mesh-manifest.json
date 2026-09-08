@@ -1,0 +1,37 @@
+[
+  {
+    "name": "rr_warehouse_flatbed_1",
+    "file": "rr_warehouse_flatbed_1.mesh.json",
+    "material": "Orange",
+    "vertices": 1356,
+    "triangles": 2660
+  },
+  {
+    "name": "rr_warehouse_flatbed_2",
+    "file": "rr_warehouse_flatbed_2.mesh.json",
+    "material": "Deck",
+    "vertices": 1440,
+    "triangles": 2820
+  },
+  {
+    "name": "rr_warehouse_flatbed_3",
+    "file": "rr_warehouse_flatbed_3.mesh.json",
+    "material": "Steel",
+    "vertices": 896,
+    "triangles": 1728
+  },
+  {
+    "name": "rr_warehouse_flatbed_4",
+    "file": "rr_warehouse_flatbed_4.mesh.json",
+    "material": "Grip",
+    "vertices": 96,
+    "triangles": 188
+  },
+  {
+    "name": "rr_warehouse_flatbed_5",
+    "file": "rr_warehouse_flatbed_5.mesh.json",
+    "material": "Rubber",
+    "vertices": 576,
+    "triangles": 1136
+  }
+]

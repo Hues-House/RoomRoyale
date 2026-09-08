@@ -47,13 +47,13 @@ The shops are usable buildings with display tables; category-specific shop stock
 
 ## Backups and recovery
 
-- Repository baseline: `caa928a`. Source changes are on `codex/live-place-source-sync`.
+- Original build baseline: `caa928a`. Current source and complete scene snapshots are synchronized on the repository default branch.
 - Studio: `ServerStorage.NeighborhoodBefore_20260907` retains the former neighborhood, spawn, changed source and original sofa feet. Its `SourceBefore` scripts are disabled.
 - Local live-source copies: `build/neighborhood-2026-09-07`. The original Blender study is `furniture-before-support-fix.blend` in that directory.
 - Updated Blender, GLB, mesh JSON and importable source XML are in `authoring/art-study/assets`. The XML includes private asset IDs and a persistent gallery rebuild module; see its README.
 - The new neighborhood is reproducible from the committed layout and builders on server startup. The separate furniture gallery is reconstructed through `PersistentReview.Build()`.
 
-No place publish was performed. Scene edits remain in the open Test place; local source and artifact files provide the durable backup. The approval reviewer initially rejected a broad ProgressionService replacement; accepted narrow edits are limited to the house coordinate-space field and the opt-in Studio mock selector.
+This build did not publish Live. The subsequent repository sync saved the Test place to Roblox and exported the complete [Test scene](../places/RoomRoyale-Test.rbxlx). [Current snapshot verification](evidence/studio-repo-sync.json) compares all managed scripts to a fresh source build. The approval reviewer initially rejected a broad ProgressionService replacement; accepted narrow edits are limited to the house coordinate-space field and the opt-in Studio mock selector.
 
 ## Review
 

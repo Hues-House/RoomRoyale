@@ -1,0 +1,56 @@
+{
+  "studioId": "92b7ac7b-44a1-46fb-9b75-0c42f515f81e",
+  "scope": "Engine fixture plus real pickup remote, server checkout and exported collection. Cart positions were staged using trusted MoveCartLabTo. This was not a driven route test.",
+  "revisionNote": "Before the later OrbitLamp/Lilac special-finish content addition and Dive feedback allowlist addition. Core cargo implementation and finite-stock rules were current.",
+  "rendererAcceptance": {
+    "cargoScale": 0.86,
+    "items": 4,
+    "space": 100,
+    "stackHeight": 7.261001706123352,
+    "sameSuctionInstances": true,
+    "bothReplicationOrders": true,
+    "exactShelfParts": true,
+    "deliveryScale": 1,
+    "nonOverlapping": true
+  },
+  "acceptedVariants": [
+    {
+      "id": "c1149dc0-a096-458b-a47c-6b42f4c4f6bc",
+      "itemId": "Chair",
+      "templateId": "living-chair",
+      "variantId": "living-chair",
+      "cargoSpaceAfter": 22,
+      "sameFieldsAfterCheckoutExport": true
+    },
+    {
+      "id": "d584daa2-32b2-43ca-b557-86023daac7fe",
+      "itemId": "Chair",
+      "templateId": "dining-chair",
+      "variantId": "dining-chair",
+      "cargoSpaceAfter": 44,
+      "sameFieldsAfterCheckoutExport": true
+    },
+    {
+      "id": "67ee2f59-30b6-422b-870b-66957dff0e5c",
+      "itemId": "Chair",
+      "templateId": "trail-chair",
+      "variantId": "trail-chair",
+      "rarity": "Limited",
+      "sameFieldsAfterCheckoutExport": true
+    }
+  ],
+  "limitedStock": {
+    "underPlatformRejected": true,
+    "stockAfterRejectedGrab": 1,
+    "cargoSpaceAfterRejectedGrab": 0,
+    "onPlatformAccepted": true,
+    "stockAfterAcceptedGrab": 0,
+    "cargoSpaceAfterAcceptedGrab": 22,
+    "claimedLabelVisible": true,
+    "claimedLabel": "CLAIMED\nBack next round",
+    "stillEmptyAfterOrdinaryRespawnInterval": true,
+    "nextTimedRoundResetsStockTo": 1,
+    "nextTimedRoundEnablesPrompt": true,
+    "nextTimedRoundClearsBankedCollection": true
+  }
+}

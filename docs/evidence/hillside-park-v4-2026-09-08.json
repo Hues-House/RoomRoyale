@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-08",
+  "studioId": "92b7ac7b-44a1-46fb-9b75-0c42f515f81e",
+  "studioName": "RoomRoyale-Hillside-v4.rbxlx",
+  "datamodel": "Server",
+  "isolated": true,
+  "origin": [310, -500, 0],
+  "liveParkModified": false,
+  "cleanedUp": true,
+  "passed": true,
+  "report": {
+    "engineActual": true,
+    "checks": 1962,
+    "floorChecks": 621,
+    "joinChecks": 894,
+    "failures": [],
+    "passed": true,
+    "method": "Actual Workspace raycasts across track width, every segment join, market connection, overshoot area, and floor perimeter. Does not certify rider feel or camera behavior."
+  },
+  "findingAndFix": {
+    "initialSupportFailures": 203,
+    "finding": "Exact triangle boundaries sometimes returned a vertical wedge side or reached the safety floor. Probes 0.02 studs beside a failing seam found the expected shallow slope.",
+    "fix": "Expand each triangle face by 0.8 percent around its centroid so adjacent riding surfaces overlap.",
+    "candidateSource": "prototype/superstore/PracticePark.lua",
+    "candidateLoading": "Created an isolated temporary ModuleScript from the revised local source, resolving Geometry through ServerScriptService. Ran the installed ParkAcceptance module, then destroyed the isolated folder."
+  },
+  "limitations": [
+    "Checks validate collision support geometry, not steering feel, actual rider traversal, airborne dive timing, or camera behavior.",
+    "The revised park builder still needs to be synced into the playable artifact by the integrating agent."
+  ]
+}

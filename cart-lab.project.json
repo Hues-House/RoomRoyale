@@ -1,0 +1,71 @@
+{
+  "name": "RoomRoyaleCartLab",
+  "tree": {
+    "$className": "DataModel",
+    "Workspace": {
+      "$properties": {
+        "Gravity": 196.2,
+        "StreamingEnabled": false
+      }
+    },
+    "ReplicatedStorage": {
+      "CartItemPresentation": { "$path": "prototype/cart-lab/ItemPresentation.lua" },
+      "CartAudio": { "$path": "prototype/cart-lab/Audio.lua" },
+      "RideRuntime": {
+        "$path": "packages/RideRuntime"
+      }
+    },
+    "ServerScriptService": {
+      "CartLabServer": {
+        "$path": "prototype/cart-lab/Server.server.lua"
+      },
+      "Course": {
+        "$path": "prototype/cart-lab/Course.lua"
+      },
+      "Crashes": {
+        "$path": "prototype/cart-lab/Crashes.lua"
+      },
+      "ShoppingSession": {
+        "$path": "prototype/cart-lab/ShoppingSession.lua"
+      },
+      "Flatbed": {
+        "$path": "prototype/cart-lab/Flatbed.lua"
+      }
+    },
+    "ServerStorage": {
+      "CrashGeometryAcceptance": {
+        "$path": "tests/ride/CrashGeometryAcceptance.lua"
+      },
+      "PhysicsAcceptance": {
+        "$path": "tests/ride/PhysicsAcceptance.lua"
+      },
+      "DriftPhysicsAcceptance": {
+        "$path": "tests/ride/DriftPhysicsAcceptance.lua"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "CartLabClient": {
+          "$path": "prototype/cart-lab/Client.client.lua"
+        },
+        "CartLabCargo": {
+          "$path": "prototype/cart-lab/Cargo.lua"
+        },
+        "CartLabRunner": {
+          "$path": "prototype/cart-lab/Runner.lua"
+        },
+        "CartLabFeedback": {
+          "$path": "prototype/cart-lab/Feedback.lua"
+        }
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "ClockTime": 14,
+        "Brightness": 2,
+        "Ambient": [0.5, 0.5, 0.55],
+        "OutdoorAmbient": [0.65, 0.65, 0.7]
+      }
+    }
+  }
+}

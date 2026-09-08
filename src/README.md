@@ -1,14 +1,18 @@
-# Roblox source tree
+# Main Test source
 
-Rojo maps the folders below into Roblox services:
+This tree owns the main Test game's managed Luau scripts. `default.project.json` maps them into Roblox services. [Game systems](../docs/game_systems.md) and [UI systems](../docs/ui_system.md) identify the owner of each behavior.
 
-- `ReplicatedStorage/` for shared modules, remotes, and assets.
-- `ServerScriptService/` for server authorities.
-- `ServerStorage/` for server-only templates and assets.
-- `Workspace/` for authored map content.
-- `StarterGui/` for authored UI.
-- `StarterPlayer/StarterPlayerScripts/` for client controllers.
+Open [places/RoomRoyale-Test.rbxlx](../places/RoomRoyale-Test.rbxlx) for the complete Studio scene. It includes the map, terrain, furniture models, and other instances outside this script tree. The main Test was also saved to Roblox, PlaceId `86511797738570`, GameId `10764620924`.
 
-The active test-place scripts were imported on September 6, 2026. This tree is now the source of truth for script changes. Check the owning system in `docs/game_systems.md` or `docs/ui_system.md` before editing it.
+The separate Hillside prototype uses `packages/RideRuntime/`, `prototype/cart-lab/`, and `prototype/superstore/`. Those mechanics have not yet been integrated into this main source tree. [The refinement plan](../docs/refinement-plan-2026-09-08.md) records the approved integration and progression changes.
 
-Map geometry, terrain, furniture models, and other non-script instances remain Studio-owned until they receive an explicit Rojo representation. Do not assume a successful script build reproduces the full place.
+After changing main scripts and saving the matching Studio place, run:
+
+```powershell
+pwsh -NoProfile -File tools/Verify-RojoBuild.ps1
+python tools/Verify-PlaceSnapshots.py
+```
+
+Run these commands from the repository root with Rojo on `PATH` and Python 3 installed. The first verifies the script package. The second compares the managed script paths, classes, disabled states, and normalized sources in fresh builds against both saved scenes. It also reports additional scripts preserved in each scene.
+
+The [sync evidence](../docs/evidence/studio-repo-sync.json) records the saved snapshots and their comparison. [Verification](../docs/verification.md) lists the device, multiplayer, persistence, and asset checks that remain open.

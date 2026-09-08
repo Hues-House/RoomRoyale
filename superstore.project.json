@@ -1,0 +1,92 @@
+{
+  "name": "RoomRoyaleSuperstore",
+  "tree": {
+    "$className": "DataModel",
+    "Workspace": {
+      "$properties": {
+        "Gravity": 196.2,
+        "StreamingEnabled": false
+      }
+    },
+    "ReplicatedStorage": {
+      "CartItemPresentation": { "$path": "prototype/cart-lab/ItemPresentation.lua" },
+      "CartAudio": { "$path": "prototype/cart-lab/Audio.lua" },
+      "CartCargoAcceptance": { "$path": "tests/superstore/CargoAcceptance.lua" },
+      "RideRuntime": {
+        "$path": "packages/RideRuntime"
+      }
+    },
+    "ServerScriptService": {
+      "ShoppingSession": { "$path": "prototype/cart-lab/ShoppingSession.lua" },
+      "StoreSession": { "$path": "prototype/superstore/StoreSession.server.lua" },
+      "PracticePark": { "$path": "prototype/superstore/PracticePark.lua" },
+      "CartLabServer": {
+        "$path": "prototype/cart-lab/Server.server.lua"
+      },
+      "Course": {
+        "$path": "prototype/superstore/Store.lua"
+      },
+      "Crashes": {
+        "$path": "prototype/cart-lab/Crashes.lua"
+      },
+      "Flatbed": {
+        "$path": "prototype/cart-lab/Flatbed.lua"
+      },
+      "Geometry": {
+        "$path": "prototype/superstore/Geometry.lua"
+      },
+      "Props": {
+        "$path": "prototype/superstore/Props.lua"
+      }
+    },
+    "ServerStorage": {
+      "NavigationAcceptance": { "$path": "tests/superstore/NavigationAcceptance.lua" },
+      "ParkAcceptance": { "$path": "tests/superstore/ParkAcceptance.lua" },
+      "ParkRideAcceptance": { "$path": "tests/superstore/ParkRideAcceptance.lua" },
+      "CargoAcceptance": { "$path": "tests/superstore/CargoAcceptance.lua" },
+      "SurfaceAudit": { "$path": "tests/superstore/SurfaceAudit.lua" },
+      "DesignerFurniture": {
+        "$path": "authoring/superstore/designer-furniture.rbxmx"
+      },
+      "Envelope": {
+        "$path": "tests/superstore/Envelope.lua"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "CartLabClient": {
+          "$path": "prototype/cart-lab/Client.client.lua"
+        },
+        "CartLabCargo": {
+          "$path": "prototype/cart-lab/Cargo.lua"
+        },
+        "CartLabRunner": {
+          "$path": "prototype/cart-lab/Runner.lua"
+        },
+        "CartLabFeedback": {
+          "$path": "prototype/cart-lab/Feedback.lua"
+        },
+        "StoreClient": {
+          "$path": "prototype/superstore/StoreClient.client.lua"
+        }
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "ClockTime": 15.5,
+        "Brightness": 1.5,
+        "Ambient": [
+          0.41,
+          0.43,
+          0.41
+        ],
+        "OutdoorAmbient": [
+          0.57,
+          0.58,
+          0.55
+        ],
+        "ExposureCompensation": -0.1
+      }
+    }
+  }
+}

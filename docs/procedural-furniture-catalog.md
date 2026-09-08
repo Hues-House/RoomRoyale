@@ -1,6 +1,6 @@
 # Procedural furniture catalog
 
-Use native ProceduralModels as the authoring system for the new Room Royale collection. Build a small number of furniture-family generators with constrained, named recipes, shared finish definitions and a visual approval gallery. All existing ItemAssets remain placeholders. This changes the production method proposed in the [House redesign brief](neighborhood-house-redesign-2026-09-06.md), while preserving its scale and gameplay requirements.
+Use native ProceduralModels as the authoring system for the new Room Royale collection. Build a small number of furniture-family generators with constrained, named recipes, shared finish definitions and a visual approval gallery. All existing ItemAssets remain placeholders. The current neighborhood and house implementation is described in the [neighborhood build report](neighborhood-build-2026-09-07.md).
 
 ## What is confirmed
 

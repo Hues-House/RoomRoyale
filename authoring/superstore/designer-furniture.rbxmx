@@ -1,0 +1,563 @@
+<?xml version='1.0' encoding='utf-8'?>
+<roblox version="4">
+  <Item class="Folder">
+    <Properties>
+      <string name="Name">DesignerFurniture</string>
+    </Properties>
+    <Item class="Model">
+      <Properties>
+        <string name="Name">rr_crescent_sofa_v2</string>
+      </Properties>
+      <Item class="MeshPart">
+        <Properties>
+          <string name="Name">rr_crescent_sofa_v2_1</string>
+          <Color3 name="Color">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">false</bool>
+          <bool name="CanTouch">false</bool>
+          <bool name="CanQuery">false</bool>
+          <Vector3 name="Size">
+            <X>10.2</X>
+            <Y>0.8999999999999999</Y>
+            <Z>4.2041640000000005</Z>
+          </Vector3>
+          <Vector3 name="InitialSize">
+            <X>10.2</X>
+            <Y>0.8999999999999999</Y>
+            <Z>4.2041640000000005</Z>
+          </Vector3>
+          <Content name="MeshId">
+            <url>rbxassetid://138963790047652</url>
+          </Content>
+          <CoordinateFrame name="CFrame">
+            <X>0.0</X>
+            <Y>0.69</Y>
+            <Z>-0.0020819999999999173</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+        <Item class="SurfaceAppearance">
+          <Properties>
+            <Content name="ColorMap">
+              <url>rbxassetid://114954558907476</url>
+            </Content>
+            <Content name="RoughnessMap">
+              <url>rbxassetid://96808306253314</url>
+            </Content>
+            <Content name="MetalnessMap">
+              <url>rbxassetid://127428713464791</url>
+            </Content>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="MeshPart">
+        <Properties>
+          <string name="Name">rr_crescent_sofa_v2_2</string>
+          <Color3 name="Color">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">false</bool>
+          <bool name="CanTouch">false</bool>
+          <bool name="CanQuery">false</bool>
+          <Vector3 name="Size">
+            <X>8.08</X>
+            <Y>0.72</Y>
+            <Z>2.86</Z>
+          </Vector3>
+          <Vector3 name="InitialSize">
+            <X>8.08</X>
+            <Y>0.72</Y>
+            <Z>2.86</Z>
+          </Vector3>
+          <Content name="MeshId">
+            <url>rbxassetid://131996809823415</url>
+          </Content>
+          <CoordinateFrame name="CFrame">
+            <X>0.0</X>
+            <Y>0.36</Y>
+            <Z>0.0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+        <Item class="SurfaceAppearance">
+          <Properties>
+            <Content name="ColorMap">
+              <url>rbxassetid://109238959053815</url>
+            </Content>
+            <Content name="RoughnessMap">
+              <url>rbxassetid://71375667560831</url>
+            </Content>
+            <Content name="MetalnessMap">
+              <url>rbxassetid://84255920099428</url>
+            </Content>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="MeshPart">
+        <Properties>
+          <string name="Name">rr_crescent_sofa_v2_3</string>
+          <Color3 name="Color">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">false</bool>
+          <bool name="CanTouch">false</bool>
+          <bool name="CanQuery">false</bool>
+          <Vector3 name="Size">
+            <X>11.561136</X>
+            <Y>3.6999999999999997</Y>
+            <Z>5.1</Z>
+          </Vector3>
+          <Vector3 name="InitialSize">
+            <X>11.561136</X>
+            <Y>3.6999999999999997</Y>
+            <Z>5.1</Z>
+          </Vector3>
+          <Content name="MeshId">
+            <url>rbxassetid://93991755305479</url>
+          </Content>
+          <CoordinateFrame name="CFrame">
+            <X>0.0</X>
+            <Y>2.6999999999999997</Y>
+            <Z>-0.22999999999999998</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+        <Item class="SurfaceAppearance">
+          <Properties>
+            <Content name="ColorMap">
+              <url>rbxassetid://89220441344640</url>
+            </Content>
+            <Content name="RoughnessMap">
+              <url>rbxassetid://128665906530970</url>
+            </Content>
+            <Content name="MetalnessMap">
+              <url>rbxassetid://132657485648581</url>
+            </Content>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="MeshPart">
+        <Properties>
+          <string name="Name">rr_crescent_sofa_v2_4</string>
+          <Color3 name="Color">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">false</bool>
+          <bool name="CanTouch">false</bool>
+          <bool name="CanQuery">false</bool>
+          <Vector3 name="Size">
+            <X>9.685997</X>
+            <Y>0.03983800000000004</Y>
+            <Z>4.188776</Z>
+          </Vector3>
+          <Vector3 name="InitialSize">
+            <X>9.685997</X>
+            <Y>0.03983800000000004</Y>
+            <Z>4.188776</Z>
+          </Vector3>
+          <Content name="MeshId">
+            <url>rbxassetid://87449809348008</url>
+          </Content>
+          <CoordinateFrame name="CFrame">
+            <X>-1.4999999997655777e-06</X>
+            <Y>1.71</Y>
+            <Z>0.26861199999999996</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+        <Item class="SurfaceAppearance">
+          <Properties>
+            <Content name="ColorMap">
+              <url>rbxassetid://120802314872351</url>
+            </Content>
+            <Content name="RoughnessMap">
+              <url>rbxassetid://119671267496017</url>
+            </Content>
+            <Content name="MetalnessMap">
+              <url>rbxassetid://108135081283468</url>
+            </Content>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="MeshPart">
+        <Properties>
+          <string name="Name">rr_crescent_sofa_v2_5</string>
+          <Color3 name="Color">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">false</bool>
+          <bool name="CanTouch">false</bool>
+          <bool name="CanQuery">false</bool>
+          <Vector3 name="Size">
+            <X>2.128544</X>
+            <Y>1.9581559999999998</Y>
+            <Z>0.86831</Z>
+          </Vector3>
+          <Vector3 name="InitialSize">
+            <X>2.128544</X>
+            <Y>1.9581559999999998</Y>
+            <Z>0.86831</Z>
+          </Vector3>
+          <Content name="MeshId">
+            <url>rbxassetid://133686329366036</url>
+          </Content>
+          <CoordinateFrame name="CFrame">
+            <X>-3.2</X>
+            <Y>2.9</Y>
+            <Z>-1.0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+        <Item class="SurfaceAppearance">
+          <Properties>
+            <Content name="ColorMap">
+              <url>rbxassetid://74551763067366</url>
+            </Content>
+            <Content name="RoughnessMap">
+              <url>rbxassetid://128999714084576</url>
+            </Content>
+            <Content name="MetalnessMap">
+              <url>rbxassetid://105456953619340</url>
+            </Content>
+          </Properties>
+        </Item>
+      </Item>
+    </Item>
+    <Item class="Model">
+      <Properties>
+        <string name="Name">rr_loop_bentwood_chair_v2</string>
+      </Properties>
+      <Item class="MeshPart">
+        <Properties>
+          <string name="Name">rr_loop_bentwood_chair_v2_1</string>
+          <Color3 name="Color">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">false</bool>
+          <bool name="CanTouch">false</bool>
+          <bool name="CanQuery">false</bool>
+          <Vector3 name="Size">
+            <X>3.261364</X>
+            <Y>4.963806</Y>
+            <Z>2.8200000000000003</Z>
+          </Vector3>
+          <Vector3 name="InitialSize">
+            <X>3.261364</X>
+            <Y>4.963806</Y>
+            <Z>2.8200000000000003</Z>
+          </Vector3>
+          <Content name="MeshId">
+            <url>rbxassetid://87655443501417</url>
+          </Content>
+          <CoordinateFrame name="CFrame">
+            <X>0.0</X>
+            <Y>2.481903</Y>
+            <Z>0.04999999999999993</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+        <Item class="SurfaceAppearance">
+          <Properties>
+            <Content name="ColorMap">
+              <url>rbxassetid://114954558907476</url>
+            </Content>
+            <Content name="RoughnessMap">
+              <url>rbxassetid://96808306253314</url>
+            </Content>
+            <Content name="MetalnessMap">
+              <url>rbxassetid://127428713464791</url>
+            </Content>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="MeshPart">
+        <Properties>
+          <string name="Name">rr_loop_bentwood_chair_v2_2</string>
+          <Color3 name="Color">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">false</bool>
+          <bool name="CanTouch">false</bool>
+          <bool name="CanQuery">false</bool>
+          <Vector3 name="Size">
+            <X>2.32</X>
+            <Y>2.251506</Y>
+            <Z>2.431598</Z>
+          </Vector3>
+          <Vector3 name="InitialSize">
+            <X>2.32</X>
+            <Y>2.251506</Y>
+            <Z>2.431598</Z>
+          </Vector3>
+          <Content name="MeshId">
+            <url>rbxassetid://123836096235187</url>
+          </Content>
+          <CoordinateFrame name="CFrame">
+            <X>0.0</X>
+            <Y>3.214806</Y>
+            <Z>-0.005798999999999999</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+        <Item class="SurfaceAppearance">
+          <Properties>
+            <Content name="ColorMap">
+              <url>rbxassetid://73238003374767</url>
+            </Content>
+            <Content name="RoughnessMap">
+              <url>rbxassetid://77274517658966</url>
+            </Content>
+            <Content name="MetalnessMap">
+              <url>rbxassetid://122483308257354</url>
+            </Content>
+          </Properties>
+        </Item>
+      </Item>
+    </Item>
+    <Item class="Model">
+      <Properties>
+        <string name="Name">rr_tide_lamp_v2</string>
+      </Properties>
+      <Item class="MeshPart">
+        <Properties>
+          <string name="Name">rr_tide_lamp_v2_1</string>
+          <Color3 name="Color">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">false</bool>
+          <bool name="CanTouch">false</bool>
+          <bool name="CanQuery">false</bool>
+          <Vector3 name="Size">
+            <X>1.4298199999999999</X>
+            <Y>1.269736</Y>
+            <Z>1.372735</Z>
+          </Vector3>
+          <Vector3 name="InitialSize">
+            <X>1.4298199999999999</X>
+            <Y>1.269736</Y>
+            <Z>1.372735</Z>
+          </Vector3>
+          <Content name="MeshId">
+            <url>rbxassetid://101631620287389</url>
+          </Content>
+          <CoordinateFrame name="CFrame">
+            <X>0.002220999999999973</X>
+            <Y>0.634868</Y>
+            <Z>-0.029741499999999976</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+        <Item class="SurfaceAppearance">
+          <Properties>
+            <Content name="ColorMap">
+              <url>rbxassetid://100469004572222</url>
+            </Content>
+            <Content name="RoughnessMap">
+              <url>rbxassetid://99585455743267</url>
+            </Content>
+            <Content name="MetalnessMap">
+              <url>rbxassetid://82270421331303</url>
+            </Content>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="MeshPart">
+        <Properties>
+          <string name="Name">rr_tide_lamp_v2_2</string>
+          <Color3 name="Color">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">false</bool>
+          <bool name="CanTouch">false</bool>
+          <bool name="CanQuery">false</bool>
+          <Vector3 name="Size">
+            <X>0.4</X>
+            <Y>0.69</Y>
+            <Z>0.4</Z>
+          </Vector3>
+          <Vector3 name="InitialSize">
+            <X>0.4</X>
+            <Y>0.69</Y>
+            <Z>0.4</Z>
+          </Vector3>
+          <Content name="MeshId">
+            <url>rbxassetid://122663677468753</url>
+          </Content>
+          <CoordinateFrame name="CFrame">
+            <X>0.0</X>
+            <Y>1.545</Y>
+            <Z>0.0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+        <Item class="SurfaceAppearance">
+          <Properties>
+            <Content name="ColorMap">
+              <url>rbxassetid://82101013329645</url>
+            </Content>
+            <Content name="RoughnessMap">
+              <url>rbxassetid://137713808246780</url>
+            </Content>
+            <Content name="MetalnessMap">
+              <url>rbxassetid://93405739969928</url>
+            </Content>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="MeshPart">
+        <Properties>
+          <string name="Name">rr_tide_lamp_v2_3</string>
+          <Color3 name="Color">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">false</bool>
+          <bool name="CanTouch">false</bool>
+          <bool name="CanQuery">false</bool>
+          <Vector3 name="Size">
+            <X>2.198</X>
+            <Y>1.36</Y>
+            <Z>2.198</Z>
+          </Vector3>
+          <Vector3 name="InitialSize">
+            <X>2.198</X>
+            <Y>1.36</Y>
+            <Z>2.198</Z>
+          </Vector3>
+          <Content name="MeshId">
+            <url>rbxassetid://118872873459437</url>
+          </Content>
+          <CoordinateFrame name="CFrame">
+            <X>0.0</X>
+            <Y>2.46</Y>
+            <Z>0.0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+        <Item class="SurfaceAppearance">
+          <Properties>
+            <Content name="ColorMap">
+              <url>rbxassetid://115656019341064</url>
+            </Content>
+            <Content name="RoughnessMap">
+              <url>rbxassetid://91065889102450</url>
+            </Content>
+            <Content name="MetalnessMap">
+              <url>rbxassetid://139589838282897</url>
+            </Content>
+          </Properties>
+        </Item>
+      </Item>
+    </Item>
+  </Item>
+</roblox>

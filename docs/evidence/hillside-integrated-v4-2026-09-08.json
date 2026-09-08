@@ -1,0 +1,166 @@
+{
+  "studioId": "92b7ac7b-44a1-46fb-9b75-0c42f515f81e",
+  "build": "build/superstore/RoomRoyale-Hillside-v4.rbxlx",
+  "navigationAndTemplates": {
+    "templates": {
+      "1": {
+        "scale": 0.86,
+        "templateId": "living-sofa",
+        "variantId": "living-sofa",
+        "parts": 5
+      },
+      "2": {
+        "scale": 0.86,
+        "templateId": "living-chair",
+        "variantId": "living-chair",
+        "parts": 2
+      },
+      "3": {
+        "scale": 0.86,
+        "templateId": "dining-table",
+        "variantId": "dining-table",
+        "parts": 5
+      },
+      "4": {
+        "scale": 0.86,
+        "templateId": "dining-chair",
+        "variantId": "dining-chair",
+        "parts": 2
+      },
+      "5": {
+        "scale": 0.86,
+        "templateId": "bedroom-bed",
+        "variantId": "bedroom-bed",
+        "parts": 7
+      },
+      "6": {
+        "scale": 0.86,
+        "templateId": "bedroom-lamp",
+        "variantId": "bedroom-lamp",
+        "parts": 3
+      },
+      "7": {
+        "scale": 0.86,
+        "templateId": "garden-plant",
+        "variantId": "garden-plant",
+        "parts": 7
+      },
+      "8": {
+        "scale": 0.86,
+        "templateId": "lighting-lamp",
+        "variantId": "lighting-lamp",
+        "parts": 3
+      },
+      "9": {
+        "scale": 0.86,
+        "templateId": "checkout-rug",
+        "variantId": "checkout-rug",
+        "parts": 1
+      },
+      "10": {
+        "scale": 0.86,
+        "templateId": "checkout-books",
+        "variantId": "checkout-books",
+        "parts": 3
+      },
+      "11": {
+        "scale": 0.86,
+        "templateId": "garden-books",
+        "variantId": "garden-books",
+        "parts": 3
+      },
+      "12": {
+        "scale": 0.86,
+        "templateId": "trail-chair",
+        "variantId": "trail-chair",
+        "parts": 2
+      },
+      "13": {
+        "scale": 0.86,
+        "templateId": "trail-lamp",
+        "variantId": "trail-lamp",
+        "parts": 31
+      }
+    },
+    "navigation": {
+      "checkoutVisibleFromSpawn": true,
+      "optionalRewards": 2,
+      "flatLoopSamples": 135,
+      "floatingSigns": 13,
+      "clearWideLanes": 3
+    }
+  },
+  "cargoRendererAndAudio": {
+    "audio": {
+      "PreloadSucceeded": true,
+      "FailedAssets": 0
+    },
+    "bothReplicationOrders": true,
+    "cameraZoom": 27.999998092651367,
+    "items": 4,
+    "sameSuctionInstances": true,
+    "cargoScale": 0.86,
+    "exactShelfParts": true,
+    "space": 100,
+    "deliveryScale": 1,
+    "nonOverlapping": true,
+    "stackHeight": 7.261001706123352
+  },
+  "practiceLifecycle": {
+    "activeRoundRejected": true,
+    "styleThenPracticeRemotePassed": true,
+    "returnedToFreeShopping": true,
+    "mounted": true,
+    "position": [
+      205,
+      2.5,
+      90
+    ],
+    "space": 0
+  },
+  "recordedInputs": {
+    "pump": {
+      "realKeyboard": true,
+      "keys": "W, hold Space, release, airborne Space re-press, Shift brake",
+      "ejected": false,
+      "finalPosition": [
+        347.346,
+        4.65,
+        57.838
+      ]
+    },
+    "trick": {
+      "realKeyboard": true,
+      "temporarySideCamera": true,
+      "ejected": false,
+      "mounted": true,
+      "finalPosition": [
+        342.363,
+        2.996,
+        5.001
+      ]
+    },
+    "checkout": {
+      "stagedPickups": true,
+      "actualEInput": true,
+      "actualDriveThrough": true,
+      "templates": [
+        "living-sofa",
+        "dining-table",
+        "living-chair"
+      ],
+      "spaceBefore": 97,
+      "spaceAfter": 0,
+      "savedAfter": 3,
+      "temporarySideCamera": true
+    }
+  },
+  "limitations": [
+    "Native mouse tool generated zero movement deltas; actual mouse orbit not accepted by automation.",
+    "Escape tool rejected the protected CoreGui key. Menu code reviewed and compiled, native menu behavior not accepted by automation.",
+    "No real touch/controller or phone GPU testing.",
+    "Replacement audio loads and has nonzero recorded signal. Audio quality was not assessed by model listening.",
+    "Studio recordings vary around 10-30 FPS; exports retain original timing.",
+    "Some inherited furniture roughness/metalness maps were denied in this local place; geometry and exact template copying were verified."
+  ]
+}

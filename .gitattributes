@@ -3,3 +3,7 @@
 *.md text eol=lf
 *.json text eol=lf
 *.ps1 text eol=lf
+*.rbxlx text eol=lf -diff
+*.rbxm binary
+*.blend binary
+*.glb binary

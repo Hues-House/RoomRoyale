@@ -1,131 +1,62 @@
-# Room Royale context
+# Room Royale vocabulary
 
-Room Royale is a multiplayer decorating competition. Players shop for pieces, style a personal room, and judge the finished rooms against a shared theme.
+These terms describe the current product direction. [Game systems](docs/game_systems.md) records implemented behavior. [The refinement plan](docs/refinement-plan-2026-09-08.md) records accepted changes that remain to build.
 
-## The round
+## Rounds
 
-**Round**:
-A complete `Shop -> Style -> Judge -> Results` cycle for the players in one server.
-_Avoid_: Match, mission, run
+| Term | Meaning |
+| --- | --- |
+| Round | One `Shop -> Style -> Judge -> Results` cycle for an opted-in group of players. Several round cohorts can exist in one server. |
+| Cohort | The players assigned to one round and its `RoundId`. |
+| Theme | The design prompt used to choose pieces, style a room, and judge its interpretation. |
+| Shop | The timed phase for driving a standard shopping cart and collecting pieces. |
+| Style | The timed phase for arranging and customizing the round collection. |
+| Judge | The room tour and player voting phase. |
+| Results | The round outcome and reward presentation. Play again and Back to neighborhood are approved next actions, not current completed UI. |
+| Style room | A player's temporary competition room. It is separate from their permanent house. |
+| Room reveal | The presentation of a styled room to the other players. |
+| Appreciation vote | The current token vote submitted for another player's room. The final voting presentation remains to be refined. |
 
-**Theme**:
-The design prompt that guides item choices and gives the judge phase a shared basis.
-_Avoid_: Quest, objective, challenge
+## Shopping and decorating
 
-**Shop**:
-The timed phase where players race through the store in carts and collect pieces for the theme.
-_Avoid_: Extraction, scavenger hunt, loot run
+| Term | Meaning |
+| --- | --- |
+| Store item or piece | Furniture, decor, or an accent piece available during Shop. |
+| Cart | The shopping vehicle that carries a player's current cargo. Owned neighborhood rides remain separate from round carts. |
+| Cargo | Pieces physically carried on the cart before checkout. |
+| Cart space | The prototype's capacity budget. Pieces consume different amounts of its 100-space limit. The older main cart instead has a 15-item limit. |
+| Checkout | The place where cargo is delivered. Hillside animates the carried pieces through a tube. |
+| Delivered collection | Pieces successfully checked out in the current shopping session. Prototype code also calls these pieces banked or saved. |
+| Round collection | The temporary pieces available during Style. The approved rule uses collected pieces, shared basic tools, and compatible earned designs. The main code still grants owned furniture as well. |
+| Variant | The specific model or appearance of a piece. Hillside preserves variant identity through pickup and checkout. |
+| Placement | One piece positioned in a style room. |
+| Earned design | A permanent artwork or rug appearance unlocked through an accomplishment. This planned system applies designs to compatible physical pieces without granting more pieces. |
+| Limited item | A special store piece with constrained stock or a route requirement. Hillside's limited stock replenishes at the next round. |
 
-**Style**:
-The timed phase where each player arranges and customizes pieces in their own room.
-_Avoid_: Build mode, home phase, decorating mode
+## Neighborhood and progression
 
-**Judge**:
-The phase where players tour the rooms and submit appreciation votes.
-_Avoid_: Combat, contest screen, scoring screen
+| Term | Meaning |
+| --- | --- |
+| Neighborhood | The shared area available between rounds, with houses, shops, and social riding. Internal code also uses `Hub` and `Lobby`. |
+| House | A player's permanent decorating space. Its furniture and finishes survive rejoining. |
+| Lot | One address in the neighborhood that holds an occupied or vacant house. |
+| House placement | A saved furniture instance positioned relative to its house. Current new records use `house-local-v2`. |
+| Style Bucks | The progression currency earned through rounds and spent on furniture. |
+| Owned furniture | Physical furniture bought for a house. Purchasable quantities and duplicate pieces are approved next work. Current code stores ownership by item type. |
+| Ride | An owned neighborhood skateboard, stroller, scooter, or bike in the approved direction. The first planned implementation is one skateboard. |
+| Achievement | A verified accomplishment that can unlock a permanent design. Initial targets and persistence are planned. |
 
-**Results**:
-The phase where the game reveals scores, ranks the rooms, and returns players to the lobby.
-_Avoid_: End screen, payout screen
+The round and the neighborhood each reward play. The house provides an additional reason to return, while decorating rounds remain enjoyable independently.
 
-## Rooms and pieces
+## Source and verification
 
-**Style room**:
-The room assigned to one player for a round. It is the space other players tour during judging, and it is discarded when the round ends.
-_Avoid_: Plot, base, house (a House is the persistent thing)
+| Term | Meaning |
+| --- | --- |
+| Main Test game | The managed `src/` game and its Studio-owned scene in Test PlaceId `86511797738570`, GameId `10764620924`. The complete local snapshot is [RoomRoyale-Test.rbxlx](places/RoomRoyale-Test.rbxlx), and the main Test was saved to Roblox during this sync. |
+| Hillside v4 | The separately built market and pump-park prototype, saved locally as [RoomRoyale-Hillside.rbxlx](places/RoomRoyale-Hillside.rbxlx). Its final Style state is a collection demonstration, not the main decorating round. |
+| Saved place snapshot | A full Studio place file that preserves scene instances as well as scripts. The repository keeps the current snapshots in `places/`. |
+| Rojo script build | The output of `default.project.json`. It verifies packaged scripts but does not contain the complete main Test scene. |
+| Published place | A version saved to Roblox through a publication action. Local saves and Git commits do not establish publication. |
+| Acceptance evidence | Recorded checks of the actual behavior, including environment, results, and remaining limits. |
 
-**Store item**:
-A furniture, decor, or accent piece that a player can collect during Shop.
-_Avoid_: Loot, pickup, prop
-
-**Cart**:
-The player-owned shopping vehicle used to move through Shop and carry collected items.
-_Avoid_: Vehicle, inventory carrier
-
-**Round collection**:
-The set of pieces the player can use during Style after Shop transfers the round's cart contents. It lasts one round.
-_Avoid_: Owned items, permanent inventory, stash, loadout
-
-**Placement**:
-Putting a collected piece into a style room at a chosen position, rotation, surface, or appearance.
-_Avoid_: Spawn, drop, deploy
-
-**Room reveal**:
-The moment in Judge when a styled room is presented to the other players for viewing and voting.
-_Avoid_: Showcase, presentation, reveal screen
-
-## Judging
-
-**Appreciation vote**:
-A player's token allocation to another player's room during Judge.
-_Avoid_: Like, upvote, rating
-
-**Mechanical theme score**:
-The part of a room's result based on how its placed pieces match the required and bonus pieces for the theme.
-_Avoid_: Objective score, compliance score
-
-**Aesthetic score**:
-The part of a room's result based on appreciation votes from other players.
-_Avoid_: Style points, popularity score
-
-## Shop conflict
-
-**Ram**:
-Driving a Cart into another player's Cart hard enough to knock the rider out. It is the main way a Shop player expresses skill and the reason boost and drift matter.
-_Avoid_: Attack, hit, grief
-
-**Knockout**:
-The state a rammed rider enters on a hard impact. The rider is thrown, briefly loses control, and can drop a carried Store item.
-_Avoid_: Stun, death, downed
-
-**Shield**:
-The brief protection a player is granted after a Knockout, so the same player cannot be rammed again while recovering.
-_Avoid_: Armor, powerup, buff, invulnerability
-
-**Checkout zone**:
-A place in the Shop where a loaded player is safe from Rams and can end their Shop phase early.
-_Avoid_: Extraction point, safe room, exit
-
-## Persistence and progression
-
-**House**:
-The room a player owns permanently and decorates between rounds. Unlike a Style room it survives rejoining, and it is the reason to keep playing past one round.
-_Avoid_: Style room, plot, base, apartment
-
-**Style Bucks**:
-The currency a player earns by finishing rounds and spends on Owned items.
-_Avoid_: Coins, cash, points
-
-**Owned item**:
-A piece the player has bought with Style Bucks and can place in their House forever. Distinct from the Round collection, which is temporary.
-_Avoid_: Owned collection, unlock, inventory item
-
-**Neighborhood**:
-The persistent shared space players occupy between rounds. Every player's House sits here, and it is where a player spends Style Bucks and decorates.
-_Avoid_: Lobby, hub, plots, town
-
-**House placement**:
-An Owned item positioned in a House. It persists across sessions, unlike a Placement in a Style room.
-_Avoid_: Save slot, decoration
-
-## Project and release terms
-
-**Live place**:
-The published Roblox place identified by PlaceId `82272152451005` and Universe/GameId `10383493285`.
-_Avoid_: Production build, cloud file
-
-**Test place**:
-A separate published place in the same universe as the Live place, used to verify behaviour with real clients. It shares the universe's data, so writes from it are real.
-_Avoid_: Staging, dev build, sandbox
-
-**Reference snapshot**:
-A local extraction or document that records a past Studio state. It can explain history but cannot override the live place or current project direction.
-_Avoid_: Source of truth, backup build
-
-**Acceptance check**:
-A repeatable device, multiplayer, or persistence test with a visible result that supports a release decision.
-_Avoid_: Smoke test, spot check
-
-**Public-beta gate**:
-A required acceptance result that must pass before the game is opened to public-beta players.
-_Avoid_: Nice-to-have, polish item
+The main implementation still calculates automatic theme and rarity contributions alongside player votes. These are existing scoring fields, not the agreed judging policy. The refinement plan removes automatic rarity winning points and centers the finished room and its theme interpretation.

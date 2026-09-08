@@ -1,0 +1,17 @@
+{
+  "nodesPassed": 144,
+  "airborneTransitions": 0,
+  "peakSpeed": 54.06379318237305,
+  "elapsed": 12.854167336598039,
+  "finishSpeed": 51.126155853271487,
+  "passed": true,
+  "completedLoop": true,
+  "airborneSeconds": 0,
+  "minUp": 0.9719129800796509,
+  "maxTrackOffset": 4.408418655395508,
+  "maxHeightAboveDeck": 5.791839599609375,
+  "method": "One real server-owned body on an isolated PracticePark; waypoint steering drives Chassis inputs. No rider or crash-ejection lifecycle is exercised.",
+  "failures": [],
+  "minSpeedAfterStart": 43.320945739746097,
+  "minBodyY": -497.4735107421875
+}
