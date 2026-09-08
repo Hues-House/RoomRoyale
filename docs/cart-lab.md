@@ -1,8 +1,8 @@
 # Cart lab
 
-The cart lab is an isolated movement test course. It uses the same cart and ride modules as Hillside v4, with a smaller course for repeatable handling, cargo, and crash checks. It contains no main-game round scripts or player DataStores.
+The cart lab is an isolated movement test course. It uses the same cart and ride modules as the Hillside milestone-1 candidate, with a smaller course for repeatable handling, cargo, and crash checks. It contains no main-game round scripts or player DataStores.
 
-For the current market and pump park, open [RoomRoyale-Hillside.rbxlx](../places/RoomRoyale-Hillside.rbxlx). [The v4 report](playtest-iteration-v4-2026-09-08.md) records that playtest. The [refinement plan](refinement-plan-2026-09-08.md) contains the accepted next controls and features.
+For the current market and pump park, open [RoomRoyale-Hillside.rbxlx](../places/RoomRoyale-Hillside.rbxlx). [The milestone-1 report](cart-refinement-m1-2026-09-08.md) records the current candidate and remaining acceptance. [The v4 report](playtest-iteration-v4-2026-09-08.md) records the earlier baseline. The [refinement plan](refinement-plan-2026-09-08.md) contains the accepted implementation sequence.
 
 ## Install and build
 
@@ -24,7 +24,7 @@ Build the complete Hillside prototype without opening another Studio window with
 pwsh -NoProfile -File tools/Start-HillsidePlaytest.ps1 -BuildOnly -LuauDirectory 'C:\tools\luau'
 ```
 
-The Hillside build also runs shopping-session rules and compiles its store and park modules. Its generated output is `build/superstore/RoomRoyale-Hillside-v4.rbxlx`.
+The Hillside build also runs camera-direction, pickup-capacity and shopping-session rules and compiles its store and park modules. Its generated output is `build/superstore/RoomRoyale-Hillside-M1-Candidate.rbxlx`.
 
 ## Current controls
 
@@ -32,14 +32,15 @@ The Hillside build also runs shopping-session rules and compiles its store and p
 | --- | --- | --- | --- |
 | Drive and steer | WASD | Left stick | Movement stick |
 | Orbit camera | Right mouse drag | Right stick | Right-side drag |
-| Charge, drift, or dive | Space | R1 or A | JUMP |
+| Charge jump or dive | Space | R1 or A | JUMP |
+| Drift | Ctrl | L1 | DRIFT |
 | Brake | Left Shift | L2 | BRAKE |
 | Grab nearby piece | E | X | GRAB |
 | Return to start | R | Y | RESET |
 
-Start JUMP with neutral steering to charge. Release to launch. Start the press while steering to select the hop-and-drift path; release spends earned boost. Turning after the initial press preserves the selected action. A new press in the air holds a dive, and release returns to float.
+Hold JUMP to charge and release to launch, including while steering. DRIFT selects the separate hop-and-drift action; release spends earned boost. A new JUMP press in the air holds a dive, and release returns to float.
 
-The charge takes 0.35 seconds to fill. V4 uses charged jumps, reduced air gravity, and airborne dive. Camera orbit still works independently of cart steering. Camera-relative movement and removal of the spring jump sound are approved but unimplemented.
+The charge takes 0.35 seconds to fill. The candidate preserves v4's charged jumps, reduced air gravity, and airborne dive. Movement follows the horizontal camera heading; looking while stationary supplies no drive input. The spring jump cue is removed. Physical-device camera feel remains unverified.
 
 ## What to exercise
 
@@ -54,7 +55,7 @@ The lab begins in free play. During a running lab server, `ServerStorage.StartCa
 
 ## Checks and evidence
 
-The current pure gesture suite passes 29 scenarios. The shopping-session suite checks phase deadlines, capacity, settlement, and exported identity. Run the crash source replay separately:
+The current pure gesture suite passes 25 scenarios. Camera-direction checks cover movement headings, reverse, pitch and rest. Pickup rules include 10,201 capacity comparisons against session admission. The shopping-session suite checks phase deadlines, capacity, settlement, and exported identity. Run the crash source replay separately:
 
 ```powershell
 pwsh -NoProfile -File tests/ride/Run-CrashReplay.ps1 -LuauDirectory 'C:\tools\luau'
@@ -62,12 +63,12 @@ pwsh -NoProfile -File tests/ride/Run-CrashReplay.ps1 -LuauDirectory 'C:\tools\lu
 
 The current replay passes 14 scenarios. These checks exercise rules without simulating Roblox physics.
 
-Engine acceptance modules live in `tests/ride/` and `tests/superstore/`. They cover actual chassis handling, crashes, stacked cargo, park geometry, and park traversal. Use the setup and results in the [handling report](cart-playtest-handling-2026-09-08.md), [cargo report](cart-playtest-cargo-2026-09-08.md), and [Hillside report](playtest-iteration-v4-2026-09-08.md). Source compilation does not replace those engine checks.
+Engine acceptance modules live in `tests/ride/` and `tests/superstore/`. They cover actual chassis handling, crashes, stacked cargo, park geometry, and park traversal. The [milestone-1 report](cart-refinement-m1-2026-09-08.md) records current physics and desktop evidence, plus the interrupted phone run and outstanding cargo-suite rerun. Earlier setup and results are in the [handling report](cart-playtest-handling-2026-09-08.md), [cargo report](cart-playtest-cargo-2026-09-08.md), and [Hillside report](playtest-iteration-v4-2026-09-08.md). Source compilation does not replace those engine checks.
 
 Actual touch, gamepad, mouse feel, phone performance, and the complete integrated round remain subject to [current acceptance](verification.md). The avatar presentation targets R15. R6 presentation has not been implemented.
 
 ## Source ownership
 
-`packages/RideRuntime/` owns `Chassis`, `Gesture`, and `Profiles`. `prototype/cart-lab/` owns the cart server, input, cargo, crash, audio, rider pose, and presentation modules. Both prototype projects reference these canonical files directly. The cart's editable Blender and GLB sources are described in [the flatbed guide](../authoring/cart-flatbed/README.md).
+`packages/RideRuntime/` owns `CameraDirection`, `Chassis`, `Gesture`, and `Profiles`. `prototype/cart-lab/` owns the cart server, input, `Shopping` HUD, `PickupRules`, cargo, crash, audio, rider pose, and presentation modules. Both prototype projects reference these canonical files directly. The cart's editable Blender and GLB sources are described in [the flatbed guide](../authoring/cart-flatbed/README.md).
 
 `default.project.json` still uses the main game's older cart. Integration must carry completed checkout records into the real Style inventory while keeping each round's collection and result isolated.

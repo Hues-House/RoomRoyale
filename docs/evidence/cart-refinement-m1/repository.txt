@@ -1,0 +1,4 @@
+Building project 'RoomRoyale'
+Built project to RoomRoyale-source-check-a503fc56-64eb-490a-9bda-f6c028cf47bc.rbxlx
+Rojo build verified: 54 script paths, classes, disabled states, and source hashes match the current filesystem.
+Repository validation passed: current entry points, saved places and all Rojo project paths exist.

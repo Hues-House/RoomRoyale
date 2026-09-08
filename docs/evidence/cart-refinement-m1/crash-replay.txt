@@ -1,0 +1,15 @@
+PASS reported hit then initial-overlap trace qualifies once
+PASS distributed loss keeps the original incoming peak
+PASS separation clears the impact
+PASS expired overlap cannot retain a fast approach
+PASS a low-speed hit remains a bump
+PASS a new contact normal cannot borrow the old peak
+PASS reset invalidates the impact
+PASS losing the seat invalidates the impact
+PASS a stationary cached contact still requests overlap proof
+PASS decisive rear ram
+PASS matching speed is an ordinary bump
+PASS equal head-on approach has no perfect-ram winner
+PASS slow rear bump
+PASS sideways scrape
+14 crash source replay checks passed; geometry queries are stubbed, ragdoll execution is not tested.

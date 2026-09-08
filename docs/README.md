@@ -1,6 +1,6 @@
 # Current documentation
 
-The repository contains two working builds and one approved plan. The main Test game has the neighborhood and complete decorating rounds. Hillside v4 is the separate cart, market, and pump-park prototype. [The refinement plan](refinement-plan-2026-09-08.md) connects them and defines the next features; those changes remain unimplemented.
+The repository contains two working builds and one approved plan. The main Test game has the neighborhood and complete decorating rounds. Hillside is the separate cart, market, and pump-park prototype, now with a [milestone-1 cart candidate](cart-refinement-m1-2026-09-08.md). [The refinement plan](refinement-plan-2026-09-08.md) connects them and defines the next features. Milestone 1 has remaining playtest acceptance; milestones 2–5 remain unimplemented.
 
 Open the complete [main Test snapshot](../places/RoomRoyale-Test.rbxlx) or [Hillside snapshot](../places/RoomRoyale-Hillside.rbxlx) in Studio. The main Test was also saved to Roblox. Hillside remains a local prototype, and this sync did not publish Live.
 
@@ -11,6 +11,8 @@ Open the complete [main Test snapshot](../places/RoomRoyale-Test.rbxlx) or [Hill
 | [Project status and workflow](../README.md) | Build boundaries, source locations, and verification commands |
 | [Agent guide](../AGENTS.md) | Working rules and product constraints |
 | [Refinement plan](refinement-plan-2026-09-08.md) | Accepted decisions, build sequence, implementation gaps, and acceptance criteria |
+| [Cart implementation brief](cart-refinement-implementation-brief-2026-09-08.md) | Milestone-1 scope and implementation handoff |
+| [Round integration draft](round-integration-implementation-brief-2026-09-08.md) | Proposed milestone-2 implementation, ownership boundaries, and open judging decision |
 | [Game systems](game_systems.md) | Current server ownership and integration boundaries |
 | [UI systems](ui_system.md) | Current input, HUD, inventory, and presentation ownership |
 | [Vocabulary](../CONTEXT.md) | Round, house, cargo, collection, ownership, and earned-design terms |
@@ -23,11 +25,12 @@ Open the complete [main Test snapshot](../places/RoomRoyale-Test.rbxlx) or [Hill
 | Document | What its evidence covers |
 | --- | --- |
 | [Neighborhood build](neighborhood-build-2026-09-07.md) | Eight cottages, doors, lot lifecycle, house-local saved placements, and verified source installation |
-| [Hillside v4 playtest](playtest-iteration-v4-2026-09-08.md) | Current market and pump park, movement, stacking, checkout, limited stock, and known device limits |
+| [Cart milestone-1 candidate](cart-refinement-m1-2026-09-08.md) | Camera-relative controls, capacity feedback, loaded physics, desktop pickup/checkout, and interrupted acceptance |
+| [Hillside v4 playtest](playtest-iteration-v4-2026-09-08.md) | Earlier market and pump-park baseline, movement, stacking, checkout, limited stock, and known device limits |
 | [Handling playtest](cart-playtest-handling-2026-09-08.md) | Charged jumps, airborne dive, wall ejection and recovery, and movement regression checks |
 | [Cargo playtest](cart-playtest-cargo-2026-09-08.md) | Exact-model stacking, variant identity, checkout, and inventory boundaries |
 | [Design research](playtest-design-research-2026-09-08.md) | Sourced Roblox guidance and game examples, separated from project recommendations |
-| [Saved-place verification](evidence/studio-repo-sync.json) | Managed script comparison between fresh builds and both complete saved Studio scenes |
+| [Current saved-place verification](evidence/cart-refinement-m1/snapshot-verification.json) | Managed script comparison between fresh builds and both complete saved scenes after milestone 1 |
 
 The reports link their captured JSON results in `docs/evidence/`. Test measurements describe the named build and environment. They do not establish a Live release or completion of later plans.
 

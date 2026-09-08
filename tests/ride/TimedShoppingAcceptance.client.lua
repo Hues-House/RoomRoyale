@@ -6,6 +6,15 @@ local event = game.ReplicatedStorage.CartLabEvent
 local cart = workspace.LabCarts:WaitForChild(tostring(player.UserId))
 local world = workspace.CartLab
 local result = {events = {}}
+local function pickupId()
+    local body = cart.PrimaryPart
+    local nearest, distance = nil, math.huge
+    for _, part in game:GetService("CollectionService"):GetTagged("CartLabPickup") do
+        local current = (part.Position - body.Position).Magnitude
+        if current < distance then nearest, distance = part, current end
+    end
+    return nearest and nearest:GetAttribute("PickupId")
+end
 local function sample(name)
 	local row = {phase = name, time = workspace:GetServerTimeNow(), space = cart:GetAttribute("SpaceUsed"), banked = cart:GetAttribute("BankedCount")}
 	table.insert(result.events, row)
@@ -19,7 +28,7 @@ local function stage(position)
 end
 local function grab(position)
 	stage(position)
-	event:FireServer("Grab")
+	event:FireServer("Grab", pickupId())
 	task.wait(0.5)
 end
 grab(Vector3.new(-27, 2.5, 50))
@@ -32,7 +41,7 @@ assert(sample("second load").space == 8, "Second load did not succeed")
 while world:GetAttribute("ShoppingPhase") == "Shop" do task.wait(0.05) end
 assert(world:GetAttribute("ShoppingPhase") == "Closing", "Missed arrival grace")
 stage(Vector3.new(26, 2.5, -58))
-event:FireServer("Grab")
+event:FireServer("Grab", pickupId())
 task.wait(0.25)
 assert(sample("zero rejects pickup").space == 8, "Pickup accepted after zero")
 stage(Vector3.new(-75, 2.5, 55))

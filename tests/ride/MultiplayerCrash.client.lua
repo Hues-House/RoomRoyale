@@ -13,6 +13,7 @@ function Chassis:step(dt, input)
 		input.brake = input.throttle == 0
 		input.steer = 0
 		input.held = false
+		input.drift = false
 		input.edges = {}
 	end
 	local start = os.clock()
@@ -24,7 +25,10 @@ game.RunService.RenderStepped:Connect(function(dt) table.insert(frames, dt * 100
 workspace:GetAttributeChangedSignal("RamTestPhase"):Connect(function()
 	if workspace:GetAttribute("RamTestPhase") == "Grab" then
 		task.wait(0.4)
-		game.ReplicatedStorage.CartLabEvent:FireServer("Grab")
+		local cart = workspace.LabCarts:FindFirstChild(tostring(player.UserId))
+        local rules = require(game.ReplicatedStorage.CartPickupRules)
+        local candidate = cart and rules.select(game:GetService("CollectionService"):GetTagged("CartLabPickup"), cart.PrimaryPart, {cart, player.Character})
+        if candidate then game.ReplicatedStorage.CartLabEvent:FireServer("Grab", candidate:GetAttribute("PickupId")) end
 	elseif workspace:GetAttribute("RamTestPhase") == "Report" then
 		table.sort(frames)
 		table.sort(timings)

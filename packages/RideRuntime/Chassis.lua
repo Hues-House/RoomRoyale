@@ -7,6 +7,7 @@ export type Input = {
 	steer: number,
 	brake: boolean,
 	held: boolean,
+	drift: boolean,
 	enabled: boolean,
 	edges: { Gesture.Input }?,
 }
@@ -200,8 +201,8 @@ function Chassis:step(deltaTime: number, input: Input): Telemetry
 	local sideSpeed = tangentVelocity:Dot(right)
 	local slip = if speed > 0.5 then math.atan2(sideSpeed, math.abs(forwardSpeed)) else 0
 	local gesture = self.gesture:stepEvents(dt, {
-		steer = input.steer,
 		held = input.held,
+		drift = input.drift,
 		enabled = input.enabled,
 	}, { grounded = grounded, speed = speed, slip = slip }, input.edges or {})
 	local driftActive = gesture.mode == "Drift"
@@ -244,9 +245,6 @@ function Chassis:step(deltaTime: number, input: Input): Telemetry
 	end
 
 	local steer = if input.enabled then math.clamp(input.steer, -1, 1) else 0
-	local steerMagnitude = math.abs(steer)
-	steer = if steerMagnitude <= profile.SteeringDeadzone then 0
-		else math.sign(steer) * (steerMagnitude - profile.SteeringDeadzone) / (1 - profile.SteeringDeadzone)
 	local steerResponse = profile.SteeringResponse * (1 - self.load * profile.FullLoadSteeringLoss)
 	self.steering += (steer - self.steering) * (1 - math.exp(-steerResponse * dt))
 	local turnRate = if gesture.drifting then profile.DriftTurnRate else profile.TurnRate
@@ -277,12 +275,13 @@ function Chassis:step(deltaTime: number, input: Input): Telemetry
 	local driftAssist = 0
 	if input.enabled and grounded then
 		local loadAcceleration = 1 - self.load * profile.FullLoadAccelerationLoss
+		local brakeAcceleration = profile.BrakeAcceleration * (1 - self.load * profile.FullLoadBrakeLoss)
 		local throttle = math.clamp(input.throttle, -1, 1)
 		local carryingDrift = gesture.drifting and throttle >= 0
 		local direction = if speed > 0.5 then tangentVelocity.Unit else forward
 		if input.brake then
 			if speed > 0.001 then
-				acceleration -= tangentVelocity.Unit * math.min(profile.BrakeAcceleration, speed / dt)
+				acceleration -= tangentVelocity.Unit * math.min(brakeAcceleration, speed / dt)
 			end
 		elseif throttle ~= 0 then
 			local carryingMomentum = carryingDrift or boosting
@@ -292,7 +291,7 @@ function Chassis:step(deltaTime: number, input: Input): Telemetry
 			local uphillGravity = math.max(workspace.Gravity * driveDirection.Y * math.sign(throttle), 0)
 			driveAcceleration += uphillGravity * profile.ClimbAssist
 			if not carryingMomentum and forwardSpeed * throttle < -1 then
-				driveAcceleration = profile.BrakeAcceleration
+				driveAcceleration = brakeAcceleration
 			elseif speed >= targetSpeed then
 				driveAcceleration = 0
 			else

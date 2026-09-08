@@ -9,6 +9,8 @@ local player = Players.LocalPlayer
 local runtime = ReplicatedStorage:WaitForChild("RideRuntime")
 local Chassis = require(runtime:WaitForChild("Chassis"))
 local Profiles = require(runtime:WaitForChild("Profiles"))
+local CameraDirection = require(runtime:WaitForChild("CameraDirection"))
+local Shopping = require(script.Parent:WaitForChild("CartLabShopping"))
 local Cargo = require(script.Parent:WaitForChild("CartLabCargo"))
 local Runner = require(script.Parent:WaitForChild("CartLabRunner"))
 local Feedback = require(script.Parent:WaitForChild("CartLabFeedback"))
@@ -18,7 +20,7 @@ local carts = workspace:WaitForChild("LabCarts")
 local cargo = Cargo.new(carts, player)
 local runner = Runner.new(carts, player)
 local feedback = Feedback.new(carts, player)
-local held, braking, focused = false, false, true
+local held, drifting, braking, focused = false, false, false, true
 local cancelPending = false
 local inputEdges = {}
 
@@ -46,7 +48,7 @@ local function queueEdge()
 		cancelPending = true
 		return
 	end
-	table.insert(inputEdges, {held = held, steer = math.clamp(readMovement().X, -1, 1), enabled = focused and not GuiService.MenuIsOpen and not cancelPending})
+	table.insert(inputEdges, {held = held, drift = drifting, enabled = focused and not GuiService.MenuIsOpen and not cancelPending and UserInputService:GetFocusedTextBox() == nil})
 end
 local controller, cart, body, telemetry
 local cameraSubject
@@ -113,18 +115,7 @@ end
 
 local title = textLabel("Title", UDim2.fromOffset(246, 40), UDim2.new(0.5, -123, 0, 12), "CART LAB  /  PLAYTEST", 16)
 local state = textLabel("State", UDim2.fromOffset(250, 60), UDim2.new(0.5, -125, 1, -116), "Ready to roll", 21)
-local status = textLabel("Capacity", UDim2.fromOffset(250, 40), UDim2.new(0.5, -125, 1, -55), "Cart space 0 / 100  |  Saved 0", 14)
-local spaceBack = Instance.new("Frame")
-spaceBack.Size = UDim2.new(1, -20, 0, 5)
-spaceBack.Position = UDim2.new(0, 10, 1, -7)
-spaceBack.BackgroundColor3 = Color3.fromRGB(68, 75, 89)
-spaceBack.BorderSizePixel = 0
-spaceBack.Parent = status
-local spaceFill = Instance.new("Frame")
-spaceFill.Size = UDim2.fromScale(0, 1)
-spaceFill.BackgroundColor3 = Color3.fromRGB(107, 230, 195)
-spaceFill.BorderSizePixel = 0
-spaceFill.Parent = spaceBack
+local shopping = Shopping.new(gui, player, carts)
 local fillBack = Instance.new("Frame")
 fillBack.Size = UDim2.new(1, -20, 0, 5)
 fillBack.Position = UDim2.new(0, 10, 1, -8)
@@ -137,8 +128,7 @@ fill.BackgroundColor3 = Color3.fromRGB(107, 230, 195)
 fill.BorderSizePixel = 0
 fill.Parent = fillBack
 
-local instruction = UserInputService.TouchEnabled and "Stick to drive. Swipe to look. Hold JUMP straight, release to fly. Press again in air to dive."
-	or "WASD: drive  •  Right-drag: look  •  Hold Space straight: charge, release: fly, press in air: dive  •  Shift: brake  •  E: grab"
+local instruction = "WASD: camera drive   |   Right-drag: look   |   Space: charge / dive   |   Ctrl: drift   |   Shift: brake   |   E: grab"
 local hint = textLabel("Hint", UDim2.new(0.8, 0, 0, 44), UDim2.new(0.1, 0, 0, 60), instruction, 13)
 local notice = textLabel("Notice", UDim2.new(0.7, 0, 0, 40), UDim2.new(0.15, 0, 0, 111), "", 16)
 notice.Visible = false
@@ -153,53 +143,54 @@ local function showNotice(message)
 	noticeUntil = os.clock() + 2.5
 end
 
-local function jumpAction(_, inputState)
-	if GuiService.MenuIsOpen then return Enum.ContextActionResult.Pass end
-	if not riding then
-		held = false
-		cancelPending = true
+local function cancelActions()
+	held, drifting, braking = false, false, false
+	cancelPending = true
+	table.clear(inputEdges)
+end
+local function actionsEnabled()
+	return riding and focused and not GuiService.MenuIsOpen and UserInputService:GetFocusedTextBox() == nil
+end
+local function heldAction(action, inputState)
+	if not actionsEnabled() then
+		cancelActions()
 		return cart and cart:GetAttribute("Ejected") and Enum.ContextActionResult.Sink or Enum.ContextActionResult.Pass
 	end
-	if inputState == Enum.UserInputState.Begin then
-		held = true
+	if inputState == Enum.UserInputState.Cancel then
+		cancelActions()
+	elseif inputState == Enum.UserInputState.Begin or inputState == Enum.UserInputState.End then
+		local down = inputState == Enum.UserInputState.Begin
+		if action == "LabHop" then held = down
+		elseif action == "LabDrift" then drifting = down
+		elseif action == "LabBrake" then braking = down end
 		queueEdge()
-	elseif inputState == Enum.UserInputState.End then
-		held = false
-		queueEdge()
-	elseif inputState == Enum.UserInputState.Cancel then
-		held = false
-		cancelPending = true
 	end
-	return Enum.ContextActionResult.Sink
-end
-local function brakeAction(_, inputState)
-	if GuiService.MenuIsOpen then return Enum.ContextActionResult.Pass end
-	braking = inputState == Enum.UserInputState.Begin or inputState == Enum.UserInputState.Change
 	return Enum.ContextActionResult.Sink
 end
 local function grabAction(_, inputState)
-	if GuiService.MenuIsOpen then return Enum.ContextActionResult.Pass end
-	if inputState == Enum.UserInputState.Begin then event:FireServer("Grab") end
+	if not actionsEnabled() then return Enum.ContextActionResult.Pass end
+	if inputState == Enum.UserInputState.Begin then shopping:grab(event) end
 	return Enum.ContextActionResult.Sink
 end
 local function resetAction(_, inputState)
-	if GuiService.MenuIsOpen then return Enum.ContextActionResult.Pass end
+	if not actionsEnabled() then return Enum.ContextActionResult.Pass end
 	if inputState == Enum.UserInputState.Begin then event:FireServer("Reset") end
 	return Enum.ContextActionResult.Sink
 end
 
-ContextActionService:BindActionAtPriority("LabHop", jumpAction, true, Enum.ContextActionPriority.High.Value + 10, Enum.KeyCode.Space, Enum.KeyCode.ButtonR1, Enum.KeyCode.ButtonA)
-ContextActionService:BindAction("LabBrake", brakeAction, true, Enum.KeyCode.LeftShift, Enum.KeyCode.ButtonL2)
+ContextActionService:BindActionAtPriority("LabHop", heldAction, true, Enum.ContextActionPriority.High.Value + 10, Enum.KeyCode.Space, Enum.KeyCode.ButtonR1, Enum.KeyCode.ButtonA)
+ContextActionService:BindAction("LabDrift", heldAction, true, Enum.KeyCode.LeftControl, Enum.KeyCode.ButtonL1)
+ContextActionService:BindAction("LabBrake", heldAction, true, Enum.KeyCode.LeftShift, Enum.KeyCode.ButtonL2)
 ContextActionService:BindAction("LabGrab", grabAction, true, Enum.KeyCode.E, Enum.KeyCode.ButtonX)
 ContextActionService:BindAction("LabReset", resetAction, true, Enum.KeyCode.R, Enum.KeyCode.ButtonY)
-local touchActions = {LabHop = {"JUMP", -78, -148}, LabBrake = {"BRAKE", -150, -76}, LabGrab = {"GRAB", -78, -76}, LabReset = {"RESET", -150, -148}}
+local touchActions = {LabHop = {"JUMP", -78, -148}, LabBrake = {"BRAKE", -150, -76}, LabGrab = {"GRAB", -78, -76}, LabDrift = {"DRIFT", -150, -148}, LabReset = {"RESET", -222, -76}}
 local function layoutTouchActions()
 	for name, value in touchActions do
 		local button = ContextActionService:GetButton(name)
 		if button then
 			button.Size = UDim2.fromOffset(64, 64)
 			ContextActionService:SetTitle(name, value[1])
-			ContextActionService:SetPosition(name, UDim2.new(1, value[2], 1, value[3]))
+			ContextActionService:SetPosition(name, if name == "LabReset" then UDim2.new(1, -78, 0, 112) else UDim2.new(1, value[2], 1, value[3]))
 		end
 	end
 end
@@ -211,16 +202,10 @@ task.spawn(function()
 	end
 end)
 workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(layoutTouchActions)
-UserInputService.WindowFocusReleased:Connect(function() focused = false; held = false; braking = false; cancelPending = true end)
+UserInputService.WindowFocusReleased:Connect(function() focused = false; cancelActions() end)
 UserInputService.WindowFocused:Connect(function() focused = true end)
-GuiService.MenuOpened:Connect(function()
-	held, braking = false, false
-	cancelPending = true
-	table.clear(inputEdges)
-end)
-UserInputService.InputBegan:Connect(function(_, processed)
-	if not processed and not GuiService.MenuIsOpen then focused = true end
-end)
+GuiService.MenuOpened:Connect(cancelActions)
+UserInputService.TextBoxFocused:Connect(cancelActions)
 
 local function detach()
 	restoreJump()
@@ -238,8 +223,7 @@ local function detach()
 	end
 	cameraSubject, savedCamera = nil, nil
 	if cameraFocus then cameraFocus:Destroy(); cameraFocus = nil end
-	held, braking = false, false
-	table.clear(inputEdges)
+	cancelActions()
 end
 
 local cartWatches = {}
@@ -281,14 +265,14 @@ event.OnClientEvent:Connect(function(kind, payload)
 		cargo:clearDelivery()
 	elseif kind == "Delivery" then
 		cargo:deliver(payload)
-		if payload.ownerUserId == player.UserId then showNotice("Your saved collection has arrived!") end
+		if payload.ownerUserId == player.UserId then showNotice("Your delivered collection has arrived!") end
 	elseif kind == "Poof" then
 		cargo:poof(payload)
 		if payload.cart == cart then showNotice("Store closed! Unchecked items poofed."); Audio.play("poof") end
 	elseif kind == "Deposit" then
 		cargo:deposit(payload)
 		if payload.cart == cart then
-			showNotice("WHOOSH!  " .. tostring(#payload.items) .. " items saved")
+			showNotice("WHOOSH!  " .. tostring(#payload.items) .. " pieces checked out!")
 			local finishAt = 0
 			for index, item in payload.items do
 				local rare = item.rarity ~= nil and item.rarity ~= "Common"
@@ -314,6 +298,7 @@ RunService.PreSimulation:Connect(function(dt)
 	if not controller or not body or not cart then return end
 	local humanoid = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
 	local seated = humanoid and humanoid.SeatPart and humanoid.SeatPart:IsDescendantOf(cart)
+	if riding and not seated then cancelActions() end
 	riding = seated == true
 	setNativeJumpHidden(riding or cart:GetAttribute("Ejected") == true)
 	if seated and controlledHumanoid ~= humanoid then
@@ -329,17 +314,25 @@ RunService.PreSimulation:Connect(function(dt)
 		controller:destroy()
 		controller = Chassis.new(body, Profiles.Cart, {cart, player.Character, cargo.folder})
 		resetVersion = newResetVersion
-		held = false
-		table.clear(inputEdges)
+		cancelActions()
 		cameraSubject = nil
 	end
 	local enabled = focused and seated and not GuiService.MenuIsOpen and not cancelPending and UserInputService:GetFocusedTextBox() == nil
 	local movement = readMovement()
+	local cameraForward = workspace.CurrentCamera.CFrame.LookVector
+	if Vector2.new(cameraForward.X, cameraForward.Z).Magnitude < 0.001 then
+		local right = workspace.CurrentCamera.CFrame.RightVector
+		cameraForward = Vector3.new(right.Z, 0, -right.X)
+	end
+	local forward = body.CFrame.LookVector
+	local drive = CameraDirection.resolve(movement.X, movement.Z, cameraForward.X, cameraForward.Z,
+		forward.X, forward.Z, Profiles.Cart.SteeringDeadzone)
 	controller:setLoad(cart:GetAttribute("CargoWeightRatio") or 0)
 	telemetry = controller:step(dt, {
-		throttle = enabled and math.clamp(-movement.Z, -1, 1) or 0,
-		steer = enabled and math.clamp(movement.X, -1, 1) or 0,
-		brake = braking,
+		throttle = enabled and drive.throttle or 0,
+		steer = enabled and drive.steer or 0,
+		brake = enabled and braking,
+		drift = drifting,
 		held = held,
 		enabled = enabled == true,
 		edges = inputEdges,
@@ -409,9 +402,8 @@ RunService:BindToRenderStep("CartLabCamera", Enum.RenderPriority.Camera.Value + 
 	if phase == "Shop" then title.Text = string.format("SHOP  %d:%02d", math.floor(remaining / 60), remaining % 60)
 	elseif phase == "Closing" then title.Text = "CHECKOUT CLOSES IN " .. remaining
 	elseif phase == "Resolving" then title.Text = "STORE CLOSED"
-	elseif phase == "Style" then title.Text = "STYLE  /  YOUR SAVED COLLECTION" end
+	elseif phase == "Style" then title.Text = "STYLE  /  YOUR DELIVERED COLLECTION" end
 	state.Visible = cart ~= nil
-	status.Visible = cart ~= nil
 	hint.Visible = phase ~= "Style" and not (world and world:GetAttribute("EnvironmentId"))
 	if not telemetry or not cart then return end
 		if telemetry.boosting and not wasBoosting then Audio.play("boost") end
@@ -422,7 +414,6 @@ RunService:BindToRenderStep("CartLabCamera", Enum.RenderPriority.Camera.Value + 
 	if jumpReady and not wasJumpReady then Audio.play("chargeReady") end
 	wasJumpReady = jumpReady
 	if telemetry.grounded and not previousGrounded then Audio.play("land") end
-	if not telemetry.grounded and previousGrounded and lastMode == "JumpCharge" then Audio.play("jump") end
     if telemetry.diving and not wasDiving then Audio.play("dive") end
     wasDiving = telemetry.diving
     lastMode, wasBoosting, previousGrounded = telemetry.mode, telemetry.boosting, telemetry.grounded
@@ -434,8 +425,5 @@ RunService:BindToRenderStep("CartLabCamera", Enum.RenderPriority.Camera.Value + 
 	local charge = telemetry.mode == "Drift" and telemetry.driftCharge or telemetry.jumpCharge
 	fill.Size = UDim2.fromScale(math.clamp(charge or 0, 0, 1), 1)
 	fill.BackgroundColor3 = telemetry.mode == "Drift" and Color3.fromRGB(255, 181, 92) or Color3.fromRGB(107, 230, 195)
-	status.Text = string.format("Cart space %d / 100  |  Saved %d", cart:GetAttribute("SpaceUsed") or 0, cart:GetAttribute("BankedCount") or 0)
-	local space = math.clamp((cart:GetAttribute("SpaceUsed") or 0) / 100, 0, 1)
-	spaceFill.Size = UDim2.fromScale(space, 1)
-	spaceFill.BackgroundColor3 = space > 0.9 and Color3.fromRGB(255, 169, 126) or Color3.fromRGB(107, 230, 195)
+
 end)

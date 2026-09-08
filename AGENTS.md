@@ -13,7 +13,7 @@ Room Royale is a Roblox decorating competition with a permanent neighborhood. A 
 
 Rounds follow `Shop -> Style -> Judge -> Results`. Theme interpretation, shopping choices, room transformation, and the reveal should make players want another round. Neighborhood progression starts with an empty house and no owned ride in the approved plan.
 
-Preserve the tested v4 jumps, airborne dive, and recognizable stacked furniture. The next control scheme follows camera-relative movement. The main game still uses the older cart, and the prototype still has independent camera orbit; integration and refinement remain work to do.
+Preserve the tested v4 jumps, airborne dive, and recognizable stacked furniture. The milestone 1 prototype candidate uses camera-relative movement with a separate Drift action. The main game still uses the older cart. Read the [milestone 1 report](docs/cart-refinement-m1-2026-09-08.md) for completed checks and remaining acceptance before changing those controls.
 
 Permanent physical furniture belongs in houses under the approved rules. Earned artwork and rug designs can customize compatible pieces collected in a round. Player judging decides the outcome without automatic rarity points. Existing inventory and scoring code still differs from these rules.
 

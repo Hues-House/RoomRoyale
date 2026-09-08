@@ -19,7 +19,6 @@ local cues = {
 	checkoutComplete = {clip="chime", volume=0.32, pitch=1, gap=0.8},
 	poof = {clip="pop", volume=0.22, pitch=0.7, gap=0.3},
 	land = {clip="wheels", volume=0.12, pitch=1.1, gap=0.25},
-	jump = {clip="spring", volume=0.2, pitch=1.05, gap=0.2},
 	chargeReady = {clip="chime", volume=0.12, pitch=1.3, gap=0.3},
 	driftReady = {clip="pop", volume=0.12, pitch=1.4, gap=0.25},
 	boost = {clip="whoosh", volume=0.2, pitch=1.2, gap=0.3},

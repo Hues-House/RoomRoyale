@@ -1,350 +1,192 @@
 --!strict
 
 type GestureModule = typeof(require("../../packages/RideRuntime/Gesture"))
-
 return function(Gesture: GestureModule)
-	local passed = 0
 	local config = {
-		SteeringDeadzone = 0.15,
-		HopSpeed = 10,
-		ChargedHopSpeed = 20,
-		JumpChargeSeconds = 0.4,
-		LedgeGraceSeconds = 0.1,
-		MinDriftSpeed = 8,
-		MinDriftSlip = 0.15,
-		DriftTierSeconds = { 0.4, 0.9 },
-		DriftBoostSeconds = { 0.15, 0.4 },
+		SteeringDeadzone = 0.15, HopSpeed = 10, ChargedHopSpeed = 20,
+		JumpChargeSeconds = 0.4, LedgeGraceSeconds = 0.1,
+		MinDriftSpeed = 8, MinDriftSlip = 0.15,
+		DriftTierSeconds = {0.4, 0.9}, DriftBoostSeconds = {0.15, 0.4},
 	}
-
-	local function check(name: string, run: () -> ())
-		local ok, message = pcall(run)
-		assert(ok, name .. ": " .. tostring(message))
+	local passed = 0
+	local function check(name, fn)
+		local ok, err = pcall(fn)
+		assert(ok, name .. ": " .. tostring(err))
 		passed += 1
 	end
-
-	local function near(actual: number, expected: number, message: string)
-		assert(math.abs(actual - expected) < 1e-8,
-			string.format("%s: expected %.9f, got %.9f", message, expected, actual))
+	local function near(a, b) assert(math.abs(a-b) < 1e-8, tostring(a) .. " ~= " .. tostring(b)) end
+	local function input(jump, drift, enabled)
+		return {held = jump == true, drift = drift == true, enabled = enabled ~= false}
 	end
-
-	local function step(state: typeof(Gesture.new(config)), dt: number, steer: number, held: boolean,
-		grounded: boolean, speed: number?, slip: number?, enabled: boolean?)
-		return state:step(dt, {
-			steer = steer,
-			held = held,
-			enabled = enabled ~= false,
-		}, {
-			grounded = grounded,
-			speed = speed or 16,
-			slip = slip or 0.3,
-		})
+	local ground = {grounded = true, speed = 16, slip = 0.3}
+	local air = {grounded = false, speed = 16, slip = 0.3}
+	local function step(s, dt, jump, drift, contact, enabled)
+		return s:step(dt, input(jump, drift, enabled), contact or ground)
 	end
-
-	check("idle produces no action", function()
-		local result = step(Gesture.new(config), 1, 1, false, true)
-		assert(result.mode == "Idle" and not result.drifting)
-		assert(result.jumpSpeed == 0 and result.boostSeconds == 0)
-		assert(result.jumpCharge == 0 and result.driftCharge == 0)
+	check("idle has no output", function()
+		local r = step(Gesture.new(config), 1, false, false)
+		assert(r.mode == "Idle" and r.jumpSpeed == 0 and r.boostSeconds == 0)
 	end)
-
-	check("a neutral tap hops immediately on release", function()
-		local state = Gesture.new(config)
-		local pressed = step(state, 0, 0, true, true)
-		assert(pressed.mode == "JumpCharge" and pressed.jumpSpeed == 0)
-		local released = step(state, 0, 0, false, true)
-		assert(released.mode == "Idle")
-		near(released.jumpSpeed, config.HopSpeed, "tap hop")
-		assert(released.boostSeconds == 0)
-		assert(step(state, 1, 0, false, true).jumpSpeed == 0)
+	check("jump tap launches on release once", function()
+		local s = Gesture.new(config)
+		assert(step(s, 0, true, false).mode == "JumpCharge")
+		near(step(s, 0, false, false).jumpSpeed, 10)
+		assert(step(s, 1, false, false).jumpSpeed == 0)
 	end)
-
-	check("neutral charging survives later steering and countersteering", function()
-		local state = Gesture.new(config)
-		step(state, 0, 0, true, true)
-		local turning = step(state, 0.1, 1, true, true)
-		assert(turning.mode == "JumpCharge" and turning.jumpSpeed == 0)
-		local countersteering = step(state, 0.1, -1, true, true)
-		assert(countersteering.mode == "JumpCharge" and not countersteering.drifting)
-		near(countersteering.jumpCharge, 0.5, "half charged")
-		near(step(state, 0, -1, false, true).jumpSpeed, 15, "charged release")
+	check("jump reaches maximum and waits for release", function()
+		local s = Gesture.new(config)
+		near(step(s, 4, true, false).jumpCharge, 1)
+		assert(step(s, 4, true, false).jumpSpeed == 0)
+		near(step(s, 0, false, false).jumpSpeed, 20)
 	end)
-
-	check("maximum jump charge waits indefinitely for release", function()
-		local state = Gesture.new(config)
-		local held = step(state, 4, 0, true, true)
-		near(held.jumpCharge, 1, "charge clamp")
-		assert(held.jumpSpeed == 0)
-		assert(step(state, 4, 0, true, true).jumpSpeed == 0)
-		near(step(state, 0, 0, false, true).jumpSpeed, 20, "maximum hop")
+	check("drift pressed during charge cannot steal jump", function()
+		local s = Gesture.new(config)
+		step(s, 0.2, true, false)
+		local r = step(s, 0.2, true, true)
+		assert(r.mode == "JumpCharge" and not r.drifting)
+		near(step(s, 0, false, true).jumpSpeed, 20)
+		assert(step(s, 0.5, false, true).mode == "Idle")
 	end)
-
-	check("steering press hops once and remains drift after neutral or opposite steer", function()
-		local state = Gesture.new(config)
-		local pressed = step(state, 0, 1, true, true)
-		assert(pressed.mode == "Drift" and not pressed.drifting)
-		near(pressed.jumpSpeed, 10, "drift entry hop")
-		local airborne = step(state, 0.3, 0, true, false)
-		assert(airborne.mode == "Drift" and not airborne.drifting)
-		assert(airborne.jumpSpeed == 0 and airborne.jumpCharge == 0)
-		local landed = step(state, 0.4, -1, true, true)
-		assert(landed.mode == "Drift" and landed.drifting and landed.jumpSpeed == 0)
-		local released = step(state, 0, -1, false, true)
-		near(released.boostSeconds, 0.15, "first drift tier")
-		assert(released.jumpSpeed == 0)
+	check("simultaneous press prioritizes jump", function()
+		assert(step(Gesture.new(config), 0.1, true, true).mode == "JumpCharge")
 	end)
-
-	check("deadzone boundary selects neutral and either direction selects drift", function()
-		for _, steer in { -0.15, 0, 0.15 } do
-			assert(step(Gesture.new(config), 0, steer, true, true).mode == "JumpCharge")
+	check("explicit drift hops once and holds through airtime", function()
+		local s = Gesture.new(config)
+		near(step(s, 0, false, true).jumpSpeed, 10)
+		local r = step(s, 1, false, true, air)
+		assert(r.mode == "Drift" and not r.diving and r.driftCharge == 0)
+		assert(step(s, 0.4, false, true).drifting)
+		near(step(s, 0, false, false).boostSeconds, 0.15)
+	end)
+	check("jump press can leave drift without awarding boost", function()
+		local s = Gesture.new(config)
+		step(s, 0, false, true); step(s, 1, false, true)
+		local r = step(s, 0.1, true, true)
+		assert(r.mode == "JumpCharge" and r.boostSeconds == 0)
+	end)
+	check("airborne drift press cannot dive or launch", function()
+		local s = Gesture.new(config)
+		assert(step(s, 0.2, false, true, air).mode == "Idle")
+		assert(step(s, 0.2, false, true).mode == "Idle")
+	end)
+	check("drift charge requires support speed and slip", function()
+		local s = Gesture.new(config)
+		step(s, 0, false, true)
+		for _, c in {air, {grounded=true,speed=7,slip=0.3}, {grounded=true,speed=16,slip=0.14}} do
+			assert(step(s, 1, false, true, c).driftCharge == 0)
 		end
-		for _, steer in { -0.1501, 0.1501 } do
-			assert(step(Gesture.new(config), 0, steer, true, true).mode == "Drift")
-		end
+		near(step(s, 0.4, false, true, {grounded=true,speed=8,slip=-0.15}).driftCharge, 0.4/0.9)
 	end)
-
-	check("airborne steering press dives without creating an air or landing hop", function()
-		local state = Gesture.new(config)
-		local airborne = step(state, 2, 1, true, false)
-		assert(airborne.mode == "Dive" and airborne.diving and airborne.jumpSpeed == 0)
-		assert(airborne.driftCharge == 0 and not airborne.drifting)
-		local landed = step(state, 0.1, 1, true, true)
-		assert(not landed.drifting and not landed.diving and landed.jumpSpeed == 0)
-		assert(step(state, 0, 1, false, true).jumpSpeed == 0)
+	check("boost tiers cap and emit once", function()
+		local s = Gesture.new(config)
+		step(s, 0, false, true)
+		near(step(s, 3, false, true).driftCharge, 1)
+		near(step(s, 0, false, false).boostSeconds, 0.4)
+		assert(step(s, 1, false, false).boostSeconds == 0)
 	end)
-
-	check("releasing a dive before landing returns to float", function()
-		local state = Gesture.new(config)
-		step(state, 0, 1, true, false)
-		local released = step(state, 0, 1, false, false)
-		assert(released.boostSeconds == 0 and released.jumpSpeed == 0)
-		local landed = step(state, 1, 1, false, true)
-		assert(landed.mode == "Idle" and not landed.drifting)
+	check("air release can spend earned drift", function()
+		local s = Gesture.new(config)
+		step(s, 0, false, true); step(s, 0.4, false, true)
+		local r = step(s, 0.1, false, false, air)
+		near(r.boostSeconds, 0.15); assert(r.jumpSpeed == 0)
 	end)
-
-	check("drift charge excludes airtime, low speed, and insufficient slip", function()
-		local state = Gesture.new(config)
-		step(state, 0, 1, true, true)
-		assert(step(state, 1, 1, true, false).driftCharge == 0)
-		assert(step(state, 1, 1, true, true, 7, 0.3).driftCharge == 0)
-		assert(step(state, 1, 1, true, true, 16, 0.14).driftCharge == 0)
-		local valid = step(state, 0.4, 1, true, true, 8, -0.15)
-		near(valid.driftCharge, 0.4 / 0.9, "negative slip counts by magnitude")
-		near(step(state, 0, 1, false, true).boostSeconds, 0.15, "earned first tier")
+	check("ledge grace freezes charge then launches", function()
+		local s = Gesture.new(config)
+		step(s, 0.2, true, false)
+		near(step(s, 0.05, true, false, air).jumpCharge, 0.5)
+		near(step(s, 0, false, false, air).jumpSpeed, 15)
 	end)
-
-	check("boost is tiered, capped, and emitted once", function()
-		local state = Gesture.new(config)
-		step(state, 0, 1, true, true)
-		near(step(state, 3, 1, true, true).driftCharge, 1, "drift charge clamp")
-		local released = step(state, 0, 1, false, true)
-		near(released.boostSeconds, 0.4, "highest boost tier")
-		assert(released.jumpSpeed == 0 and released.driftCharge == 0)
-		assert(step(state, 1, 1, false, true).boostSeconds == 0)
-		step(state, 0, 1, true, true)
-		assert(step(state, 0, 1, false, true).boostSeconds == 0)
+	check("expired grace cannot launch on landing", function()
+		local s = Gesture.new(config)
+		step(s, 0.4, true, false); step(s, 0.11, true, false, air)
+		assert(step(s, 1, true, false).mode == "Idle")
+		assert(step(s, 0, false, false).jumpSpeed == 0)
+		assert(step(s, 0.1, true, false).mode == "JumpCharge")
 	end)
-
-	check("airborne drift release spends existing charge without an air hop", function()
-		local state = Gesture.new(config)
-		step(state, 0, 1, true, true)
-		step(state, 0.4, 1, true, true)
-		local released = step(state, 0.1, 1, false, false)
-		near(released.boostSeconds, 0.15, "saved drift tier")
-		assert(released.jumpSpeed == 0 and not released.drifting)
-	end)
-
-	check("charge freezes in ledge grace and may release there", function()
-		local state = Gesture.new(config)
-		step(state, 0.2, 0, true, true)
-		near(step(state, 0.05, 0, true, false).jumpCharge, 0.5, "airtime adds no charge")
-		near(step(state, 0, 0, false, false).jumpSpeed, 15, "grace release")
-	end)
-
-	check("expired ledge grace cancels until a new press even after landing", function()
-		local state = Gesture.new(config)
-		step(state, 0.2, 0, true, true)
-		local expired = step(state, 0.11, 1, true, false)
-		assert(expired.mode == "Idle" and expired.jumpCharge == 0)
-		local landed = step(state, 1, 1, true, true)
-		assert(landed.mode == "Idle" and landed.jumpSpeed == 0)
-		assert(step(state, 0, 1, false, true).jumpSpeed == 0)
-		near(step(state, 0, 1, true, true).jumpSpeed, 10, "fresh press rearms")
-	end)
-
 	check("release after grace expires cannot launch", function()
-		local state = Gesture.new(config)
-		step(state, 0.4, 0, true, true)
-		local released = step(state, 0.11, 0, false, false)
-		assert(released.jumpSpeed == 0 and released.mode == "Idle")
+		local s = Gesture.new(config)
+		step(s, 0.4, true, false)
+		assert(step(s, 0.11, false, false, air).jumpSpeed == 0)
 	end)
-
-	check("neutral press in the air cannot become a landing jump", function()
-		local state = Gesture.new(config)
-		assert(step(state, 0.2, 0, true, false).mode == "Dive")
-		assert(step(state, 0.4, 0, true, true).jumpCharge == 0)
-		assert(step(state, 0, 0, false, true).jumpSpeed == 0)
+	check("charged launch followed by fresh air press dives", function()
+		local s = Gesture.new(config)
+		step(s, 0.4, true, false); near(step(s, 0, false, false).jumpSpeed, 20)
+		assert(not step(s, 0.05, false, false, air).diving)
+		assert(step(s, 0.05, true, false, air).diving)
+		assert(not step(s, 0.05, false, false, air).diving)
 	end)
-
-	check("disabled input cancels charge and requires an enabled release", function()
-		local state = Gesture.new(config)
-		step(state, 0.4, 0, true, true)
-		local disabled = step(state, 0, 0, true, true, nil, nil, false)
-		assert(disabled.mode == "Idle" and disabled.jumpSpeed == 0)
-		assert(step(state, 1, 1, true, true).jumpSpeed == 0)
-		assert(step(state, 0, 1, false, true).jumpSpeed == 0)
-		near(step(state, 0, 1, true, true).jumpSpeed, 10, "release rearms")
+	check("landing held dive never launches", function()
+		local s = Gesture.new(config)
+		step(s, 0, true, false, air)
+		local r = step(s, 1, true, false)
+		assert(not r.diving and r.jumpSpeed == 0 and not r.drifting)
+		assert(step(s, 0, false, false).jumpSpeed == 0)
 	end)
-
-	check("disabled release cannot fire a charged jump or earned boost", function()
-		for _, steer in { 0, 1 } do
-			local state = Gesture.new(config)
-			step(state, 0, steer, true, true)
-			step(state, 1, steer, true, true)
-			local result = step(state, 0, steer, false, true, nil, nil, false)
-			assert(result.jumpSpeed == 0 and result.boostSeconds == 0)
-			assert(step(state, 0, steer, false, true).boostSeconds == 0)
+	check("cancellation requires both actions released before a new press", function()
+		for _, drift in {false, true} do
+			local s = Gesture.new(config)
+			step(s, 0, not drift, drift); step(s, 1, not drift, drift)
+			local r = step(s, 0, true, true, ground, false)
+			assert(r.mode == "Idle" and r.jumpSpeed == 0 and r.boostSeconds == 0)
+			assert(step(s, 1, true, true).mode == "Idle")
+			assert(step(s, 1, false, true).mode == "Idle")
+			step(s, 0, false, false)
+			assert(step(s, 0.1, true, false).mode == "JumpCharge")
 		end
 	end)
-
-	check("charge and boost thresholds agree at 30, 60, and 120 FPS", function()
-		for _, fps in { 30, 60, 120 } do
-			local charge = Gesture.new(config)
-			step(charge, 0, 0, true, true)
-			for _ = 1, fps * 0.2 do
-				step(charge, 1 / fps, 0, true, true)
-			end
-			near(step(charge, 0, 0, false, true).jumpSpeed, 15,
-				"half charge at " .. tostring(fps) .. " FPS")
-			local drift = Gesture.new(config)
-			step(drift, 0, 1, true, true)
-			for _ = 1, fps * 0.4 do
-				step(drift, 1 / fps, 1, true, true)
-			end
-			near(step(drift, 0, 1, false, true).boostSeconds, 0.15,
-				"first drift tier at " .. tostring(fps) .. " FPS")
+	check("disabled release cancels instead of firing", function()
+		for _, drift in {false, true} do
+			local s = Gesture.new(config)
+			step(s, 0, not drift, drift); step(s, 1, not drift, drift)
+			local r = step(s, 0, false, false, ground, false)
+			assert(r.jumpSpeed == 0 and r.boostSeconds == 0)
 		end
 	end)
-
-	check("queued neutral press and release produce a tap within one simulation tick", function()
-		local state = Gesture.new(config)
-		local contact = { grounded = true, speed = 16, slip = 0.3 }
-		local released = { steer = 0, held = false, enabled = true }
-		local result = state:stepEvents(1 / 30, released, contact, {
-			{ steer = 0, held = true, enabled = true },
-			released,
-		})
-		near(result.jumpSpeed, 10, "queued tap hop")
-		assert(result.mode == "Idle" and result.jumpCharge == 0 and result.boostSeconds == 0)
-		assert(contact.grounded, "processing a jump must not mutate the caller's contact")
-		assert(state:stepEvents(1 / 30, released, contact, {}).jumpSpeed == 0)
+	check("charge and drift thresholds match at 30 60 120 FPS", function()
+		for _, fps in {30,60,120} do
+			local s = Gesture.new(config)
+			for _=1,fps*0.2 do step(s, 1/fps, true, false) end
+			near(step(s, 0, false, false).jumpSpeed, 15)
+			s = Gesture.new(config); step(s, 0, false, true)
+			for _=1,fps*0.4 do step(s, 1/fps, false, true) end
+			near(step(s, 0, false, false).boostSeconds, 0.15)
+		end
 	end)
-
-	check("queued press uses initial steering even when neutral before simulation", function()
-		local state = Gesture.new(config)
-		local result = state:stepEvents(0.2,
-			{ steer = 0, held = true, enabled = true },
-			{ grounded = true, speed = 16, slip = 0.3 }, {
-				{ steer = 1, held = true, enabled = true },
-			})
-		assert(result.mode == "Drift" and result.jumpSpeed == 10)
-		assert(result.jumpCharge == 0 and result.driftCharge == 0 and not result.drifting)
+	check("queued tap within one tick is preserved", function()
+		local s = Gesture.new(config)
+		local r = s:stepEvents(1/30, input(false,false), ground, {input(true,false),input(false,false)})
+		near(r.jumpSpeed, 10); assert(r.mode == "Idle" and ground.grounded)
 	end)
-
-	check("queued neutral press keeps charge mode through later steering", function()
-		local state = Gesture.new(config)
-		local result = state:stepEvents(0.2,
-			{ steer = 1, held = true, enabled = true },
-			{ grounded = true, speed = 16, slip = 0.3 }, {
-				{ steer = 0, held = true, enabled = true },
-			})
-		assert(result.mode == "JumpCharge" and result.jumpSpeed == 0)
-		near(result.jumpCharge, 0.5, "only the final elapsed step charges")
+	check("rapid release repress produces one launch and dive", function()
+		local s = Gesture.new(config)
+		step(s, 0.4, true, false)
+		local r = s:stepEvents(1/30,input(true,false),ground,{input(false,false),input(true,false)})
+		near(r.jumpSpeed,20); assert(r.diving)
 	end)
-
-	check("zero-time queued input does not accumulate charge", function()
-		local state = Gesture.new(config)
-		local held = { steer = 0, held = true, enabled = true }
-		local result = state:stepEvents(0, held,
-			{ grounded = true, speed = 16, slip = 0.3 }, { held, held, held })
-		assert(result.mode == "JumpCharge" and result.jumpCharge == 0)
+	check("repeated edges cannot stack launches", function()
+		local s = Gesture.new(config)
+		local edges = {}
+		for _=1,4 do table.insert(edges,input(true,false));table.insert(edges,input(false,false)) end
+		near(s:stepEvents(0.2,input(false,false),ground,edges).jumpSpeed,10)
 	end)
-
-	check("disabled current input discards queued actions and earned charge", function()
-		local state = Gesture.new(config)
-		step(state, 0.4, 0, true, true)
-		local result = state:stepEvents(0.1,
-			{ steer = 1, held = false, enabled = false },
-			{ grounded = true, speed = 16, slip = 0.3 }, {
-				{ steer = 0, held = false, enabled = true },
-				{ steer = 1, held = true, enabled = true },
-			})
-		assert(result.mode == "Idle" and result.jumpSpeed == 0 and result.boostSeconds == 0)
-		assert(step(state, 0, 1, true, true).jumpSpeed == 0)
-		step(state, 0, 1, false, true)
-		assert(step(state, 0, 1, true, true).jumpSpeed == 10)
+	check("queued drift release and repress preserve boost and hop", function()
+		local s = Gesture.new(config)
+		step(s,0,false,true);step(s,0.4,false,true)
+		local r = s:stepEvents(0.1,input(false,true),ground,{input(false,false),input(false,true)})
+		near(r.boostSeconds,0.15);near(r.jumpSpeed,10)
 	end)
-
-	check("multiple queued presses cannot sum hops or award another air hop", function()
-		local state = Gesture.new(config)
-		local released = { steer = 1, held = false, enabled = true }
-		local pressed = { steer = 1, held = true, enabled = true }
-		local result = state:stepEvents(0.2, released,
-			{ grounded = true, speed = 16, slip = 0.3 }, {
-				pressed, released, pressed, released, pressed, released, pressed, released,
-			})
-		near(result.jumpSpeed, 10, "one hop per physics frame")
-		assert(result.boostSeconds == 0 and result.mode == "Idle")
+	check("disabled frame discards queued charge", function()
+		local s = Gesture.new(config)
+		step(s,0.4,true,false)
+		local r = s:stepEvents(0.1,input(false,false,false),ground,{input(false,false),input(false,true)})
+		assert(r.mode == "Idle" and r.jumpSpeed == 0 and r.boostSeconds == 0)
 	end)
-
-	check("queued boost release and next hop retain both one-shot outputs", function()
-		local state = Gesture.new(config)
-		step(state, 0, 1, true, true)
-		step(state, 0.4, 1, true, true)
-		local pressed = { steer = 1, held = true, enabled = true }
-		local result = state:stepEvents(0.1, pressed,
-			{ grounded = true, speed = 16, slip = 0.3 }, {
-				{ steer = 1, held = false, enabled = true },
-				pressed,
-			})
-		near(result.boostSeconds, 0.15, "queued earned boost")
-		near(result.jumpSpeed, 10, "queued next hop")
-		assert(result.mode == "Drift" and not result.drifting and result.driftCharge == 0)
+	check("edge overflow cancels and requires release", function()
+		local s = Gesture.new(config)
+		local r = s:stepEvents(0.1,input(true,false),ground,table.create(9,input(true,false)))
+		assert(r.mode == "Idle" and r.jumpSpeed == 0)
+		assert(step(s,1,true,false).mode == "Idle")
+		step(s,0,false,false);assert(step(s,0.1,true,false).mode == "JumpCharge")
 	end)
-
-	check("more than eight queued edges cancel before awarding any action", function()
-		local state = Gesture.new(config)
-		local pressed = { steer = 1, held = true, enabled = true }
-		local result = state:stepEvents(0.1, pressed,
-			{ grounded = true, speed = 16, slip = 0.3 }, table.create(9, pressed))
-		assert(result.mode == "Idle" and result.jumpSpeed == 0 and result.boostSeconds == 0)
-		assert(step(state, 0, 1, true, true).jumpSpeed == 0)
-		step(state, 0, 1, false, true)
-		assert(step(state, 0, 1, true, true).jumpSpeed == 10)
-	end)
-
-	check("charged release floats until a new airborne press dives", function()
-		local state = Gesture.new(config)
-		step(state, 0.4, 0, true, true)
-		local launch = step(state, 0, 0, false, true)
-		assert(launch.jumpSpeed == 20 and not launch.diving)
-		assert(not step(state, 0.05, 0, false, false).diving)
-		local dive = step(state, 0.05, 1, true, false)
-		assert(dive.diving and dive.mode == "Dive" and dive.jumpSpeed == 0)
-		assert(not step(state, 0.05, 1, false, false).diving)
-	end)
-	check("holding the original drift hop cannot trigger a dive", function()
-		local state = Gesture.new(config)
-		step(state, 0, 1, true, true)
-		local air = step(state, 0.1, 1, true, false)
-		assert(air.mode == "Drift" and not air.diving)
-	end)
-	check("landing with dive held does not launch or drift until released", function()
-		local state = Gesture.new(config)
-		step(state, 0, 0, true, false)
-		local landed = step(state, 0.1, 1, true, true)
-		assert(not landed.diving and landed.jumpSpeed == 0 and not landed.drifting)
-		step(state, 0, 0, false, true)
-		assert(step(state, 0.1, 0, true, true).mode == "JumpCharge")
-	end)
-	return { passed = passed }
+	return {passed=passed}
 end

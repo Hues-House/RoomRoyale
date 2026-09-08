@@ -53,7 +53,7 @@ The round and the neighborhood each reward play. The house provides an additiona
 | Term | Meaning |
 | --- | --- |
 | Main Test game | The managed `src/` game and its Studio-owned scene in Test PlaceId `86511797738570`, GameId `10764620924`. The complete local snapshot is [RoomRoyale-Test.rbxlx](places/RoomRoyale-Test.rbxlx), and the main Test was saved to Roblox during this sync. |
-| Hillside v4 | The separately built market and pump-park prototype, saved locally as [RoomRoyale-Hillside.rbxlx](places/RoomRoyale-Hillside.rbxlx). Its final Style state is a collection demonstration, not the main decorating round. |
+| Hillside prototype | The separately built market and pump-park prototype, saved locally as [RoomRoyale-Hillside.rbxlx](places/RoomRoyale-Hillside.rbxlx). The current milestone-1 candidate refines the v4 cart baseline. Its final Style state is a collection demonstration, not the main decorating round. |
 | Saved place snapshot | A full Studio place file that preserves scene instances as well as scripts. The repository keeps the current snapshots in `places/`. |
 | Rojo script build | The output of `default.project.json`. It verifies packaged scripts but does not contain the complete main Test scene. |
 | Published place | A version saved to Roblox through a publication action. Local saves and Git commits do not establish publication. |

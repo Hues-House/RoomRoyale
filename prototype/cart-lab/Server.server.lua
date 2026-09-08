@@ -10,6 +10,7 @@ local Crashes = require(script.Parent:WaitForChild("Crashes"))
 local Flatbed = require(script.Parent:WaitForChild("Flatbed"))
 local ShoppingSession = require(script.Parent:WaitForChild("ShoppingSession"))
 local Presentation = require(ReplicatedStorage:WaitForChild("CartItemPresentation"))
+local PickupRules = require(ReplicatedStorage:WaitForChild("CartPickupRules"))
 local course = Course.build()
 type Pickup = Course.Pickup & { visual: Model?, visualOrigin: CFrame?, templateId: string?, variantId: string?, finiteStock: number?, remaining: number?, requiredFloorY: number? }
 local stockGeneration = 0
@@ -23,6 +24,15 @@ for index, pickup: Pickup in course.pickups do
 	template:SetAttribute("Space", pickup.space)
 	template:SetAttribute("Rarity", pickup.rarity or "Common")
 	pickup.part:SetAttribute("TemplateId", pickup.templateId)
+	pickup.part:SetAttribute("PickupId", index)
+	pickup.part:SetAttribute("PickupName", pickup.name)
+	pickup.part:SetAttribute("PickupSpace", PickupRules.cost(pickup.space))
+	pickup.part:SetAttribute("RequiredFloorY", pickup.requiredFloorY)
+	pickup.part:SetAttribute("PickupAvailable", pickup.available)
+	pickup.prompt.Enabled = false
+	local visual = Instance.new("ObjectValue")
+	visual.Name, visual.Value, visual.Parent = "PickupVisual", pickup.visual or pickup.part, pickup.part
+	game:GetService("CollectionService"):AddTag(pickup.part, "CartLabPickup")
 end
 local RIDER_GROUP = "CartLabMountedRider"
 if not PhysicsService:IsCollisionGroupRegistered(RIDER_GROUP) then PhysicsService:RegisterCollisionGroup(RIDER_GROUP) end
@@ -106,19 +116,10 @@ local function activeBody(player: Player, state: State): BasePart?
 end
 
 local function canSeePickup(player: Player, body: BasePart, pickup: Pickup): boolean
-	local params = RaycastParams.new()
-	params.FilterType = Enum.RaycastFilterType.Exclude
-	params.RespectCanCollide = true
 	local exclusions: {Instance} = {}
 	if body.Parent then table.insert(exclusions, body.Parent) end
 	if player.Character then table.insert(exclusions, player.Character) end
-	params.FilterDescendantsInstances = exclusions
-	if math.abs(body.Position.Y - pickup.part.Position.Y) > 4 then return false end
-	if pickup.requiredFloorY then
-		local support = workspace:Raycast(body.Position, Vector3.new(0, -4.5, 0), params)
-		if not support or support.Normal.Y < 0.6 or support.Position.Y < pickup.requiredFloorY - 0.75 then return false end
-	end
-	return workspace:Raycast(body.Position, pickup.part.Position - body.Position, params) == nil
+	return PickupRules.canReach(body, pickup.part, pickup.requiredFloorY, exclusions)
 end
 
 local function grab(player: Player, pickup: Pickup)
@@ -132,12 +133,13 @@ local function grab(player: Player, pickup: Pickup)
 	if not canSeePickup(player, body, pickup) then return end
 	state.lastGrab = now
 	local space = state.cart and state.cart:GetAttribute("SpaceUsed") or 0
-	local cost = math.max(8, pickup.space)
-	if space + cost > 100 then
+	local cost = PickupRules.cost(pickup.space)
+	if not PickupRules.capacityState(space, cost).fits then
 		remote:FireClient(player, "Full", { space = space, needed = cost })
 		return
 	end
 	pickup.available = false
+	pickup.part:SetAttribute("PickupAvailable", false)
 	pickup.prompt.Enabled = false
 	pickup.label.Enabled = false
 	pickup.part.Transparency = 1
@@ -156,8 +158,9 @@ local function grab(player: Player, pickup: Pickup)
 	task.delay(6, function()
 		if not pickup.part.Parent or generation ~= stockGeneration then return end
 		pickup.available = true
+		pickup.part:SetAttribute("PickupAvailable", true)
 		pickup.part.Transparency = 0
-		pickup.prompt.Enabled = not currentRound or currentRound:phase(workspace:GetServerTimeNow()) == "Shop"
+		pickup.prompt.Enabled = false
 		pickup.label.Enabled = true
 	end)
 end
@@ -378,10 +381,6 @@ moveCart.OnInvoke = function(player: Player, target: CFrame)
 	return true
 end
 
-for _, pickup in ipairs(course.pickups) do
-	pickup.prompt.Triggered:Connect(function(player) grab(player, pickup) end)
-end
-
 local function unitNumber(value: unknown): boolean
 	return type(value) == "number" and value == value and value >= 0 and value <= 1
 end
@@ -411,13 +410,9 @@ remote.OnServerEvent:Connect(function(player: Player, action: unknown, payload: 
 	if action ~= "Grab" then return end
 	local body = activeBody(player, state)
 	if not body then return end
-	local nearest: Pickup? = nil
-	local distance = 16
-	for _, pickup in ipairs(course.pickups) do
-		local current = (body.Position - pickup.part.Position).Magnitude
-		if pickup.available and current < distance and canSeePickup(player, body, pickup) then nearest, distance = pickup, current end
-	end
-	if nearest then grab(player, nearest) end
+	if type(payload) ~= "number" or payload % 1 ~= 0 then return end
+	local pickup = course.pickups[payload]
+	if pickup then grab(player, pickup) end
 end)
 
 local function deliverToStyle(player: Player, state: State)
@@ -454,10 +449,11 @@ local function beginShopping(round)
 	stockGeneration += 1
 	for _, pickup: Pickup in course.pickups do
 		pickup.available = true
+		pickup.part:SetAttribute("PickupAvailable", true)
 		pickup.remaining = pickup.finiteStock
 		pickup.part:SetAttribute("StockRemaining", pickup.remaining)
 		pickup.part.Transparency = 0
-		pickup.prompt.Enabled = true
+		pickup.prompt.Enabled = false
 		pickup.label.Enabled = true
 	end
 	for _, state in states do
@@ -519,7 +515,7 @@ RunService.Heartbeat:Connect(function(dt)
 		local phase = currentRound:phase(now)
 		if course.world:GetAttribute("ShoppingPhase") ~= phase then
 			course.world:SetAttribute("ShoppingPhase", phase)
-			for _, pickup in course.pickups do pickup.prompt.Enabled = pickup.available and phase == "Shop" end
+
 		end
 		course.world:SetAttribute("ShoppingRemaining", math.max(0, math.ceil((if phase == "Closing" then currentRound.checkoutEndsAt else currentRound.shopEndsAt) - now)))
 	end

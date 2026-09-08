@@ -12,6 +12,6 @@ $versions = Join-Path $env:LOCALAPPDATA 'Roblox/Versions'
 $studio = Get-ChildItem -LiteralPath $versions -Filter RobloxStudioBeta.exe -File -Recurse |
     Sort-Object LastWriteTime -Descending | Select-Object -First 1
 if (-not $studio) { throw 'Install Roblox Studio before opening the playtest.' }
-$place = Join-Path $repo 'build/superstore/RoomRoyale-Hillside-v4.rbxlx'
+$place = Join-Path $repo 'build/superstore/RoomRoyale-Hillside-M1-Candidate.rbxlx'
 Start-Process -FilePath $studio.FullName -ArgumentList ('"' + $place + '"')
-Write-Output 'Opened Hillside v4. Press Play, then use Try the skate park for movement practice.'
+Write-Output 'Opened Hillside milestone 1 candidate. Press Play, then use Try the skate park for movement practice.'

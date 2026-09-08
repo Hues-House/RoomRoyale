@@ -1,0 +1,14 @@
+{
+  "build/superstore/RoomRoyale-Hillside-M1-Candidate.rbxlx": {
+    "sha256": "b2bc3cec6bba7936f37d90d67f8a2b21d4c7bfaf249001f62c83ea79590ce1fa",
+    "bytes": 261660
+  },
+  "places/RoomRoyale-Hillside.rbxlx": {
+    "sha256": "4c85085f80e770b3d96ca3035c93dec1f49be3897e2cef714662f918e108c19d",
+    "bytes": 379953
+  },
+  "places/RoomRoyale-Test.rbxlx": {
+    "sha256": "0dc48c61902c9df697c2c0af479b4d87777988d8d6b4a9d3528ab75a1826a295",
+    "bytes": 48073605
+  }
+}

@@ -1,0 +1,7 @@
+Gesture: 25 scenarios passed
+Camera direction: cardinal, diagonal, rest, reverse, countersteer, analog and pitch checks passed
+Pickup rules: 10201 capacity/session comparisons; range edges, candidate selection and checkout cargo/delivered separation passed
+ShoppingSession: capacity, repeated atomic deposits, exact deadlines, discarded cargo, isolated sessions, and copied Style export passed
+Compiled 6 KLOC into 315 KB bytecode (read 0.01s, parse 0.00s, compile 0.01s)
+Building project 'RoomRoyaleSuperstore'
+Built project to RoomRoyale-Hillside-M1-Candidate.rbxlx

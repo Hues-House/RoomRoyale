@@ -11,12 +11,30 @@ local function parts(model: Instance)
 	return result
 end
 
-local function assertSameVisual(source: Instance, target: Model, ratio: number)
+local function assertSameVisual(source: Model, target: Model, ratio: number)
 	local expected, actual = parts(source), parts(target)
 	assert(#expected == #actual, "Furniture part count changed")
-	for index, before in expected do
-		local after = actual[index]
-		assert(before.Name == after.Name and before.ClassName == after.ClassName, "Furniture hierarchy changed")
+	local remaining = table.clone(actual)
+	local sourceFrame = source:GetBoundingBox()
+	local targetFrame = target:GetBoundingBox()
+	for _, before in expected do
+		local beforeFrame = sourceFrame:ToObjectSpace(before.CFrame)
+		local matched
+		for index, candidate in remaining do
+			local afterFrame = targetFrame:ToObjectSpace(candidate.CFrame)
+			if (beforeFrame.Position * ratio - afterFrame.Position).Magnitude < 0.01
+				and (beforeFrame.LookVector - afterFrame.LookVector).Magnitude < 0.01
+				and (beforeFrame.UpVector - afterFrame.UpVector).Magnitude < 0.01 and before.Name == candidate.Name and before.ClassName == candidate.ClassName
+				and (before.Size * ratio - candidate.Size).Magnitude < 0.01
+				and before.Color == candidate.Color and before.Material == candidate.Material
+				and before.Transparency == candidate.Transparency
+				and (not before:IsA("MeshPart") or (candidate:IsA("MeshPart") and before.MeshId == candidate.MeshId and before.TextureID == candidate.TextureID)) then
+				matched = index
+				break
+			end
+		end
+		assert(matched, "Furniture part identity, size or appearance changed: " .. before.Name)
+		local after = table.remove(remaining, matched)
 		assert((before.Size * ratio - after.Size).Magnitude < 0.01, "Furniture scale changed")
 		assert(before.Color == after.Color and before.Material == after.Material, "Furniture finish changed")
 		assert(before.Transparency == after.Transparency, "Furniture transparency changed")

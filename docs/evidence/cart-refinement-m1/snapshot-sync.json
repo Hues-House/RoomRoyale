@@ -1,0 +1,28 @@
+{
+  "managedScripts": 30,
+  "updated": [
+    "ReplicatedStorage.CartAudio",
+    "ReplicatedStorage.CartCargoAcceptance",
+    "ServerScriptService.CartLabServer",
+    "ServerStorage.CargoAcceptance",
+    "ServerStorage.Envelope",
+    "ServerStorage.ParkRideAcceptance",
+    "ReplicatedStorage.RideRuntime.Chassis",
+    "ReplicatedStorage.RideRuntime.Gesture",
+    "ReplicatedStorage.RideRuntime.Profiles",
+    "StarterPlayer.StarterPlayerScripts.CartLabCargo",
+    "StarterPlayer.StarterPlayerScripts.CartLabClient",
+    "StarterPlayer.StarterPlayerScripts.CartLabRunner",
+    "StarterPlayer.StarterPlayerScripts.StoreClient"
+  ],
+  "added": [
+    "ReplicatedStorage.CartPickupRules",
+    "ReplicatedStorage.RideRuntime.CameraDirection",
+    "ServerStorage.CartRefinementAcceptance",
+    "StarterPlayer.StarterPlayerScripts.CartLabShopping"
+  ],
+  "scenePreserved": true,
+  "uniqueReferents": true,
+  "snapshot": "D:\\code\\RoomRoyale--cart-refinement\\places\\RoomRoyale-Hillside.rbxlx",
+  "written": true
+}

@@ -1,6 +1,6 @@
 # Room Royale refinement plan
 
-Agreed direction from the September 7-8 playtest and design discussion. The user accepted the recommendations on round judging, progression pacing, furniture quantities, and earned artwork and rug designs. This document records the next work; the features below have not been implemented by this planning pass.
+Agreed direction from the September 7-8 playtest and design discussion. The user accepted the recommendations on round judging, progression pacing, furniture quantities, and earned artwork and rug designs. Milestone 1 now has a local implementation candidate; the [milestone 1 report](cart-refinement-m1-2026-09-08.md) distinguishes completed desktop/engine checks from remaining acceptance. Milestones 2-5 remain planned work.
 
 The [Hillside v4 report](playtest-iteration-v4-2026-09-08.md) describes the tested prototype. This plan supersedes its independent camera steering and jump sound direction. It also supersedes the older permanent-inventory and automatic rarity-scoring rules where those conflict with the decisions here.
 
@@ -55,6 +55,8 @@ The control scheme is a Room Royale design choice. The researched games use diff
 
 The first change combines camera-relative steering, explicit jump and drift intent, clearer capacity feedback, noticeable weight, and removal of the jump boing. The v4 movement and cargo evidence remain the comparison baseline.
 
+Implementation status: the local candidate uses a separate Drift action, animated capacity and fit feedback, and stronger load effects. Engine checks and desktop pickup/checkout evidence exist. Phone/controller acceptance and the interrupted cargo comparison still need completion. The [implementation brief](cart-refinement-implementation-brief-2026-09-08.md) records the assigned scope.
+
 Acceptance: an unfamiliar player can identify a full cart, predict whether a nearby piece fits, and find checkout. Empty and loaded runs show the intended acceleration and braking difference. A camera turn during charge preserves the charge. Mouse, touch, and controller inputs release correctly after menus and focus changes. Stacking, suction, jumping, and wall recovery retain their existing behavior.
 
 ### 2. Connect the complete round
@@ -95,10 +97,9 @@ These are source observations, not new product decisions:
 - [ProgressionService](../src/ServerScriptService/ProgressionService.lua) rejects duplicate furniture purchases and limits placement to one of each type. Quantity migration must update purchases, snapshots, placement, save loading, and the corresponding UI together. Its profile sanitizer preserves known fields, so quantities, design unlocks, ride ownership, and achievement progress need explicit serialization and migration. Aggregate wins alone cannot establish wins across several themes.
 - [ProgressionClient](../src/StarterPlayer/StarterPlayerScripts/ProgressionClient.client.lua) also exposes owned physical furniture during Style. Both client inventory presentation and server inventory authority must follow the new collection rules.
 - [JudgeService](../src/ServerScriptService/JudgeService.server.lua) currently combines automatic and player scoring. The ranking and reward calculation must agree on the new player-judged outcome.
-- [Gesture](../packages/RideRuntime/Gesture.lua) chooses jump or drift using steering at button press. Camera steering requires separate input intent. [Profiles](../packages/RideRuntime/Profiles.lua) currently gives maximum load only 12 percent acceleration loss and 8 percent steering-response loss.
 - [PracticePark](../prototype/superstore/PracticePark.lua) can build at a supplied origin. The ride runtime rejects very steep support, and crash detection treats steep surfaces as potential walls. Quarter pipes require surface-aware behavior as well as geometry.
 - The script project does not contain every Studio-owned asset. A Rojo script build alone does not prove that a complete playable neighborhood place has been reproduced. See the [source-tree note](../src/README.md).
 
 Exact prices, earning thresholds, the final voting presentation, and detailed trick bindings are tuning and implementation work. Solo and tied results need an explicit rule before competitive-win achievements ship. None of these pending details changes the accepted player experience above.
 
-The first full playtest of this plan is a complete competition followed by its neighborhood payoff. Later playtests exercise repeat-round enjoyment, purchase pacing, earned designs, and the first owned ride. The existing [v4 evidence](playtest-iteration-v4-2026-09-08.md) establishes the cart baseline, not completion of this plan.
+The first full playtest of this plan is a complete competition followed by its neighborhood payoff. The [round-integration draft](round-integration-implementation-brief-2026-09-08.md) prepares that work while preserving the remaining product decisions. Later playtests exercise repeat-round enjoyment, purchase pacing, earned designs, and the first owned ride. The existing [v4 evidence](playtest-iteration-v4-2026-09-08.md) establishes the cart baseline; the milestone 1 candidate does not complete the whole plan.

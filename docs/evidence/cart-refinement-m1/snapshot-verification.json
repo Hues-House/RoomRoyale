@@ -1,0 +1,962 @@
+{
+  "main": {
+    "project": "default.project.json",
+    "snapshot": "places/RoomRoyale-Test.rbxlx",
+    "snapshotSha256": "0dc48c61902c9df697c2c0af479b4d87777988d8d6b4a9d3528ab75a1826a295",
+    "expectedScripts": 54,
+    "savedScripts": 160,
+    "mismatches": [],
+    "additionalSavedScripts": {
+      "Workspace.RoomRoyaleMeshStudy.AvatarScaleReference.Animate": [
+        {
+          "className": "LocalScript",
+          "sha256": "49eab7530cfc33b8af13b995ae1fa87f482a489b6d108ec2410d12dd19b720f0",
+          "disabled": true
+        }
+      ],
+      "ServerStorage.NewLoft_Archive.Song in here.Cylinder.Rotation": [
+        {
+          "className": "Script",
+          "sha256": "8c8cedd17dbb364b8612d0e3175a063123758828139c0dcae37ad037bc99e9d6",
+          "disabled": true
+        },
+        {
+          "className": "Script",
+          "sha256": "8c8cedd17dbb364b8612d0e3175a063123758828139c0dcae37ad037bc99e9d6",
+          "disabled": true
+        }
+      ],
+      "ServerStorage.NewLoft_Archive.Song in here.Song ID.Rotation": [
+        {
+          "className": "Script",
+          "sha256": "8c8cedd17dbb364b8612d0e3175a063123758828139c0dcae37ad037bc99e9d6",
+          "disabled": true
+        }
+      ],
+      "ServerStorage.NewLoft_Archive.#NBK || Adidas Cap.Delete if used for decoration": [
+        {
+          "className": "Script",
+          "sha256": "12805172ad99fe2fa7dbb17a4393588b78886693f3006a1d38955c42fedfc64a",
+          "disabled": true
+        }
+      ],
+      "ServerStorage.NewLoft_Archive.#NBK || Adidas Cap.Thank you letter.": [
+        {
+          "className": "Script",
+          "sha256": "57791309a911c2325fcb63db90d98f0390926528b5490d6ea51db06298fb5ba1",
+          "disabled": true
+        }
+      ],
+      "ServerStorage.NewLoft_Archive.#NBK || Rainbow Cap.Delete if used for decoration": [
+        {
+          "className": "Script",
+          "sha256": "12805172ad99fe2fa7dbb17a4393588b78886693f3006a1d38955c42fedfc64a",
+          "disabled": true
+        }
+      ],
+      "ServerStorage.NewLoft_Archive.#NBK || Thrasher Cap.Delete if used for decoration": [
+        {
+          "className": "Script",
+          "sha256": "12805172ad99fe2fa7dbb17a4393588b78886693f3006a1d38955c42fedfc64a",
+          "disabled": true
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.SofaAIDraft.ProceduralGeneration": [
+        {
+          "className": "ModuleScript",
+          "sha256": "990f4c2d04fed43fccc49cb34e07c0fcb73e1c11909146ac0a8fce11141afa07",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.SofaAIDraft.ProceduralGeneration.Dependencies.ConstructiveSolidGeometry": [
+        {
+          "className": "ModuleScript",
+          "sha256": "4d4dcd45bee6835af2d0a27bf8833ea24e593954f1e1263d9c5382947bf4cd52",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.SofaAIDraft.ProceduralGeneration.Dependencies.GeometryPrimitives": [
+        {
+          "className": "ModuleScript",
+          "sha256": "ae3894a7c10c146ae3ce28d1b052aef921899192af8fe19562b960b893e4aa12",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.SofaAIDraft.ProceduralGeneration.Dependencies.SmartObject": [
+        {
+          "className": "ModuleScript",
+          "sha256": "978fa4654c0b3c2fe0553aa0ada3fe0a2812a7a4165341d0baf88fc891be35a2",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.SofaAIDraft.ProceduralGeneration.Dependencies.MathUtils": [
+        {
+          "className": "ModuleScript",
+          "sha256": "2254cf2aab60f1b149bddebe6bd0c47359a229c2b6dfdfaaad34d6aa35ed1d12",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.PilotToolkitV1.TableRecipes": [
+        {
+          "className": "ModuleScript",
+          "sha256": "7c306d42e4067f2912d1ed65b4092ef180794ca55c777267c6e5429e644671e3",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.PilotToolkitV1.TableGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "70f50ec0ba46c4731e23c94b12325ce482d9a37108cc855469a4f50541a3b5ca",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.PilotToolkitV1.CreateGallery": [
+        {
+          "className": "ModuleScript",
+          "sha256": "d407f1abb9331d982e9d139dd235938e7bcd3073925483b46ae53b3331128129",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.PilotToolkitV1.BakeCatalog": [
+        {
+          "className": "ModuleScript",
+          "sha256": "e6e60cc1ba58a1ea50a33d1457f78de75491f424f40d45dcdc1e3f733dcc0afc",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.PilotToolkitV1.VerifyGallery": [
+        {
+          "className": "ModuleScript",
+          "sha256": "c4304aef6b422d1265f39dbe63fbac8539e60174ec7fde2789d4efb4aac93036",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.PilotToolkitV1.SofaRecipes": [
+        {
+          "className": "ModuleScript",
+          "sha256": "fd48805a7aa1cb2d3c03547df23a334e19a8cb16c5267591e74bcf55151cbbf9",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.PilotToolkitV1.SofaGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "e83e7ddb2c9f1bebb811b1ec36123c5ed1bbd6fa3d591a78bc1edddde488fd7c",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.PilotToolkitV1.RoundedBox": [
+        {
+          "className": "ModuleScript",
+          "sha256": "1e51d44a1fab8f0f5e5defe7895ccccb743617ff7775748c52929f6b3c1fe606",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.TableGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "70f50ec0ba46c4731e23c94b12325ce482d9a37108cc855469a4f50541a3b5ca",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.ChairGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "0891e72fba8e4cd4fc8eb89e1dc4a8b359e1b34ae8dd46bcad0b96726b2ee005",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.CreateGallery": [
+        {
+          "className": "ModuleScript",
+          "sha256": "d87cbaffd4810106c5ba956a68bfb41dfa29358c4b82d09d92915619209cfb54",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.BuildParts": [
+        {
+          "className": "ModuleScript",
+          "sha256": "480b372bc737dd1af9c66fe94d05309149a0329e54e6b5784d6ab06693b1d82e",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.VerifyGallery": [
+        {
+          "className": "ModuleScript",
+          "sha256": "872366b618d83518a8985af717719381a37cfe7fbb24159dedcc44548735e7c8",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.PlantGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "ae0b5245274e2caf28d84b1415fa1c5ce8867f1e97410738b92d41246a367508",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.WallGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3c874f0a4ab555fd930178374a97dedaedcfcdca8237ca114794751f2f279da7",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.SofaGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "e83e7ddb2c9f1bebb811b1ec36123c5ed1bbd6fa3d591a78bc1edddde488fd7c",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.BakeCatalog": [
+        {
+          "className": "ModuleScript",
+          "sha256": "50894c8b6906e7a3a703b304a44d2a925c193d56f549e01e3259c87a4305cfe6",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.StorageGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "f951bdea8af54f3f5efc7c4d8a235c7a54cfa9dd7729b259e7bfe28c8941aa43",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.DecorGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "16089760d09ac748d2e6a4d3e5bf8f689fff93f7d0648f8a2aadf41af8bb6695",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.RugGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "da57e841f82fa0af4e5691d1454a7f6c03923c0cba837e7fc667670c438bf427",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.CatalogRecipes": [
+        {
+          "className": "ModuleScript",
+          "sha256": "f7eec2ae966b2e827b9a4aff0de543d6d8b8608074c69628248b5c9277da576c",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.Finishes": [
+        {
+          "className": "ModuleScript",
+          "sha256": "97469cda2772132e19d5a2022e36b1beb6d053a07cbd270248d15e993b26a522",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.SofaRecipes": [
+        {
+          "className": "ModuleScript",
+          "sha256": "5e03ad1e727b0909d006f1b34591714bc7045b0f467e671958c22296edb72002",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.LampGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3f00eae06cc1efb70f2a2ede72ef46d4db7bcc29c53c8ae2b0a740733241dfbb",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.TableRecipes": [
+        {
+          "className": "ModuleScript",
+          "sha256": "7c306d42e4067f2912d1ed65b4092ef180794ca55c777267c6e5429e644671e3",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.BedGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "40e8a5b2622457519bb2a79358a6674375e0ff475428b153b8c11bef1f9e6eb4",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.RoundedBox": [
+        {
+          "className": "ModuleScript",
+          "sha256": "1e51d44a1fab8f0f5e5defe7895ccccb743617ff7775748c52929f6b3c1fe606",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.CollectionPass01.RoomRoyaleFurnitureAuthoring.CreateShowcase": [
+        {
+          "className": "ModuleScript",
+          "sha256": "c1ce492f3b934e5337bd231305646b50698c55cae1a4539661ed6f8342a8a0ef",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.DecorGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "16089760d09ac748d2e6a4d3e5bf8f689fff93f7d0648f8a2aadf41af8bb6695",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.TableGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "70f50ec0ba46c4731e23c94b12325ce482d9a37108cc855469a4f50541a3b5ca",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.CatalogRecipes": [
+        {
+          "className": "ModuleScript",
+          "sha256": "f7eec2ae966b2e827b9a4aff0de543d6d8b8608074c69628248b5c9277da576c",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.TableRecipes": [
+        {
+          "className": "ModuleScript",
+          "sha256": "7c306d42e4067f2912d1ed65b4092ef180794ca55c777267c6e5429e644671e3",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.Finishes": [
+        {
+          "className": "ModuleScript",
+          "sha256": "97469cda2772132e19d5a2022e36b1beb6d053a07cbd270248d15e993b26a522",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.PlantGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "ae0b5245274e2caf28d84b1415fa1c5ce8867f1e97410738b92d41246a367508",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.SofaGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "e83e7ddb2c9f1bebb811b1ec36123c5ed1bbd6fa3d591a78bc1edddde488fd7c",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.CreateShowcase": [
+        {
+          "className": "ModuleScript",
+          "sha256": "32105ff9c60fbb5b9da0979444baa00b59c50fc0ac1885769b73e54a51a1f0c2",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.WallGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3c874f0a4ab555fd930178374a97dedaedcfcdca8237ca114794751f2f279da7",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.StorageGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "a1a9b9869ab69efabdfcb0b73ab9c12b37386647ab5a0d65337d86a28fdb5770",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.RoundedBox": [
+        {
+          "className": "ModuleScript",
+          "sha256": "1e51d44a1fab8f0f5e5defe7895ccccb743617ff7775748c52929f6b3c1fe606",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.SofaRecipes": [
+        {
+          "className": "ModuleScript",
+          "sha256": "5e03ad1e727b0909d006f1b34591714bc7045b0f467e671958c22296edb72002",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.VerifyGallery": [
+        {
+          "className": "ModuleScript",
+          "sha256": "872366b618d83518a8985af717719381a37cfe7fbb24159dedcc44548735e7c8",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.LampGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3f00eae06cc1efb70f2a2ede72ef46d4db7bcc29c53c8ae2b0a740733241dfbb",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.ChairGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "0891e72fba8e4cd4fc8eb89e1dc4a8b359e1b34ae8dd46bcad0b96726b2ee005",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.BakeCatalog": [
+        {
+          "className": "ModuleScript",
+          "sha256": "50894c8b6906e7a3a703b304a44d2a925c193d56f549e01e3259c87a4305cfe6",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.RugGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "da57e841f82fa0af4e5691d1454a7f6c03923c0cba837e7fc667670c438bf427",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.BedGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "40e8a5b2622457519bb2a79358a6674375e0ff475428b153b8c11bef1f9e6eb4",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.BuildParts": [
+        {
+          "className": "ModuleScript",
+          "sha256": "c765fc51ea599055e15ee799fdc1b3e8d51c1e3344916d4dc4f7557434ce50e5",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.Before_b76f66355ded_f563879d-3452-4c8c-9059-5eabc273d005.RoomRoyaleFurnitureAuthoring.CreateGallery": [
+        {
+          "className": "ModuleScript",
+          "sha256": "d87cbaffd4810106c5ba956a68bfb41dfa29358c4b82d09d92915619209cfb54",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureReferences.RoomRoyaleMeshImporter_Pass01": [
+        {
+          "className": "ModuleScript",
+          "sha256": "f53c008cfedadeaa9c17fd3660a0acd121cbb884e43dcec35d832b143feeb2f7",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.VerifyGallery": [
+        {
+          "className": "ModuleScript",
+          "sha256": "2adfabad9f740a6f7f0619612a1b601f6def4f9e5d7dce349cf48e2f62050b5a",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.LampGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3f00eae06cc1efb70f2a2ede72ef46d4db7bcc29c53c8ae2b0a740733241dfbb",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.CatalogRecipes": [
+        {
+          "className": "ModuleScript",
+          "sha256": "f7eec2ae966b2e827b9a4aff0de543d6d8b8608074c69628248b5c9277da576c",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.BakeCatalog": [
+        {
+          "className": "ModuleScript",
+          "sha256": "50894c8b6906e7a3a703b304a44d2a925c193d56f549e01e3259c87a4305cfe6",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.DecorGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "16089760d09ac748d2e6a4d3e5bf8f689fff93f7d0648f8a2aadf41af8bb6695",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.TableRecipes": [
+        {
+          "className": "ModuleScript",
+          "sha256": "7c306d42e4067f2912d1ed65b4092ef180794ca55c777267c6e5429e644671e3",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.Finishes": [
+        {
+          "className": "ModuleScript",
+          "sha256": "97469cda2772132e19d5a2022e36b1beb6d053a07cbd270248d15e993b26a522",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.ChairGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "0891e72fba8e4cd4fc8eb89e1dc4a8b359e1b34ae8dd46bcad0b96726b2ee005",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.PlantGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "ae0b5245274e2caf28d84b1415fa1c5ce8867f1e97410738b92d41246a367508",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.SofaRecipes": [
+        {
+          "className": "ModuleScript",
+          "sha256": "5e03ad1e727b0909d006f1b34591714bc7045b0f467e671958c22296edb72002",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.CreateShowcase": [
+        {
+          "className": "ModuleScript",
+          "sha256": "32105ff9c60fbb5b9da0979444baa00b59c50fc0ac1885769b73e54a51a1f0c2",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.WallGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3c874f0a4ab555fd930178374a97dedaedcfcdca8237ca114794751f2f279da7",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.TableGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "70f50ec0ba46c4731e23c94b12325ce482d9a37108cc855469a4f50541a3b5ca",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.StorageGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "a1a9b9869ab69efabdfcb0b73ab9c12b37386647ab5a0d65337d86a28fdb5770",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.SofaGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "e83e7ddb2c9f1bebb811b1ec36123c5ed1bbd6fa3d591a78bc1edddde488fd7c",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.BedGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "40e8a5b2622457519bb2a79358a6674375e0ff475428b153b8c11bef1f9e6eb4",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.RugGenerator": [
+        {
+          "className": "ModuleScript",
+          "sha256": "da57e841f82fa0af4e5691d1454a7f6c03923c0cba837e7fc667670c438bf427",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.RoundedBox": [
+        {
+          "className": "ModuleScript",
+          "sha256": "1e51d44a1fab8f0f5e5defe7895ccccb743617ff7775748c52929f6b3c1fe606",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.BuildParts": [
+        {
+          "className": "ModuleScript",
+          "sha256": "c765fc51ea599055e15ee799fdc1b3e8d51c1e3344916d4dc4f7557434ce50e5",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleFurnitureAuthoring.CreateGallery": [
+        {
+          "className": "ModuleScript",
+          "sha256": "d87cbaffd4810106c5ba956a68bfb41dfa29358c4b82d09d92915619209cfb54",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.Meshes.rr_crescent_sofa_v2_1": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3a98f85ecec0c7a70a5197277364d8b9d7ea30a32a2e369d47a31bdcd87e8e09",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.Meshes.rr_crescent_sofa_v2_2": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3a98f85ecec0c7a70a5197277364d8b9d7ea30a32a2e369d47a31bdcd87e8e09",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.Meshes.rr_crescent_sofa_v2_3": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3a98f85ecec0c7a70a5197277364d8b9d7ea30a32a2e369d47a31bdcd87e8e09",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.Meshes.rr_crescent_sofa_v2_4": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3a98f85ecec0c7a70a5197277364d8b9d7ea30a32a2e369d47a31bdcd87e8e09",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.Meshes.rr_crescent_sofa_v2_5": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3a98f85ecec0c7a70a5197277364d8b9d7ea30a32a2e369d47a31bdcd87e8e09",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.Meshes.rr_loop_bentwood_chair_v2_1": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3a98f85ecec0c7a70a5197277364d8b9d7ea30a32a2e369d47a31bdcd87e8e09",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.Meshes.rr_loop_bentwood_chair_v2_2": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3a98f85ecec0c7a70a5197277364d8b9d7ea30a32a2e369d47a31bdcd87e8e09",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.Meshes.rr_tide_lamp_v2_1": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3a98f85ecec0c7a70a5197277364d8b9d7ea30a32a2e369d47a31bdcd87e8e09",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.Meshes.rr_tide_lamp_v2_2": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3a98f85ecec0c7a70a5197277364d8b9d7ea30a32a2e369d47a31bdcd87e8e09",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.Meshes.rr_tide_lamp_v2_3": [
+        {
+          "className": "ModuleScript",
+          "sha256": "3a98f85ecec0c7a70a5197277364d8b9d7ea30a32a2e369d47a31bdcd87e8e09",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.ImportReview": [
+        {
+          "className": "ModuleScript",
+          "sha256": "71e150978befc1529fadf1601a75a78fc8bbbbd4364df2155bcafc7916053a7b",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.ImportSupports": [
+        {
+          "className": "ModuleScript",
+          "sha256": "71e150978befc1529fadf1601a75a78fc8bbbbd4364df2155bcafc7916053a7b",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.UploadReviewBeforeNameFix": [
+        {
+          "className": "ModuleScript",
+          "sha256": "ad7cc87fcf9c2f02cb7349e0679501c16d896960c57d1da65afd20514bfa1b81",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.UploadReviewBeforeMapFix": [
+        {
+          "className": "ModuleScript",
+          "sha256": "9dc2c353e7a4fb1e3fbd33705096f579f523217eae9c63071209a2fe8b11eafb",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.UploadReview": [
+        {
+          "className": "ModuleScript",
+          "sha256": "6ff1855b22ebef781b9c4fe6e0f56ae57bd0180bca5ea8f13534c45de3f9368a",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.PrivateAssets": [
+        {
+          "className": "ModuleScript",
+          "sha256": "aa6556116ebae817f065fc8b88c650b845cc203ed4cc25cbcc7a7ff83e1e9549",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.RoomRoyaleMeshStudySource.PersistentReview": [
+        {
+          "className": "ModuleScript",
+          "sha256": "ae2cec245d38e0509690d609aafaa49c10fbf198749a2e23aeda12a7cf05ce33",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.NeighborhoodBefore_20260907.SourceBefore.HousingService": [
+        {
+          "className": "ModuleScript",
+          "sha256": "5f4a05ffd152565dd4c266d5b0b97fd2be994c9ad2d1ce6532b9db5d8e3ff273",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.NeighborhoodBefore_20260907.SourceBefore.HouseShellBuilder": [
+        {
+          "className": "ModuleScript",
+          "sha256": "0a06bb94ba2cb0fe828bd68f176e8bf3967f136b5bb66fcc675a32f96483d7c9",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.NeighborhoodBefore_20260907.SourceBefore.NeighborhoodBootstrap": [
+        {
+          "className": "ModuleScript",
+          "sha256": "94d9fe91102c11fe240bcffbaf35724386695ccdc11649ecd616ea7ec0d6515c",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.NeighborhoodBefore_20260907.SourceBefore.HousingBootstrap": [
+        {
+          "className": "Script",
+          "sha256": "961806c7456f87b5bbc94a3736891cee3d5ef6bc9f87be5ce8c835ba7f8e09cf",
+          "disabled": true
+        }
+      ],
+      "ServerStorage.NeighborhoodBefore_20260907.SourceBefore.LobbyBootstrap": [
+        {
+          "className": "Script",
+          "sha256": "8e05cc2d4869d1b0040a4e55d4af8cada615659fd4c84fc792d009aaa5dba677",
+          "disabled": true
+        }
+      ],
+      "ServerStorage.NeighborhoodBefore_20260907.SourceBefore.ProgressionService": [
+        {
+          "className": "ModuleScript",
+          "sha256": "cab95d95e825e0e6abab518cf6c6332b65109275ce5bcc289a3fcc401b4e1d73",
+          "disabled": false
+        }
+      ],
+      "ServerStorage.NeighborhoodBefore_20260907.SourceBefore.ProgressionClient": [
+        {
+          "className": "LocalScript",
+          "sha256": "a21d965b097acda23389b116e563fd98ebc2d916b04383ada813a9bd42716d05",
+          "disabled": true
+        }
+      ]
+    },
+    "instanceClasses": {
+      "Workspace": 1,
+      "Sound": 5,
+      "Folder": 175,
+      "ColorCorrectionEffect": 1,
+      "BloomEffect": 2,
+      "BlurEffect": 1,
+      "SunRaysEffect": 2,
+      "Part": 7354,
+      "Model": 652,
+      "Seat": 42,
+      "PointLight": 126,
+      "SurfaceGui": 234,
+      "TextLabel": 234,
+      "WedgePart": 116,
+      "Terrain": 1,
+      "Attachment": 569,
+      "MeshPart": 254,
+      "SpawnLocation": 2,
+      "Camera": 3,
+      "ProceduralModel": 152,
+      "GeneratedFolder": 152,
+      "UnionOperation": 1172,
+      "SpecialMesh": 1445,
+      "Vector3Value": 76,
+      "Humanoid": 1,
+      "Animator": 1,
+      "NumberValue": 18,
+      "HumanoidDescription": 1,
+      "BodyPartDescription": 6,
+      "AccessoryDescription": 4,
+      "LocalScript": 19,
+      "StringValue": 92,
+      "Animation": 27,
+      "BindableFunction": 1,
+      "WrapTarget": 15,
+      "NoCollisionConstraint": 19,
+      "AnimationConstraint": 15,
+      "BallSocketConstraint": 14,
+      "Shirt": 1,
+      "Pants": 1,
+      "FaceControls": 1,
+      "Accessory": 4,
+      "RigidConstraint": 4,
+      "WrapLayer": 2,
+      "SurfaceAppearance": 27,
+      "BodyColors": 1,
+      "ProximityPrompt": 13,
+      "CFrameValue": 8,
+      "TimerService": 1,
+      "CollectionService": 1,
+      "SoundService": 1,
+      "VideoCaptureService": 1,
+      "NonReplicatedCSGDictionaryService": 1,
+      "CSGDictionaryService": 1,
+      "Chat": 1,
+      "Players": 1,
+      "ReplicatedFirst": 1,
+      "TweenService": 1,
+      "MaterialService": 1,
+      "TextChatService": 1,
+      "ChatWindowConfiguration": 1,
+      "ChatInputBarConfiguration": 1,
+      "BubbleChatConfiguration": 1,
+      "UIGradient": 1,
+      "ImageLabel": 1,
+      "UICorner": 1,
+      "UIPadding": 1,
+      "ChannelTabsConfiguration": 1,
+      "PermissionsService": 1,
+      "PlayerEmulatorService": 1,
+      "StudioData": 1,
+      "StarterPlayer": 1,
+      "StarterPlayerScripts": 1,
+      "StarterCharacterScripts": 1,
+      "StarterPack": 1,
+      "StarterGui": 1,
+      "ScreenGui": 1,
+      "StyleLink": 1,
+      "LocalizationService": 1,
+      "TeleportService": 1,
+      "PhysicsService": 1,
+      "InsertService": 1,
+      "GamePassService": 1,
+      "Debris": 1,
+      "CookiesService": 1,
+      "Selection": 1,
+      "VRService": 1,
+      "ContextActionService": 1,
+      "ScriptService": 1,
+      "AssetService": 1,
+      "TouchInputService": 1,
+      "AvatarSettings": 1,
+      "AvatarRules": 1,
+      "AvatarBodyRules": 1,
+      "AvatarCollisionRules": 1,
+      "AvatarAnimationRules": 1,
+      "AvatarAccessoryRules": 1,
+      "AvatarClothingRules": 1,
+      "AvatarAbilityRules": 1,
+      "Packages": 1,
+      "GuidRegistryService": 1,
+      "LuaWebService": 1,
+      "ProcessInstancePhysicsService": 1,
+      "ReplicatedStorage": 1,
+      "ModuleScript": 117,
+      "RemoteFunction": 2,
+      "RemoteEvent": 2,
+      "CylinderMesh": 162,
+      "Texture": 164,
+      "WeldConstraint": 133,
+      "BlockMesh": 125,
+      "ManualWeld": 353,
+      "Snap": 72,
+      "Decal": 53,
+      "SpotLight": 7,
+      "ParticleEmitter": 1,
+      "ServerScriptService": 1,
+      "Script": 24,
+      "ServerStorage": 1,
+      "ServiceVisibilityService": 1,
+      "HttpService": 1,
+      "Lighting": 1,
+      "DepthOfFieldEffect": 1,
+      "Sky": 2,
+      "LodDataService": 1,
+      "ProximityPromptService": 1,
+      "SerializationService": 1,
+      "Teams": 1,
+      "TestService": 1,
+      "UGCAvatarService": 1,
+      "VideoService": 1,
+      "VoiceChatService": 1
+    }
+  },
+  "hillside": {
+    "project": "superstore.project.json",
+    "snapshot": "places/RoomRoyale-Hillside.rbxlx",
+    "snapshotSha256": "4c85085f80e770b3d96ca3035c93dec1f49be3897e2cef714662f918e108c19d",
+    "expectedScripts": 30,
+    "savedScripts": 30,
+    "mismatches": [],
+    "additionalSavedScripts": {},
+    "instanceClasses": {
+      "Workspace": 1,
+      "Terrain": 1,
+      "Camera": 1,
+      "TimerService": 1,
+      "CollectionService": 1,
+      "SoundService": 1,
+      "VideoCaptureService": 1,
+      "NonReplicatedCSGDictionaryService": 1,
+      "CSGDictionaryService": 1,
+      "Chat": 1,
+      "Players": 1,
+      "ReplicatedFirst": 1,
+      "TweenService": 1,
+      "MaterialService": 1,
+      "TextChatService": 1,
+      "ChatWindowConfiguration": 1,
+      "ChatInputBarConfiguration": 1,
+      "BubbleChatConfiguration": 1,
+      "ChannelTabsConfiguration": 1,
+      "PermissionsService": 1,
+      "PlayerEmulatorService": 1,
+      "StudioData": 1,
+      "StarterPlayer": 1,
+      "StarterPlayerScripts": 1,
+      "ModuleScript": 26,
+      "LocalScript": 2,
+      "StarterCharacterScripts": 1,
+      "StarterPack": 1,
+      "StarterGui": 1,
+      "LocalizationService": 1,
+      "TeleportService": 1,
+      "PhysicsService": 1,
+      "InsertService": 1,
+      "StringValue": 1,
+      "GamePassService": 1,
+      "Debris": 1,
+      "CookiesService": 1,
+      "Selection": 1,
+      "VRService": 1,
+      "ContextActionService": 1,
+      "ScriptService": 1,
+      "AssetService": 1,
+      "TouchInputService": 1,
+      "AvatarSettings": 1,
+      "Packages": 1,
+      "GuidRegistryService": 1,
+      "LuaWebService": 1,
+      "ProcessInstancePhysicsService": 1,
+      "ReplicatedStorage": 1,
+      "Folder": 2,
+      "ServerScriptService": 1,
+      "Script": 2,
+      "ServerStorage": 1,
+      "Model": 3,
+      "MeshPart": 10,
+      "SurfaceAppearance": 10,
+      "ServiceVisibilityService": 1,
+      "HttpService": 1,
+      "Lighting": 1,
+      "ColorGradingEffect": 1,
+      "BloomEffect": 1,
+      "VideoService": 1,
+      "LodDataService": 1,
+      "TestService": 1,
+      "SerializationService": 1
+    }
+  }
+}

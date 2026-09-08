@@ -38,8 +38,9 @@ The main result screen still presents automatic scoring fields from `JudgeServic
 
 | UI or interaction | Canonical source |
 | --- | --- |
-| Driving input, touch actions, native camera setup, capacity, charge, and session HUD | [Cart client](../prototype/cart-lab/Client.client.lua) |
+| Driving input, touch actions, native camera setup, charge, and session HUD | [Cart client](../prototype/cart-lab/Client.client.lua) |
 | Timed session, practice and market buttons, contextual guide, and sound toggle | [StoreClient](../prototype/superstore/StoreClient.client.lua) |
+| Capacity, focused piece and pickup request | [Shopping](../prototype/cart-lab/Shopping.lua), [PickupRules](../prototype/cart-lab/PickupRules.lua) |
 | Visible item stacks and checkout motion | [Cargo](../prototype/cart-lab/Cargo.lua) |
 | Rider pose and airborne tricks | [Runner](../prototype/cart-lab/Runner.lua) |
 | Wheel, drift, charge, and boost visual effects | [Feedback](../prototype/cart-lab/Feedback.lua) |
@@ -50,11 +51,11 @@ The Hillside and cart-lab projects both consume the canonical cart modules direc
 
 ### Current controls and feedback
 
-WASD or the left stick drives and steers. Right mouse drag, right-side touch drag, or the right stick orbits the camera independently. A straight press and hold of Space or JUMP charges a jump. Pressing while steering selects the hop-and-drift path. A new airborne press holds a dive; releasing returns to float. Brake, grab, and reset have separate actions.
+The milestone-1 candidate uses camera-relative WASD, controller and touch movement. `CameraDirection` resolves movement through the horizontal camera heading. Jump uses Space, A/R1 or JUMP; drift uses Ctrl, L1 or DRIFT; brake uses Shift, L2 or BRAKE. Separate drift intent lets camera corrections coexist with jump charge. Menus, focus loss, text entry and dismount cancel held actions. Hillside's Controls button exposes device-specific action prompts.
 
-The HUD displays `Cart space ... / 100` and `Saved ...`, with a small capacity bar and contextual checkout guidance. Full capacity already rejects a pickup, but the user reported that the filling state and weight difference were unclear. The current maximum load reduces acceleration by 12 percent and steering response by 8 percent. The jump still uses the spring sound that the user asked to remove.
+`Shopping.lua` owns the animated used/free capacity, delivered count, focused merchandise and fit result. `PickupRules.lua` supplies shared targeting rules. GRAB sends the displayed pickup ID, while the server validates pickup eligibility. Full-load acceleration falls by 30 percent and braking acceleration by 25 percent. The jump cue is removed.
 
-The v4 camera uses Roblox's native orbit around a cart focus with an initial 28-stud distance. Mouse orbit, actual touch, controller behavior, and phone layout still need hands-on acceptance. Code inspection and zero-delta mouse-tool output do not prove usable camera input.
+The [milestone-1 report](cart-refinement-m1-2026-09-08.md) contains desktop ScreenGui evidence and paired engine measurements. The user stopped computer use before phone capture and the repaired cargo-suite rerun. Physical mouse, touch, controller, safe-area and subjective feel checks remain open.
 
 ## Accepted next UI
 
@@ -70,7 +71,7 @@ The refinement plan defines the next player experience:
 | Buying and furnishing | Distinguish quantity, price, ownership, preview, and placement from applying a reusable design. |
 | Riding | Show only actions for the equipped ride with current-device prompts. The first skateboard adds explicit Kickflip and Grab. |
 
-Camera-relative movement is an accepted change. Holding forward while turning the camera should turn the cart, while looking at rest should not accelerate it. Camera correction must not accidentally select drift during a charged jump. The larger megaramp and stronger loaded feel preserve the cart movement and stacked cargo the user enjoyed.
+The milestone-1 candidate implements camera-relative movement and stronger load effects. Holding forward while turning the camera turns the cart, while looking at rest supplies no drive input. Separate drift intent preserves charged jumps during camera correction. Device acceptance remains open. The larger megaramp belongs to a later milestone.
 
 ## Verification boundaries
 

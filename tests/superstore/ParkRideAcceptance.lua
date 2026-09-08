@@ -55,7 +55,7 @@ return function(Park, runtime)
 			local desiredRate = 2 * math.max(speed, 14) * math.sin(angle) / math.max(toTarget.Magnitude, 1)
 			local steer = math.clamp(-desiredRate / profile.TurnRate, -1, 1)
 			if math.abs(steer) > 0.001 then steer = math.sign(steer) * (profile.SteeringDeadzone + math.abs(steer) * (1 - profile.SteeringDeadzone)) end
-			local telemetry = controller:step(dt, {throttle = 1, steer = steer, brake = false, held = false, enabled = true})
+			local telemetry = controller:step(dt, {throttle = 1, steer = steer, brake = false, held = false, drift = false, enabled = true})
 			report.peakSpeed = math.max(report.peakSpeed, telemetry.speed)
 			if report.elapsed > 1.5 then report.minSpeedAfterStart = math.min(report.minSpeedAfterStart, telemetry.speed) end
 			if not telemetry.grounded then report.airborneSeconds += dt end

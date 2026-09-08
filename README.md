@@ -7,19 +7,19 @@ The repository is [Hues-House/RoomRoyale](https://github.com/Hues-House/RoomRoya
 ## Open the saved places
 
 - [RoomRoyale-Test.rbxlx](places/RoomRoyale-Test.rbxlx) is the complete main Test scene, including Studio-owned maps and assets. The main Test place was also saved to Roblox, PlaceId `86511797738570`, GameId `10764620924`.
-- [RoomRoyale-Hillside.rbxlx](places/RoomRoyale-Hillside.rbxlx) is the saved standalone Hillside v4 prototype. Open it in Studio and press Play to test the market, stacked cargo, and pump park.
+- [RoomRoyale-Hillside.rbxlx](places/RoomRoyale-Hillside.rbxlx) is the saved standalone Hillside cart-refinement candidate. Open it in Studio and press Play to test the market, camera-relative driving, stacked cargo, and pump park.
 
-Hillside remains a local prototype. This sync did not publish a Live version. The [snapshot verification report](docs/evidence/studio-repo-sync.json) compares the saved places with fresh source builds.
+Hillside remains a local prototype. The [milestone 1 report](docs/cart-refinement-m1-2026-09-08.md) records the candidate, source comparisons, desktop evidence, and remaining acceptance. No Live version was published.
 
 ## Current state
 
 | Work | What exists | Source |
 | --- | --- | --- |
 | Main Test game | Eight cottage lots, working house doors, saved house furniture, purchase pedestals, and complete decorating rounds for separate player cohorts. It still uses the older showroom and cart. | [src](src/README.md), [neighborhood report](docs/neighborhood-build-2026-09-07.md) |
-| Hillside v4 prototype | Open market, visible checkout tube, recognizable furniture stacks, charged jumps, airborne dive, wall recovery, limited-item routes, and a pump park. Its timed shopping session ends with a demonstration collection. | [prototype/superstore](prototype/superstore), [cart runtime](prototype/cart-lab), [ride runtime](packages/RideRuntime), [playtest report](docs/playtest-iteration-v4-2026-09-08.md) |
-| Approved next work | Camera-relative steering, clearer UI and load feedback, noticeable weight, jump-boing removal, full round integration, furniture quantities, earned designs, player-led judging, and an owned skateboard with a megaramp. | [Refinement plan](docs/refinement-plan-2026-09-08.md) |
+| Hillside cart-refinement candidate | Camera-relative steering, separate Drift input, animated capacity and nearby-piece fit feedback, stronger load effects, and jump-boing removal build on the v4 market, stacked furniture, jumps, dive, checkout, and park. Its shopping session still ends with a demonstration collection. | [Milestone 1 report](docs/cart-refinement-m1-2026-09-08.md), [cart runtime](prototype/cart-lab), [ride runtime](packages/RideRuntime) |
+| Approved next work | Full round integration, furniture quantities and purchase pacing, earned designs, player-led judging, and an owned skateboard with a megaramp. | [Refinement plan](docs/refinement-plan-2026-09-08.md), [round-integration draft](docs/round-integration-implementation-brief-2026-09-08.md) |
 
-The refinement plan is approved but unimplemented. Hillside v4 is separate from the main Test game. A successful prototype test does not establish that the complete game uses those mechanics.
+Milestone 1 has an implemented local candidate with desktop and engine evidence. Phone/controller acceptance and the remaining cargo check are still open. Milestones 2-5 remain unimplemented. Hillside is separate from the main Test game; the complete game still uses its older cart and showroom.
 
 ## Read the project
 
@@ -55,7 +55,7 @@ pwsh -NoProfile -File .\tools\Start-HillsidePlaytest.ps1
 
 Add `-BuildOnly` to check and build without opening Studio. If Luau is outside `PATH`, add `-LuauDirectory 'C:\tools\luau'` with the directory containing both executables. The resolver checks that argument first, then `PATH`, then the optional local `.scratch/generated/luau` directory.
 
-The generated output is `build/superstore/RoomRoyale-Hillside-v4.rbxlx`. The [cart lab guide](docs/cart-lab.md) covers the smaller movement test course and its checks. [Verification](docs/verification.md) records current evidence and remaining device, multiplayer, persistence, and asset acceptance.
+The generated output is `build/superstore/RoomRoyale-Hillside-M1-Candidate.rbxlx`. The [cart lab guide](docs/cart-lab.md) covers the smaller movement test course and its checks. [Verification](docs/verification.md) records current evidence and remaining device, multiplayer, persistence, and asset acceptance.
 
 ## Source and assets
 

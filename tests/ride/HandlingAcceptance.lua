@@ -55,7 +55,7 @@ return function(runtime)
 			if state.kind == "dive" and state.launchedAt and elapsed - state.launchedAt >= 0.14 then held = true end
 			local steer = if state.kind == "turn" and elapsed >= 0.4 and elapsed < 1.25 then 1 else 0
 			local t = state.controller:step(dt, {throttle = if state.kind == "coast" then 0 else 1,
-				steer = steer, brake = false, held = held, enabled = true})
+				steer = steer, brake = false, held = held, drift = false, enabled = true})
 			if t.jumpSpeed > 0 then state.launchedAt = elapsed; state.launchY = b.Position.Y end
 			if state.launchedAt and not r.airtime then
 				r.apex = math.max(r.apex, b.Position.Y - state.launchY)

@@ -10,6 +10,7 @@
     },
     "ReplicatedStorage": {
       "CartItemPresentation": { "$path": "prototype/cart-lab/ItemPresentation.lua" },
+      "CartPickupRules": { "$path": "prototype/cart-lab/PickupRules.lua" },
       "CartAudio": { "$path": "prototype/cart-lab/Audio.lua" },
       "RideRuntime": {
         "$path": "packages/RideRuntime"
@@ -45,6 +46,7 @@
     },
     "StarterPlayer": {
       "StarterPlayerScripts": {
+        "CartLabShopping": { "$path": "prototype/cart-lab/Shopping.lua" },
         "CartLabClient": {
           "$path": "prototype/cart-lab/Client.client.lua"
         },

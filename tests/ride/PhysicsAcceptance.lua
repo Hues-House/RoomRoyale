@@ -121,7 +121,7 @@ function PhysicsAcceptance.run(runtimeFolder: Instance, courseFolder: Instance)
 					end
 					state.telemetry = state.controller:step(dt, {
 						throttle = 1, steer = 0, brake = false,
-						held = held, enabled = true,
+						held = held, drift = false, enabled = true,
 					})
 				end)
 				if not ok then fail(state, "Simulation callback: " .. tostring(err)) end

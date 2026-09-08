@@ -56,7 +56,7 @@ function Cargo.new(carts: Folder, player: Player)
 			return
 		end
 		if self.pending[cart] then self.pending[cart]:Disconnect(); self.pending[cart] = nil end
-		local entry = {cart = cart, body = body, pieces = {}, recordConnections = {}, lastUpdate = 0, connections = {}}
+		local entry = {cart = cart, body = body, pieces = {}, recordConnections = {}, lastUpdate = 0, settledAt = self.clock, connections = {}}
 		self.carts[cart] = entry
 		local function rebuild()
 			local present, pieces = {}, {}
@@ -75,6 +75,7 @@ function Cargo.new(carts: Folder, player: Player)
 					local minimum, size = Presentation.bounds(model)
 					piece = {model = model, itemId = itemId, templateId = templateId, minimum = minimum, size = size, born = self.clock, order = order, offset = CFrame.identity}
 					entry.pieces[record.Name] = piece
+					entry.settledAt = self.clock
 				end
 				table.insert(pieces, piece)
 			end
@@ -89,6 +90,7 @@ function Cargo.new(carts: Folder, player: Player)
 					if self.departures[id] then self.departures[id].model:Destroy() end
 					self.departures[id] = {model = piece.model, cf = piece.model:GetPivot(), expires = self.clock + 2}
 					entry.pieces[id] = nil
+					entry.settledAt = self.clock
 				end
 			end
 		end
@@ -260,11 +262,14 @@ function Cargo:step(dt: number, cameraPosition: Vector3)
 		local velocity = entry.body.CFrame:VectorToObjectSpace(entry.body.AssemblyLinearVelocity)
 		local lean = math.clamp(angular.Y * 0.025 + velocity.X * 0.0015, -0.075, 0.075)
 		local visualFrame = presentationFrame(entry) * CFrame.Angles(0, 0, lean)
+		local load = math.clamp(entry.cart:GetAttribute("CargoWeightRatio") or 0, 0, 1)
+		local settlingAge = self.clock - entry.settledAt
+		local settling = math.exp(-settlingAge * 6) * math.abs(math.sin(settlingAge * 14)) * load * 0.16
 		for id, piece in entry.pieces do
 			local age = self.clock - piece.born
 			local bounce = math.exp(-age * 7) * math.abs(math.sin(age * 16)) * 0.3
-			local rattle = math.sin(self.clock * 7 + piece.offset.X) * math.min(math.abs(velocity.Z) / 1200, 0.045)
-			local target = visualFrame * piece.offset * CFrame.new(0, bounce + rattle, 0)
+			local rattle = math.sin(self.clock * 7 + piece.offset.X) * math.min(math.abs(velocity.Z) / 1200, 0.045) * (1 - load * 0.4)
+			local target = visualFrame * CFrame.new(0, settling, 0) * piece.offset * CFrame.new(0, bounce + rattle, 0)
 			local arrival = self.arrivals[id]
 			if arrival then
 				arrival.startTime = arrival.startTime or self.clock

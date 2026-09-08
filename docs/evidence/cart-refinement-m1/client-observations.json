@@ -1,0 +1,26 @@
+{
+  "method": "Normal mounted client E actions through Shopping.grab and server admission; server MoveCartLabTo fixture positions for shelf and checkout",
+  "studioId": "12dbf6d8-2f65-45df-9296-a123c13334d4",
+  "placeId": 0,
+  "piece": "Crescent sofa",
+  "pieceSpace": 40,
+  "afterTwoGrabs": {
+    "spaceUsed": 80,
+    "free": 20,
+    "delivered": 0
+  },
+  "thirdGrab": {
+    "spaceUsed": 80,
+    "rejected": true,
+    "focusedText": "Crescent sofa \u00b7 40 space\nWon't fit \u00b7 20 free. Checkout first."
+  },
+  "checkout": {
+    "spaceUsed": 0,
+    "delivered": 2
+  },
+  "limits": [
+    "Intermediate capacity tween timing not measured",
+    "No completed phone capture",
+    "No physical-device feel acceptance"
+  ]
+}

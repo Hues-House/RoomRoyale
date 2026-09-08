@@ -40,7 +40,7 @@ function Envelope.run()
 			local d = state.definition
 			state.telemetry = state.controller:step(dt, {
 				throttle = 1, steer = d.jump and 0 or 1, brake = false,
-				held = d.jump and elapsed >= 0.5 and elapsed < 0.9 or d.drift == true,
+				held = d.jump == true and elapsed >= 0.5 and elapsed < 0.9, drift = d.drift == true,
 				enabled = true,
 			})
 		end

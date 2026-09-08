@@ -10,6 +10,7 @@
     },
     "ReplicatedStorage": {
       "CartItemPresentation": { "$path": "prototype/cart-lab/ItemPresentation.lua" },
+      "CartPickupRules": { "$path": "prototype/cart-lab/PickupRules.lua" },
       "CartAudio": { "$path": "prototype/cart-lab/Audio.lua" },
       "CartCargoAcceptance": { "$path": "tests/superstore/CargoAcceptance.lua" },
       "RideRuntime": {
@@ -40,6 +41,7 @@
       }
     },
     "ServerStorage": {
+      "CartRefinementAcceptance": { "$path": "tests/ride/CartRefinementAcceptance.lua" },
       "NavigationAcceptance": { "$path": "tests/superstore/NavigationAcceptance.lua" },
       "ParkAcceptance": { "$path": "tests/superstore/ParkAcceptance.lua" },
       "ParkRideAcceptance": { "$path": "tests/superstore/ParkRideAcceptance.lua" },
@@ -54,6 +56,7 @@
     },
     "StarterPlayer": {
       "StarterPlayerScripts": {
+        "CartLabShopping": { "$path": "prototype/cart-lab/Shopping.lua" },
         "CartLabClient": {
           "$path": "prototype/cart-lab/Client.client.lua"
         },

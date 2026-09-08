@@ -8,7 +8,7 @@ Saving Studio work and syncing GitHub preserve the build. Those actions do not e
 
 The complete main scene is [RoomRoyale-Test.rbxlx](../places/RoomRoyale-Test.rbxlx). The main Test was also saved to Roblox, PlaceId `86511797738570`, GameId `10764620924`. The separate [Hillside scene](../places/RoomRoyale-Hillside.rbxlx) remains a local prototype. No Live publication occurred during this sync.
 
-The [saved-place report](evidence/studio-repo-sync.json) records snapshot hashes and managed-script comparisons with fresh Rojo builds. Additional scripts preserved in a scene are listed separately; they are not silently treated as managed source.
+The [current saved-place report](evidence/cart-refinement-m1/snapshot-verification.json) records snapshot hashes and managed-script comparisons with fresh Rojo builds: 54 main and 30 Hillside scripts, with zero mismatches. Additional scripts preserved in a scene are listed separately; they are not silently treated as managed source. The earlier [Studio sync report](evidence/studio-repo-sync.json) records the pre-refinement snapshots.
 
 Run the repository and snapshot checks from the root:
 
@@ -22,12 +22,15 @@ pwsh -NoProfile -File tests/ride/Run-CrashReplay.ps1
 
 These commands require PowerShell 7, Rojo, Python 3, and the Luau CLI tools. [The cart lab guide](cart-lab.md) gives installation links and the `-LuauDirectory` option. The tested toolchain is Rojo 7.6.1 and Luau 0.737. Snapshot verification uses only the Python standard library and Rojo.
 
-Current pure checks cover 29 gesture scenarios, shopping-session rules, and 14 crash replay scenarios. Compilation and packaging checks cover the main and prototype source. They do not simulate Roblox physics or prove device usability.
+Current pure checks cover 25 explicit-intent gesture scenarios, camera direction, 10,201 capacity comparisons, shopping-session rules, and 14 crash replay scenarios. Compilation and packaging checks cover the main and prototype source. They do not simulate Roblox physics or prove device usability.
+
+The [milestone-1 candidate report](cart-refinement-m1-2026-09-08.md) adds 33 real-physics checks and desktop ScreenGui pickup/checkout evidence. Phone capture, physical-device feel, live cancellation checks, and the repaired cargo-suite rerun remain open because computer use was stopped.
 
 ## Current engine evidence
 
 | Evidence | What it establishes | What it leaves open |
 | --- | --- | --- |
+| [Cart milestone 1](cart-refinement-m1-2026-09-08.md) | Camera-relative chassis direction, explicit drift, empty/full physics comparison, and desktop pickup/checkout HUD | Phone/controller/mouse feel, client cancellations, repaired cargo suite, and live wall recovery |
 | [Neighborhood build](neighborhood-build-2026-09-07.md) | Cottage geometry, doors, lot reservation and restoration, supported house placement, and saved coordinates | Eight simultaneous networked clients, a live delayed-profile disconnect, and all catalog pivot conventions |
 | [Hillside v4](playtest-iteration-v4-2026-09-08.md) | Market navigation, item routes, current cargo and checkout, pump-loop surfaces, and actual movement recordings | Main-game integration, device feel, phone performance, and subjective sound quality |
 | [Handling](cart-playtest-handling-2026-09-08.md) | Chassis jump comparison, wall impact and recovery, dive, and pose restoration | Full device and network conditions |

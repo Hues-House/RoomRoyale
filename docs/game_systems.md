@@ -65,7 +65,7 @@ Both `superstore.project.json` and `cart-lab.project.json` map the canonical rid
 
 The prototype uses a 100-space cart. Cargo copies the shelf model at 86 percent scale, stacks from its actual bounds, and preserves item and variant identity through checkout. The market has an open floor, floating signs, limited-item jump routes, and a separate east-side pump park. Its Style state exposes a demonstration collection.
 
-The current controls use cart steering with independent native camera orbit. Charged jumps, reduced air gravity, a second airborne press for dive, cosmetic flight poses, and wall recovery are implemented. The spring jump cue remains. [The v4 report](playtest-iteration-v4-2026-09-08.md) contains measured results and remaining device checks.
+The milestone-1 candidate uses camera-relative driving, separate jump/drift intent, animated capacity and exact pickup targeting, and stronger load acceleration/braking differences. `CameraDirection` owns the horizontal direction resolver; `PickupRules` is shared by the server and `Shopping` client HUD. Charged jumps and airborne dive are preserved, and the jump cue is removed. [The milestone-1 report](cart-refinement-m1-2026-09-08.md) records measured results and interrupted acceptance. [The v4 report](playtest-iteration-v4-2026-09-08.md) remains the historical baseline.
 
 ## Integration boundaries
 
@@ -75,7 +75,7 @@ These are current gaps with accepted next work, not completed features:
 - Finish checkout settlement and preserve each piece's identity and variant before releasing the store. `RoundManager` currently releases the main store before announcing Style.
 - Feed the actual delivered collection into the real styling room. Apply the agreed house-only rule to permanent physical furniture in both server inventory and client presentation.
 - Reconcile judging, reward calculation, profile serialization, and pricing with the approved progression rules.
-- Separate deliberate drift input from camera-relative steering corrections.
+- Finish physical-device acceptance of the separate drift action and camera-relative driving candidate.
 - Test quarter-pipe support and crash classification before adding the planned megaramp and skateboard.
 
 Acceptance drivers live in `tests/ride`, `tests/superstore`, and the neighborhood tools. Pure Luau and Rojo checks establish rules and packaging. Actual Studio runs establish geometry, physics, replication, and input behavior within the limits recorded in each report.

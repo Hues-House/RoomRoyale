@@ -13,8 +13,8 @@ export type Config = {
 }
 
 export type Input = {
-	steer: number,
 	held: boolean,
+	drift: boolean,
 	enabled: boolean,
 }
 
@@ -40,6 +40,7 @@ type Data = {
 	_config: Config,
 	_mode: Mode,
 	_held: boolean,
+	_drift: boolean,
 	_needsRelease: boolean,
 	_jumpSeconds: number,
 	_driftSeconds: number,
@@ -83,6 +84,7 @@ function Gesture.new(config: Config): State
 		_config = ownedConfig,
 		_mode = "Idle",
 		_held = false,
+		_drift = false,
 		_needsRelease = false,
 		_jumpSeconds = 0,
 		_driftSeconds = 0,
@@ -100,28 +102,33 @@ function Gesture.step(self: State, dt: number, input: Input, contact: Contact): 
 		reset(self)
 		self._needsRelease = true
 		self._held = input.held
+		self._drift = input.drift
 	elseif self._needsRelease then
-		if not input.held then
+		if not input.held and not input.drift then
 			self._needsRelease = false
 		end
 		self._held = input.held
+		self._drift = input.drift
 	else
 		local pressed = input.held and not self._held
-		local released = not input.held and self._held
+		local driftPressed = input.drift and not self._drift
+		local released = if self._mode == "Drift" then not input.drift and self._drift else not input.held and self._held
 		self._held = input.held
+		self._drift = input.drift
 
 		if pressed then
 			reset(self)
 			if not contact.grounded then
 				self._mode = "Dive"
-			elseif math.abs(input.steer) > config.SteeringDeadzone then
-				self._mode = "Drift"
-				if contact.grounded then
-					jumpSpeed = config.HopSpeed
-				end
 			elseif contact.grounded then
 				self._mode = "JumpCharge"
 			end
+			released = false
+		elseif driftPressed and self._mode == "Idle" and not input.held and contact.grounded then
+			reset(self)
+			self._mode = "Drift"
+			jumpSpeed = config.HopSpeed
+			released = false
 		end
 
 		if self._mode == "Dive" then
@@ -168,7 +175,7 @@ function Gesture.step(self: State, dt: number, input: Input, contact: Contact): 
 		boostSeconds = boostSeconds,
 		jumpCharge = self._jumpSeconds / config.JumpChargeSeconds,
 		driftCharge = self._driftSeconds / config.DriftTierSeconds[#config.DriftTierSeconds],
-		drifting = self._mode == "Drift" and contact.grounded and input.held and jumpSpeed == 0,
+		drifting = self._mode == "Drift" and contact.grounded and input.drift and jumpSpeed == 0,
 		diving = self._mode == "Dive" and not contact.grounded and input.held,
 	}
 end
@@ -176,8 +183,8 @@ end
 function Gesture.stepEvents(self: State, dt: number, input: Input, contact: Contact, edges: { Input }): Result
 	if not input.enabled or #edges > 8 then
 		return self:step(dt, {
-			steer = input.steer,
 			held = input.held,
+			drift = input.drift,
 			enabled = false,
 		}, contact)
 	end

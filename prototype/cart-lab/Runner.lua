@@ -71,7 +71,7 @@ local function createRig(cart: Model, character: Model, humanoid: Humanoid, owne
 	local rig = {
 		cart = cart, character = character, humanoid = humanoid, root = root,
 		motors = motors, incoming = incoming, original = original, poses = {},
-		phase = 0, elapsed = 1, owner = owner,
+		phase = 0, elapsed = 1, owner = owner, loadBlend = 0,
 		flightBlend = 0, previousGrounded = true, priorCharge = 0, trick = 0,
 		random = Random.new(),
 	}
@@ -152,6 +152,9 @@ local function updatePose(rig, dt: number, telemetry)
 	local charge = if telemetry then telemetry.jumpCharge or 0 else if fresh then rig.cart:GetAttribute("JumpCharge") or 0 else 0
 	local crouch = if mode == "JumpCharge" and grounded then math.clamp(charge, 0, 1) else 0
 	local tuck = if grounded then 0 else 1
+	local load = math.clamp(rig.cart:GetAttribute("CargoWeightRatio") or 0, 0, 1)
+	rig.loadBlend += (load - rig.loadBlend) * (1 - math.exp(-6 * dt))
+	local effort = rig.loadBlend * (1 - tuck) * (1 - crouch)
 	if not grounded and rig.previousGrounded then
 		rig.trick = if rig.priorCharge >= 0.75 or (telemetry and (telemetry.jumpSpeed or 0) >= 24) then rig.random:NextInteger(1, 3) else 0
 	end
@@ -159,17 +162,17 @@ local function updatePose(rig, dt: number, telemetry)
 	local flight = if not grounded and rig.trick > 0 and velocity.Y > -8 then 1 else 0
 	rig.flightBlend += (flight - rig.flightBlend) * (1 - math.exp(-16 * dt))
 	local flourish = rig.flightBlend
-	local stride = 0.72 * moving
+	local stride = 0.72 * moving * (1 - effort * 0.12)
 	rig.phase = (rig.phase + dt * (8 + math.min(speed, 65) * 0.28) * moving) % (math.pi * 2)
 	local bob = math.abs(math.cos(rig.phase)) * 0.1 * moving * (1 - tuck)
-	setPose(rig, "Root", CFrame.new(0, bob - crouch * 0.42 + flourish * 0.45, flourish * 0.75) * CFrame.Angles(-flourish * 0.85, 0, 0))
-	setPose(rig, "Waist", CFrame.Angles(-0.12 - moving * 0.16 - crouch * 0.18, 0, 0))
-	setPose(rig, "Neck", CFrame.Angles(0.1 + moving * 0.12, 0, 0))
+	setPose(rig, "Root", CFrame.new(0, bob - crouch * 0.42 - effort * 0.1 + flourish * 0.45, flourish * 0.75) * CFrame.Angles(-flourish * 0.85, 0, 0))
+	setPose(rig, "Waist", CFrame.Angles(-0.12 - moving * 0.16 - crouch * 0.18 - effort * 0.14, 0, 0))
+	setPose(rig, "Neck", CFrame.Angles(0.1 + moving * 0.12 + effort * 0.08, 0, 0))
 	for index, side in ipairs({"Left", "Right"}) do
 		local phase = rig.phase + (index - 1) * math.pi
 		local swing = math.sin(phase)
-		local hip = (swing * stride + crouch * 0.55) * (1 - tuck) + tuck * 0.95
-		local knee = (-math.max(0, -swing) * 1.25 * moving - crouch * 1.1) * (1 - tuck) - tuck * 1.7
+		local hip = (swing * stride + crouch * 0.55 + effort * 0.12) * (1 - tuck) + tuck * 0.95
+		local knee = (-math.max(0, -swing) * 1.25 * moving - crouch * 1.1 - effort * 0.24) * (1 - tuck) - tuck * 1.7
 		local kick = if rig.trick == 2 and side == "Right" then 0.85 else if rig.trick == 3 then -0.4 else 0
 		hip = hip * (1 - flourish) + (-0.35 + kick) * flourish
 		knee = knee * (1 - flourish) - (if rig.trick == 3 then 1.1 else 0.15) * flourish

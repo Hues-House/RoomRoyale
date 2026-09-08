@@ -74,7 +74,7 @@ function DriftPhysicsAcceptance.run(runtimeFolder: Instance)
 				local success, failure = pcall(function()
 					state.telemetry = state.controller:step(dt, {
 						throttle = 1, steer = if elapsed < holdSeconds then 1 else 0,
-						brake = false, held = elapsed < holdSeconds, enabled = true,
+						brake = false, held = false, drift = elapsed < holdSeconds, enabled = true,
 					})
 				end)
 				if not success then

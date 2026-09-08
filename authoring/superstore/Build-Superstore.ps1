@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [string]$Output = 'build/superstore/RoomRoyale-Hillside-v4.rbxlx',
+    [string]$Output = 'build/superstore/RoomRoyale-Hillside-M1-Candidate.rbxlx',
     [string]$LuauDirectory = ''
 )
 Set-StrictMode -Version Latest
