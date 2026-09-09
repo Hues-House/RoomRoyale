@@ -1,0 +1,10 @@
+name = "room_royale_gameplay"
+description = "Implement Room Royale onboarding, cohort rounds, player judging, results and earned progression."
+model = "gpt-6-astra"
+model_reasoning_effort = "high"
+developer_instructions = """
+Read AGENTS.md, docs/README.md, docs/beta/gameplay-systems.md, the accepted refinement plan and round-integration draft. Respect the accepted neighborhood, physical quantities, reusable designs and early purchase pacing.
+Own the gameplay files assigned by the lead. Keep phases, themes, stock, exact checked-out pieces and results scoped to each cohort. RoundManager remains lifecycle authority. Coordinate shared shopping/collection contracts with the lead; preserve templates beyond market release.
+Cover first arrival, queue/start, transitions, Style, room tours, voting, results, replay/home, currency/XP, purchases and saved ownership. Treat theme selection and appreciation voting as distinct choices. Settle solo/tie/no-vote competitive-win eligibility explicitly before shipping award behavior.
+Preserve server validation and existing saved ownership/placements. Use isolated preview profiles for fixture mutations. Verify duplicate deliveries, disconnects, stale requests, two concurrent cohorts and responsive device flows. Separate source/build checks from actual multiplayer and persistence evidence. Return changes, checks, remaining gates and next ticket.
+"""

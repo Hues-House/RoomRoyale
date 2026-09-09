@@ -1,6 +1,6 @@
 # Current documentation
 
-The repository contains two working builds and one approved plan. The main Test game has the neighborhood and complete decorating rounds. Hillside is the separate cart, market, and pump-park prototype, now with a [milestone-1 cart candidate](cart-refinement-m1-2026-09-08.md). [The refinement plan](refinement-plan-2026-09-08.md) connects them and defines the next features. Milestone 1 has remaining playtest acceptance; milestones 2–5 remain unimplemented.
+The repository contains two working builds and one approved plan. The main Test game has the neighborhood and complete decorating rounds. Hillside is the separate cart, market, and pump-park prototype, now with a [milestone-1 cart candidate](cart-refinement-m1-2026-09-08.md). [The refinement plan](refinement-plan-2026-09-08.md) connects them and defines the next features. Milestone 1 has remaining playtest acceptance; milestones 2–5 remain unimplemented. The [proposed cart physics](#proposed-cart-physics) briefs are separate from that plan and none has been accepted.
 
 Open the complete [main Test snapshot](../places/RoomRoyale-Test.rbxlx) or [Hillside snapshot](../places/RoomRoyale-Hillside.rbxlx) in Studio. The main Test was also saved to Roblox. Hillside remains a local prototype, and this sync did not publish Live.
 
@@ -8,6 +8,8 @@ Open the complete [main Test snapshot](../places/RoomRoyale-Test.rbxlx) or [Hill
 
 | Document | Use it for |
 | --- | --- |
+| [Pro beta architecture kickoff](beta/pro-architecture-kickoff.md) | Shared architecture, three workstream plans, model routing, and executable implementation handoffs |
+| [Beta orchestration and work packages](beta/README.md) | Integration ownership, specialist findings, work queue, and baseline evidence |
 | [Project status and workflow](../README.md) | Build boundaries, source locations, and verification commands |
 | [Agent guide](../AGENTS.md) | Working rules and product constraints |
 | [Refinement plan](refinement-plan-2026-09-08.md) | Accepted decisions, build sequence, implementation gaps, and acceptance criteria |
@@ -19,6 +21,20 @@ Open the complete [main Test snapshot](../places/RoomRoyale-Test.rbxlx) or [Hill
 | [Writing guide](writing_guide.md) | Player-facing words and feedback examples |
 | [Verification](verification.md) | Current checks, saved-place comparison, and outstanding release acceptance |
 | [Cart lab](cart-lab.md) | Tool setup, current ride controls, and the isolated movement test course |
+
+## Proposed cart physics
+
+Five briefs dated September 9 propose the cart handling, air, and park-riding work. None is implemented, and no build has been played against any of them. Later briefs supersede parts of earlier ones, so read them in this order and check each brief's own supersede notes before acting on a number.
+
+| Document | Status and scope |
+| --- | --- |
+| [Handling and weight brief](cart-handling-weight-brief-2026-09-09.md) | Terminal speed, lateral acceleration cap, progressive grip, landing bleed. Its diagnosis and its grounded hysteresis are superseded |
+| [Air and tricks brief](cart-air-tricks-turning-brief-2026-09-09.md) | Air gravity, ramp pop, dive payoff, trick scoring, pumping. Its diagnosis and input scheme are superseded |
+| [Control model brief](cart-control-model-brief-2026-09-09.md) | Ground-feel numbers read from the shipped `src/` controller. Its split-by-contact recommendation is superseded |
+| [One-button input brief](cart-one-button-input-brief-2026-09-09.md) | Current. Jump, drift, dive, and trick on one button, and the input-plumbing bug that split them |
+| [Contact model brief](cart-contact-model-brief-2026-09-09.md) | Current. One force solver with a continuous ground-contact value, plus what vert riding and pumping need |
+
+The first three carry tuning tables that still stand even where their reasoning was replaced. The last two settle the input scheme and the physics architecture.
 
 ## Implemented work and evidence
 

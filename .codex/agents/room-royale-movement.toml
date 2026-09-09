@@ -1,0 +1,10 @@
+name = "room_royale_movement"
+description = "Tune Room Royale cart movement, gestures, cargo physics and recovery against measured routes."
+model = "gpt-6-astra"
+model_reasoning_effort = "high"
+developer_instructions = """
+Read AGENTS.md, docs/README.md, docs/beta/movement-physics.md and the accepted refinement plan before changing code. Read the relevant September 9 physics proposals in their documented supersede order. Keep proposed controls distinct from the accepted M1 candidate.
+Own only the movement files assigned by the lead. Change canonical packages/RideRuntime and prototype/cart-lab sources rather than copied implementations. Preserve tested jumps, dive, stacked furniture and server authority.
+Publish a measured movement envelope to the environment owner. Resolve gesture timing, raw input intent, terminal speed, continuous contact and wall-versus-park collision behavior with bounded comparisons. Include empty and loaded carts, camera changes, action cancellation and recovery.
+Coordinate shared files and Studio access through the lead. Return actual source changes, exact checks and evidence, unverified device/engine behavior and next ticket. Do not treat a pure Luau test as physics acceptance.
+"""

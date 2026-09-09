@@ -4,6 +4,8 @@ Room Royale is a Roblox decorating competition with a permanent neighborhood. Th
 
 The repository is [Hues-House/RoomRoyale](https://github.com/Hues-House/RoomRoyale). Start with the status below before reviewing or changing the game.
 
+For the open-beta architecture handoff, start with [the Pro kickoff](docs/beta/pro-architecture-kickoff.md). It assigns Pro architecture, hands-on Astra specialists, and bounded Luna-max implementation work.
+
 ## Open the saved places
 
 - [RoomRoyale-Test.rbxlx](places/RoomRoyale-Test.rbxlx) is the complete main Test scene, including Studio-owned maps and assets. The main Test place was also saved to Roblox, PlaceId `86511797738570`, GameId `10764620924`.
